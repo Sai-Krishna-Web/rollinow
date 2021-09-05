@@ -48,7 +48,7 @@ function AddCast() {
     const handleSubmit = (vars) => {
         addCast({
             variables: {
-                Cast: vars
+                cast: vars
             },
         })
     };

@@ -22,7 +22,7 @@ export const ADD_SHOW_URL = gql`
 export const ADD_CAST_URL = gql`
     mutation($cast:CastCreateInput!) {
             addCast(
-                show:$show
+                cast:$cast
             ){
                 id
             }
