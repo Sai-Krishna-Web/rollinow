@@ -14,7 +14,7 @@ function SideNavBar() {
             name: 'Home',
             icon: <HomeOutlinedIcon />,
             onClick: () => {
-                setRoute('/home');
+                setRoute('/');
             }
         },
         {

@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
-import { useMutation } from "@apollo/react-hooks";
-import { useAuthToken } from "../contexts/auth";
+import { useMutation } from '@apollo/react-hooks';
+import { useAuthToken } from '../contexts/auth';
 
 export const loginMutationGQL = gql`
   mutation ($email: String!, $password: String!) {
@@ -19,11 +19,11 @@ export const useLoginService = () => {
     const [adminLogin, mutationResults] = useMutation(loginMutationGQL, {
         onCompleted: (data) => {
             if (data.adminLogin) {
-                console.log(data.adminLogin)
                 localStorage.setItem('user', JSON.stringify(data.adminLogin));
                 setAuthToken(data.adminLogin.token);
             }
         },
+        // eslint-disable-next-line
         onError: (error) => console.log(error)
     });
 

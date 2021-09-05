@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 import { Router } from 'react-router-dom'
 import { browserHistory } from './utilities';
-import "./App.css";
-import { ApolloProvider } from "@apollo/react-hooks";
-import { useAppApolloClient } from "./contexts/apolloClient";
+import './App.css';
+import { ApolloProvider } from '@apollo/react-hooks';
+import { useAppApolloClient } from './contexts/apolloClient';
 import Layout from './layouts/layout.container';
-import { LoginForm } from "./pages";
-import { useAuthToken } from "./contexts/auth";
+import { LoginForm } from './pages';
+import { useAuthToken } from './contexts/auth';
 import { createTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 const theme = createTheme({

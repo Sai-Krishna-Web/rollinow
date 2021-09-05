@@ -1,12 +1,12 @@
 import React from 'react';
 //import styles from './content.module.scss';
 import { Switch, Route } from 'react-router-dom';
-import { Home, Shows, Movies, AddShow, Casts, AddCast } from '../../pages';
+import { Home, Shows, Movies, AddShow, Casts, AddCast } from 'pages';
 
 function ContentComponent() {
     return (
         <Switch>
-            <Route path='/home' exact={true} component={Home} />
+            <Route path='/' exact={true} component={Home} />
             <Route path='/shows' exact={true} component={Shows} />
             <Route path='/movies' exact={true} component={Movies} />
             <Route path='/addShow' exact={true} component={AddShow} />

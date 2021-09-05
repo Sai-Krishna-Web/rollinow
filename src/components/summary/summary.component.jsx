@@ -1,6 +1,5 @@
-import React from "react";
+import React from 'react';
 import { makeStyles, Paper, CardMedia, CardContent, Grid, Typography } from '@material-ui/core';
-import { useAddShowFormContext } from '../../contexts/show-form-context';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,13 +17,13 @@ const useStyles = makeStyles((theme) => ({
     media: {
         height: '100%',
         minWidth: 200,
-        backgroundColor: "#171717",
-        backgroundSize: "contain",
+        backgroundColor: '#171717',
+        backgroundSize: 'contain',
     }
 }));
 
-const SummaryComponent = () => {
-    const { addShowForm } = useAddShowFormContext();
+const SummaryComponent = (props) => {
+    const { addShowForm } = props;
     const classes = useStyles();
 
     return (
@@ -41,42 +40,42 @@ const SummaryComponent = () => {
                         <CardContent>
                             <Grid container>
                                 <Grid item xs={12}>
-                                    <Typography gutterBottom variant="h4">
+                                    <Typography gutterBottom variant='h4'>
                                         {addShowForm.title}
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography gutterBottom variant="h6">
+                                    <Typography gutterBottom variant='h6'>
                                         {addShowForm.tagline}
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography gutterBottom variant="subtitle2">
+                                    <Typography gutterBottom variant='subtitle2'>
                                         {addShowForm.description}
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography gutterBottom variant="subtitle2">
+                                    <Typography gutterBottom variant='subtitle2'>
                                         {addShowForm.keywords.join(', ')}
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Typography gutterBottom variant="subtitle1" align='left'>
+                                    <Typography gutterBottom variant='subtitle1' align='left'>
                                         Release Date : {addShowForm.releaseDate}
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Typography gutterBottom variant="subtitle1" align='left'>
+                                    <Typography gutterBottom variant='subtitle1' align='left'>
                                         Duration : {addShowForm.duration}
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Typography gutterBottom variant="subtitle1" align='left'>
+                                    <Typography gutterBottom variant='subtitle1' align='left'>
                                         Indian OTT : {addShowForm.isIndianOTT ? 'Yes' : 'No'}
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Typography gutterBottom variant="subtitle1" align='left'>
+                                    <Typography gutterBottom variant='subtitle1' align='left'>
                                         In favorites : {addShowForm.inFavorites ? 'Yes' : 'No'}
                                     </Typography>
                                 </Grid>

@@ -1,20 +1,20 @@
-import React from "react";
-import { PageHeader, Stepper, LoadingScreen } from '../../components';
+import React from 'react';
+import { PageHeader, Stepper, LoadingScreen,SnackBarAndAlert } from 'components';
 import { Button, makeStyles } from '@material-ui/core';
-import { useAddShowFormContext } from '../../contexts/show-form-context';
-import SnackBarAndAlert from '../../components/snackbar-and-alert/snackbar-and-alert.container';
+import { useAddShowFormContext } from 'contexts';
+
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: "100%",
+        width: '100%',
     },
     button: {
         marginRight: theme.spacing(2)
     },
     completed: {
-        display: "inline-block"
+        display: 'inline-block'
     },
     container: {
-        marginBottom: "50px",
+        marginBottom: '50px',
     }
 
 }));
@@ -24,10 +24,9 @@ const AddShowComponent = (props) => {
     const { getComponent, steps, step, setStep, pageData, nextStep, handleSubmit, loading, data, error } = props;
     const { addShowForm } = useAddShowFormContext();
 
-    console.log(data, error);
     return (
         <>
-            <div style={{ margin: "auto" }}>
+            <div style={{ margin: 'auto' }}>
                 <PageHeader pageData={pageData} />
                 <div style={{ minHeight: '600px', textAlign: 'center', padding: '20px' }}>
                     <Stepper
@@ -43,23 +42,23 @@ const AddShowComponent = (props) => {
                         <Button
                             disabled={step === 1}
                             onClick={() => nextStep(step - 1)}
-                            variant="contained"
-                            color="primary"
+                            variant='contained'
+                            color='primary'
                             className={classes.button}
                         >
                             Back
                     </Button>
                         {step === steps.length ? <Button
                             className={classes.button}
-                            variant="contained"
-                            color="primary"
+                            variant='contained'
+                            color='primary'
                             onClick={() => handleSubmit(addShowForm)}
                         >
                             Submit
                      </Button> : <Button
                             className={classes.button}
-                            variant="contained"
-                            color="primary"
+                            variant='contained'
+                            color='primary'
                             onClick={() => nextStep()}
                         >
                             Next
@@ -72,9 +71,9 @@ const AddShowComponent = (props) => {
                 <SnackBarAndAlert
                     open={Boolean(data)}
                     onClose={() => {
-                        console.log("closed")
+                        console.log('closed')
                     }}
-                    type="success"
+                    type='success'
                 >
                     Show added successfully.
                 </SnackBarAndAlert>
@@ -85,7 +84,7 @@ const AddShowComponent = (props) => {
                     onClose={() => {
                         props.setOnError(false);
                     }}
-                    type="error"
+                    type='error'
                 >
                     {`Failed:  ${error?.message}`}
                 </SnackBarAndAlert>

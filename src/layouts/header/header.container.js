@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderComponent from './header.component';
-import { useLogout, userContext } from "../../contexts/auth";
+import { useLogout, userContext } from '../../contexts/auth';
 
 function Header() {
     const logout = useLogout();

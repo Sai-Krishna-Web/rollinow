@@ -1,6 +1,6 @@
 import React from 'react';
 import CastsComponent from './casts.component';
-import { setRoute } from '../../utilities';
+import { setRoute } from 'utilities';
 
 function Casts() {
     const AddCast = () => {

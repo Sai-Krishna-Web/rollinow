@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react';
 import { makeStyles, Card, CardMedia, CardContent, Box } from '@material-ui/core';
 import { Formik } from 'formik';
-import { useLoginService } from "../../services/loginService";
-import logo from "../../assets/images/logo.svg";
-import "./login.scss"
+import { useLoginService } from '../../services/loginService';
+import logo from '../../assets/images/logo.svg';
+import './login.scss'
 
 const useStyles = makeStyles({
   card: {
     maxWidth: 345,
-    margin: "auto",
+    margin: 'auto',
     border: '1px solid #ddd',
     boxShadow: 'none',
   },
   media: {
     height: 140,
-    backgroundColor: "#171717",
-    backgroundSize: "contain",
+    backgroundColor: '#171717',
+    backgroundSize: 'contain',
   }
 });
 
@@ -31,8 +31,8 @@ const LoginForm = () => {
   const onSubmit = (values) => loginMutation(values.email, values.password);
 
   const initialValues = {
-    email: "",
-    password: ""
+    email: '',
+    password: ''
   };
 
   const validate = (values) => {
@@ -40,15 +40,15 @@ const LoginForm = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
     if (!values.email) {
-      errors.email = "Email is required";
+      errors.email = 'Email is required';
     } else if (!regex.test(values.email)) {
-      errors.email = "Invalid Email";
+      errors.email = 'Invalid Email';
     }
 
     if (!values.password) {
-      errors.password = "Password is required";
+      errors.password = 'Password is required';
     } else if (values.password.length < 4) {
-      errors.password = "Password too short";
+      errors.password = 'Password too short';
     }
 
     return errors;
@@ -60,7 +60,7 @@ const LoginForm = () => {
         <CardMedia
           className={classes.media}
           image={logo}
-          title="Rollinow"
+          title='Rollinow'
         />
         <CardContent>
 
@@ -81,50 +81,50 @@ const LoginForm = () => {
                 dirty
               } = formik;
               return (
-                <div className="container">
+                <div className='container'>
                   <h1>Welcome admin</h1>
                   <form onSubmit={handleSubmit}>
-                    <div className="form-row">
-                      <label htmlFor="email">Email</label>
+                    <div className='form-row'>
+                      <label htmlFor='email'>Email</label>
                       <input
-                        type="email"
-                        name="email"
-                        id="email"
+                        type='email'
+                        name='email'
+                        id='email'
                         value={values.email}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         className={
-                          errors.email && touched.email ? "input-error" : null
+                          errors.email && touched.email ? 'input-error' : null
                         }
                       />
                       {errors.email && touched.email && (
-                        <span className="error">{errors.email}</span>
+                        <span className='error'>{errors.email}</span>
                       )}
                     </div>
 
-                    <div className="form-row">
-                      <label htmlFor="password">Password</label>
+                    <div className='form-row'>
+                      <label htmlFor='password'>Password</label>
                       <input
-                        type="password"
-                        name="password"
-                        id="password"
+                        type='password'
+                        name='password'
+                        id='password'
                         value={values.password}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         className={
-                          errors.password && touched.password ? "input-error" : null
+                          errors.password && touched.password ? 'input-error' : null
                         }
                       />
                       {errors.password && touched.password && (
-                        <span className="error">{errors.password}</span>
+                        <span className='error'>{errors.password}</span>
                       )}
                     </div>
-                    {error && <div className="form-row">
-                      <span className="error">{error.message}</span>
+                    {error && <div className='form-row'>
+                      <span className='error'>{error.message}</span>
                     </div>}
                     <button
-                      type="submit"
-                      className={!(dirty && isValid) ? "disabled-btn" : ""}
+                      type='submit'
+                      className={!(dirty && isValid) ? 'disabled-btn' : ''}
                       disabled={!(dirty && isValid) || disableForm}
                     >
                       Sign In

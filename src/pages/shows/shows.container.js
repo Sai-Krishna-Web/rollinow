@@ -1,6 +1,6 @@
 import React from 'react';
 import ShowsComponent from './shows.component';
-import { setRoute } from '../../utilities';
+import { setRoute } from 'utilities';
 
 
 function Shows() {

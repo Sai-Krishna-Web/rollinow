@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import AddShowComponent from './add-show.component';
-import { ShowInfo, MediaFiles, OtherDeatils, Summary } from '../../components';
-import { AddShowFormProvider } from '../../contexts/show-form-context'
+import { ShowInfo, MediaFiles, OtherDeatils, Summary } from 'components';
+import { AddShowFormProvider } from 'contexts'
 import { useMutation } from '@apollo/client';
-import { ADD_SHOW_URL } from '../../services/mutations';
+import { ADD_SHOW_URL } from 'services/mutations';
 
 function AddShow() {
     const [step, setStep] = useState(1);
     const [onError, setOnError] = useState(false);
     const [addShow, { data, error, loading }] = useMutation(ADD_SHOW_URL, {
-        onError: (error) => {
+        onError: () => {
             setOnError(true);
-            console.log(error);
         }
     });
 
@@ -40,12 +39,6 @@ function AddShow() {
                 show: vars
             },
         })
-        if (data) {
-            console.log(data);
-        }
-        if (error) {
-            console.log(error);
-        }
     };
 
     const getComponent = (step) => {

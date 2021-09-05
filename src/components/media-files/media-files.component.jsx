@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import { UploadMedia, CircularProgressBar } from '../index';
+import React from 'react';
+import { UploadMedia, CircularProgressBar } from 'components';
 import { makeStyles, Grid, TextField, MenuItem } from '@material-ui/core';
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import StepIcon from "@material-ui/core/StepIcon";
-
-import { useAddShowFormContext } from '../../contexts/show-form-context';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import StepIcon from '@material-ui/core/StepIcon';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,31 +41,19 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const MediaFilesComponent = () => {
+const MediaFilesComponent = (props) => {
+    const { addShowForm, mediaFiles, mediaType, uploadProgress, setMediaType, setUploadProgress, afterUpload } = props
     const classes = useStyles();
-    const [mediaType, setMediaType] = useState('')
-    const [uploadProgress, setUploadProgress] = useState(0)
-    const { addShowForm, setAddShowForm } = useAddShowFormContext();
 
-    const mediaFiles = {
-        backdropUrl: 'Backdrop',
-        thumbnailUrl: 'Thumbnail',
-        trailerUrl: 'Trailer',
-    }
-
-    const afterUpload = (link) => {
-        setAddShowForm((addShowForm) => ({ ...addShowForm, [mediaType]: link }));
-    }
     return (
-        <div style={{ margin: "auto" }}>
+        <div style={{ margin: 'auto' }}>
             <h4>Upload media files</h4>
             <div className={classes.root}>
-                <Grid container spacing={3} justifyContent="center">
+                <Grid container spacing={3} justifyContent='center'>
                     <Grid item className={classes.filesPanel}>
                         <List>
 
                             {Object.keys(mediaFiles).map((value, index) => {
-                                console.log(value);
                                 return (
                                     <ListItem
                                         key={value}
@@ -79,7 +65,7 @@ const MediaFilesComponent = () => {
                                                 <StepIcon
                                                     icon={index + 1}
                                                     active={addShowForm[`${value}`]}
-                                                    color="primary"
+                                                    color='primary'
                                                 />
                                             }
                                         </ListItemIcon>
@@ -93,18 +79,18 @@ const MediaFilesComponent = () => {
                         <Grid item xs={8}>
                             <Grid item>
                                 <TextField
-                                    label="Media type"
-                                    margin="dense"
-                                    variant="outlined"
-                                    type="text"
-                                    name="mediaType"
-                                    id="mediaType"
+                                    label='Media type'
+                                    margin='dense'
+                                    variant='outlined'
+                                    type='text'
+                                    name='mediaType'
+                                    id='mediaType'
                                     value={mediaType}
                                     onChange={(e) => { setMediaType(e.target.value) }}
                                     className={classes.textField}
                                     select
                                 >
-                                    <MenuItem value="">
+                                    <MenuItem value=''>
                                         <em>None</em>
                                     </MenuItem>
                                     <MenuItem value='backdropUrl'>Backdrop</MenuItem>
@@ -114,7 +100,7 @@ const MediaFilesComponent = () => {
                             </Grid>
                             <Grid item className={classes.uploadPanel}>
                                 <UploadMedia
-                                    location="shows"
+                                    location='shows'
                                     afterUpload={afterUpload}
                                     uploadProgress={uploadProgress}
                                     setUploadProgress={setUploadProgress}

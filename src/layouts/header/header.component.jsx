@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import styles from './header.module.scss';
 import logo from '../../assets/images/logo.svg';
 import { AppBar, Toolbar, Menu, IconButton, Button, Box, CardActions, CardContent } from '@material-ui/core';
-import AccountCircle from "@material-ui/icons/AccountCircle";
+import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
         flexGrow: 1,
     },
@@ -39,28 +39,28 @@ function HeaderComponent(props) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
     const { logout, user } = props
-    console.log(user);
+
     return (
         <React.Fragment>
-            <AppBar position="fixed" className={classes.appBar}>
+            <AppBar position='fixed' className={classes.appBar}>
                 <Toolbar disableGutters={true}>
                     <div className={styles.logo}>
                         <img src={logo}
-                            alt="Rollinow"
+                            alt='Rollinow'
                         />
                     </div>
 
                     <div>
                         <IconButton
-                            aria-owns={anchorEl ? "menu-appbar" : undefined}
-                            aria-haspopup="true"
+                            aria-owns={anchorEl ? 'menu-appbar' : undefined}
+                            aria-haspopup='true'
                             onClick={(e) => setAnchorEl(e.currentTarget)}
-                            color="inherit"
+                            color='inherit'
                         >
                             <AccountCircle />
                         </IconButton>
                         <StyledMenu
-                            id="menu-appbar"
+                            id='menu-appbar'
                             anchorEl={anchorEl}
                             keepMounted
                             open={Boolean(anchorEl)}

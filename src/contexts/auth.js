@@ -1,7 +1,7 @@
-import { useApolloClient } from "@apollo/react-hooks";
-import { useCookies } from "react-cookie";
+import { useApolloClient } from '@apollo/react-hooks';
+import { useCookies } from 'react-cookie';
 
-const TOKEN_NAME = "authToken";
+const TOKEN_NAME = 'authToken';
 
 // custom hook to handle authToken - we use compositon to decouple the auth system and it's storage
 export const useAuthToken = () => {

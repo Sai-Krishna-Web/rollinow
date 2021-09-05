@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 const HomeComponent = () => {
     return (
-        <div style={{ margin: "auto", padding: "100px" }}>
+        <div style={{ margin: 'auto', padding: '100px' }}>
             <h2>Hello Admin</h2>
             <div>
                 Welcome!

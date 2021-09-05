@@ -6,9 +6,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import UploadIcon from '@material-ui/icons/CloudUpload';
 import moment from 'moment-timezone'
 import axios from 'axios';
-import SnackBarAndAlert from '../../components/snackbar-and-alert/snackbar-and-alert.container';
+import {SnackBarAndAlert} from 'components';
 
-import { GET_S3_SIGNED_URL } from '../../services/mutations';
+import { GET_S3_SIGNED_URL } from 'services/mutations';
 
 const s3BaseUrl = 'https://rollinow-images.s3.amazonaws.com';
 
@@ -20,8 +20,6 @@ function UploadMediaComponent({ maxFiles = 1, afterUpload, location, uploadProgr
     const [uploading, setUploading] = useState(false)
     const [getS3SignedURL, { data: s3UrlData }] = useMutation(GET_S3_SIGNED_URL)
     const { getRootProps, getInputProps } = useDropzone({ onDropAccepted, accept: 'image/jpeg, image/png', maxFiles, ...props });
-
-    console.log(uploading, file, uploadProgress)
 
     useEffect(() => {
         if (s3UrlData?.getS3SignedURL && file) {
@@ -46,7 +44,6 @@ function UploadMediaComponent({ maxFiles = 1, afterUpload, location, uploadProgr
 
     useEffect(() => {
         if (file) {
-            console.log('FILE', file, file.type)
             const key = `${location}/${moment().format('YYYYMMDD')}-${file.name}`
             const link = s3BaseUrl + `/${key}`
             setLink(link)

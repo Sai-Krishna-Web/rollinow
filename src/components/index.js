@@ -7,6 +7,7 @@ import Summary from './summary/summary.container';
 import UploadMedia from './upload-media/upload-media.container';
 import CircularProgressBar from './circular-progress-bar/circular-progress-bar.container'
 import LoadingScreen from './loading-screen/loading-screen.container';
+import SnackBarAndAlert from './snackbar-and-alert/snackbar-and-alert.container'
 export {
     PageHeader,
     Stepper,
@@ -16,5 +17,6 @@ export {
     Summary,
     UploadMedia,
     CircularProgressBar,
-    LoadingScreen
+    LoadingScreen,
+    SnackBarAndAlert,
 }

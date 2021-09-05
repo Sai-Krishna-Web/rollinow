@@ -1,6 +1,6 @@
 import React from 'react';
 import MoviesComponent from './movies.component';
-import { setRoute } from '../../utilities';
+import { setRoute } from 'utilities';
 
 function Movies() {
     const AddMovie = () => {

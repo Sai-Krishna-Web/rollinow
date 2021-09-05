@@ -1,10 +1,6 @@
-import React from "react";
+import React from 'react';
 import { Formik } from 'formik';
-import { Box, MenuItem, FormControlLabel, Switch } from '@material-ui/core';
-import { useAddShowFormContext } from '../../contexts/show-form-context';
-import {
-    TextField, makeStyles
-} from '@material-ui/core';
+import { Box, MenuItem, FormControlLabel, Switch,TextField, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,34 +20,10 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const OtherDetailsComponent = () => {
+const OtherDetailsComponent = (props) => {
+    const { addShowForm, handleAddShow, validate, languageList } = props;
     const classes = useStyles();
-    const { addShowForm, setAddShowForm, languageList } = useAddShowFormContext();
 
-    const validate = (values) => {
-        let errors = {};
-
-        if (!addShowForm.languageId) {
-            errors.languageId = "Language is required";
-        }
-        if (!values.tagline) {
-            errors.tagline = "Tagline is required";
-        }
-        if (!values.duration) {
-            errors.duration = "Duration is required";
-        }
-        if (!values.releaseDate) {
-            errors.releaseDate = "Release date is required";
-        }
-        return errors;
-    };
-
-    const handleAddShow = (key, value) => {
-        setAddShowForm(addShowForm => ({
-            ...addShowForm,
-            [key]: value
-        }));
-    }
 
     return (
         <Box px={5} mx={5}>
@@ -74,12 +46,12 @@ const OtherDetailsComponent = () => {
                                     <div >
                                         <TextField
                                             error={Boolean(touched.duration && errors.duration)}
-                                            label="Duration"
-                                            margin="dense"
-                                            variant="outlined"
-                                            type="text"
-                                            name="duration"
-                                            id="duration"
+                                            label='Duration'
+                                            margin='dense'
+                                            variant='outlined'
+                                            type='text'
+                                            name='duration'
+                                            id='duration'
                                             value={values.duration}
                                             onChange={(e) => { handleChange(e); handleAddShow(e.target.id, e.target.value) }}
                                             onBlur={handleBlur}
@@ -89,13 +61,13 @@ const OtherDetailsComponent = () => {
                                     </div>
                                     <div >
                                         <TextField
-                                            type="date"
+                                            type='date'
                                             error={Boolean(touched.releaseDate && errors.releaseDate)}
-                                            label="Release Date"
-                                            margin="dense"
-                                            variant="outlined"
-                                            name="releaseDate"
-                                            id="releaseDate"
+                                            label='Release Date'
+                                            margin='dense'
+                                            variant='outlined'
+                                            name='releaseDate'
+                                            id='releaseDate'
                                             value={values.releaseDate}
                                             onChange={(e) => { handleChange(e); handleAddShow(e.target.id, e.target.value) }}
                                             onBlur={handleBlur}
@@ -110,20 +82,20 @@ const OtherDetailsComponent = () => {
                                 <div >
                                     <TextField
                                         error={touched.languageId && errors.languageId}
-                                        label="Language"
-                                        margin="dense"
-                                        variant="outlined"
-                                        type="text"
-                                        name="languageId"
-                                        id="languageId"
+                                        label='Language'
+                                        margin='dense'
+                                        variant='outlined'
+                                        type='text'
+                                        name='languageId'
+                                        id='languageId'
                                         value={addShowForm.languageId}
-                                        onChange={(e) => { console.log(e); handleAddShow(e.target.name, e.target.value) }}
+                                        onChange={(e) => {handleAddShow(e.target.name, e.target.value) }}
                                         onBlur={handleBlur}
                                         helperText={touched.languageId && errors.languageId}
                                         className={classes.textField}
                                         select
                                     >
-                                        <MenuItem value="">
+                                        <MenuItem value=''>
                                             <em>None</em>
                                         </MenuItem>
                                         {languageList.map(item =>
@@ -134,12 +106,12 @@ const OtherDetailsComponent = () => {
                                     <div >
                                         <TextField
                                             error={touched.tagline && errors.tagline}
-                                            label="Tagline"
-                                            margin="dense"
-                                            variant="outlined"
-                                            type="text"
-                                            name="tagline"
-                                            id="tagline"
+                                            label='Tagline'
+                                            margin='dense'
+                                            variant='outlined'
+                                            type='text'
+                                            name='tagline'
+                                            id='tagline'
                                             value={values.tagline}
                                             onChange={(e) => { handleChange(e); handleAddShow(e.target.id, e.target.value) }}
                                             onBlur={handleBlur}
@@ -153,15 +125,15 @@ const OtherDetailsComponent = () => {
                                 <div className={classes.root}>
                                     <FormControlLabel
                                         value={values.isIndianOTT}
-                                        control={<Switch id="isIndianOTT" color="primary" checked={values.isIndianOTT} onChange={(e) => { handleChange(e); handleAddShow(e.target.id, e.target.checked) }} />}
-                                        label="Indian OTT"
-                                        labelPlacement="start"
+                                        control={<Switch id='isIndianOTT' color='primary' checked={values.isIndianOTT} onChange={(e) => { handleChange(e); handleAddShow(e.target.id, e.target.checked) }} />}
+                                        label='Indian OTT'
+                                        labelPlacement='start'
                                     />
                                     <FormControlLabel
                                         value={values.inFavorites}
-                                        control={<Switch color="primary" id='inFavorites' checked={values.inFavorites} onChange={(e) => { handleChange(e); handleAddShow(e.target.id, e.target.checked) }} />}
-                                        label="In favorites"
-                                        labelPlacement="start"
+                                        control={<Switch color='primary' id='inFavorites' checked={values.inFavorites} onChange={(e) => { handleChange(e); handleAddShow(e.target.id, e.target.checked) }} />}
+                                        label='In favorites'
+                                        labelPlacement='start'
                                     />
                                 </div>
                             </form>
