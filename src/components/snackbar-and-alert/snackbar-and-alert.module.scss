@@ -1,0 +1,39 @@
+.container {
+    margin-top: 50px;
+    &_title {
+        font-weight: bold !important;
+        font-size: 30px !important;
+        text-align: center;
+        margin-top: 20px !important;
+    }
+}
+
+.codeInput {
+    width: 100% !important;
+}
+
+.errorContainer {
+    margin-bottom: 30px;
+    width: 70%;
+    margin-left: 15%;
+}
+
+.itemForm {
+    width: 80%;
+    max-width: 300px;
+    margin-bottom: 20px;
+    margin-left: 10%;
+}
+
+.alertMessage {
+    background-color: #ff9800 !important;
+}
+
+@media screen and (max-width: 599px) {
+    .itemForm {
+        width: 90%;
+        max-width: 300px;
+        margin-bottom: 20px;
+        margin-left: 5%;
+    }
+}
