@@ -1,24 +1,52 @@
 import React from 'react';
-import { Box, List, ListItem, Typography } from '@material-ui/core';
+import { Box, List, ListItem, Typography, ListItemIcon, withStyles } from '@material-ui/core';
 import style from './side-nav-bar.module.scss';
 
+const ThemeListItem = withStyles((theme) => ({
+    root: {
+        '&$selected': {
+            backgroundColor: '#d5fbf4',
+            '& .MuiListItemIcon-root': {
+                color: theme.palette.primary.main
+            }
+        },
+        '&:hover': {
+            backgroundColor: '#d5fbf4',
+            '& .MuiListItemIcon-root': {
+                color: theme.palette.primary.main
+            }
+        }
+    },
+    selected: {}
+}))(ListItem);
+
 function SideNavBarComponent(props) {
+    const { navLinks, selectedNav, setSelectedNav } = props;
     return (
         <React.Fragment>
-            <Box pt={2} >
+            <Box pt={2}>
                 <List component="nav">
-                    {props.navLinks.map((navLink, index) => (
-                        <ListItem button onClick={navLink.onClick} key={index}>
-                            {navLink.icon}
+                    {navLinks.map((navLink, index) => (
+                        <ThemeListItem
+                            button
+                            selected={selectedNav === index}
+                            onClick={() => {
+                                setSelectedNav(index);
+                                navLink.onClick();
+                            }}
+                            key={index}
+                        >
+                            <ListItemIcon>{navLink.icon}</ListItemIcon>
+
                             <Typography component="span" className={style.navTittle}>
                                 {navLink.name}
                             </Typography>
-                        </ListItem>
+                        </ThemeListItem>
                     ))}
                 </List>
             </Box>
         </React.Fragment>
-    )
+    );
 }
 
-export default SideNavBarComponent
+export default SideNavBarComponent;

@@ -1,7 +1,5 @@
 import browserHistory from './browser-history';
 import { setRoute } from './route';
 
-export {
-    browserHistory,
-    setRoute
-}
+import { sectionPlace, sectionType } from './enums';
+export { browserHistory, setRoute, sectionPlace, sectionType };

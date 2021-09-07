@@ -24,6 +24,7 @@ function OtherDetails() {
     };
 
     const handleAddShow = (key, value) => {
+        console.log(key, value)
         setAddShowForm(addShowForm => ({
             ...addShowForm,
             [key]: value

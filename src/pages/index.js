@@ -5,6 +5,8 @@ import Shows from './shows/shows.container'
 import AddShow from './add-show/add-show.container';
 import Casts from './casts/casts.container';
 import AddCast from './add-cast/add-cast.container'
+import Sections  from './sections/sections.container';
+import AddSection from './add-section/add-section.container';
 export {
     LoginForm,
     Home,
@@ -13,4 +15,6 @@ export {
     AddShow,
     Casts,
     AddCast,
+    Sections,
+    AddSection,
 }
