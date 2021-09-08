@@ -24,14 +24,20 @@ function OtherDetails() {
     };
 
     const handleAddShow = (key, value) => {
-        console.log(key, value)
-        setAddShowForm(addShowForm => ({
+        setAddShowForm((addShowForm) => ({
             ...addShowForm,
             [key]: value
         }));
-    }
+    };
 
-    return <OtherDetailsComponent addShowForm={addShowForm} validate={validate} handleAddShow={handleAddShow} languageList={languageList} />;
+    return (
+        <OtherDetailsComponent
+            addShowForm={addShowForm}
+            validate={validate}
+            handleAddShow={handleAddShow}
+            languageList={languageList}
+        />
+    );
 }
 
 export default OtherDetails;

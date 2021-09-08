@@ -50,11 +50,10 @@ const useStyles = makeStyles((theme) => ({
 
 const AddSectionComponent = (props) => {
     const classes = useStyles();
-    const { pageData, validate, handleSubmit, loading, data, error, enableSubmit } = props;
+    const { pageData, validate, handleSubmit, loading, data, error, enableSubmit, onSuccess, setOnSuccess } = props;
     const { addSectionForm, setAddSectionForm } = useAddSectionFormContext();
 
     const handleAddSection = (key, value) => {
-        console.log(key, value);
         setAddSectionForm((addSectionForm) => ({
             ...addSectionForm,
             [key]: value
@@ -304,11 +303,11 @@ const AddSectionComponent = (props) => {
                 </div>
                 <LoadingScreen open={loading}></LoadingScreen>
             </div>
-            {data && (
+            {onSuccess && (
                 <SnackBarAndAlert
                     open={Boolean(data)}
                     onClose={() => {
-                        console.log('closed');
+                        setOnSuccess(false);
                     }}
                     type="success"
                 >

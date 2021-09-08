@@ -76,6 +76,30 @@ const OtherDetailsComponent = (props) => {
                                         />
                                     </div>
                                 </div>
+
+                                <div className={classes.root}>
+                                    <div>
+                                        <TextField
+                                            error={Boolean(touched.tagline && errors.tagline)}
+                                            label="Tagline"
+                                            margin="dense"
+                                            variant="outlined"
+                                            type="text"
+                                            name="tagline"
+                                            id="tagline"
+                                            value={values.tagline}
+                                            onChange={(e) => {
+                                                handleChange(e);
+                                                handleAddShow(e.target.id, e.target.value);
+                                            }}
+                                            onBlur={handleBlur}
+                                            helperText={touched.tagline && errors.tagline}
+                                            className={classes.textFieldFullWidth}
+                                            multiline
+                                            rows={2}
+                                        />
+                                    </div>
+                                </div>
                                 <div className={classes.root}>
                                     <Autocomplete
                                         name="languageId"
@@ -100,29 +124,6 @@ const OtherDetailsComponent = (props) => {
                                             />
                                         )}
                                     />
-                                </div>
-                                <div className={classes.root}>
-                                    <div>
-                                        <TextField
-                                            error={Boolean(touched.tagline && errors.tagline)}
-                                            label="Tagline"
-                                            margin="dense"
-                                            variant="outlined"
-                                            type="text"
-                                            name="tagline"
-                                            id="tagline"
-                                            value={values.tagline}
-                                            onChange={(e) => {
-                                                handleChange(e);
-                                                handleAddShow(e.target.id, e.target.value);
-                                            }}
-                                            onBlur={handleBlur}
-                                            helperText={touched.tagline && errors.tagline}
-                                            className={classes.textFieldFullWidth}
-                                            multiline
-                                            rows={2}
-                                        />
-                                    </div>
                                 </div>
                                 <div className={classes.root}>
                                     <FormControlLabel

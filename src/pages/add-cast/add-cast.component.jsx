@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { PageHeader, LoadingScreen,SnackBarAndAlert,UploadMedia } from 'components';
+import { PageHeader, LoadingScreen, SnackBarAndAlert, UploadMedia } from 'components';
 import { Box, Button, TextField, makeStyles, Grid, FormLabel } from '@material-ui/core';
 import { useAddCastFormContext } from 'contexts';
 import { setRoute } from 'utilities';
@@ -14,22 +14,22 @@ const useStyles = makeStyles((theme) => ({
     },
     textField: {
         margin: theme.spacing(1),
-        width: '25ch',
+        width: '25ch'
     },
     textFieldFullWidth: {
         margin: theme.spacing(1),
-        width: '50ch',
+        width: '50ch'
     },
     formControl: {
         margin: theme.spacing(1),
-        width: '25ch',
+        width: '25ch'
     },
     selectEmpty: {
         marginTop: theme.spacing(2)
     },
     label: {
         alignItems: 'center',
-        display: 'flex',
+        display: 'flex'
     },
     px: {
         paddingRight: 20
@@ -41,22 +41,32 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: 4,
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
-
+        alignItems: 'center'
     },
     button: {
         marginRight: theme.spacing(2)
-    },
-
+    }
 }));
 
 const AddCastComponent = (props) => {
     const classes = useStyles();
-    const { pageData, validate, handleSubmit, loading, data, error, uploadProgress, setUploadProgress, enableSubmit } = props;
+    const {
+        pageData,
+        validate,
+        handleSubmit,
+        loading,
+        data,
+        error,
+        uploadProgress,
+        setUploadProgress,
+        enableSubmit,
+        onSuccess,
+        setOnSuccess
+    } = props;
     const { addCastForm, setAddCastForm } = useAddCastFormContext();
 
     const handleAddCast = (key, value) => {
-        setAddCastForm(addCastForm => ({
+        setAddCastForm((addCastForm) => ({
             ...addCastForm,
             [key]: value
         }));
@@ -72,32 +82,27 @@ const AddCastComponent = (props) => {
                 <PageHeader pageData={pageData} />
                 <div style={{ minHeight: '600px', textAlign: 'center', padding: '20px' }}>
                     <Box px={5} mx={5}>
-                        <Formik
-                            initialValues={addCastForm}
-                            validate={validate}
-                        >
+                        <Formik initialValues={addCastForm} validate={validate}>
                             {(formik) => {
-                                const {
-                                    values,
-                                    handleChange,
-                                    errors,
-                                    touched,
-                                    handleBlur } = formik;
+                                const { values, handleChange, errors, touched, handleBlur } = formik;
                                 return (
-                                    <div >
+                                    <div>
                                         <h4>Cast info</h4>
-                                        <form >
+                                        <form>
                                             <div className={classes.root}>
-                                                <div >
+                                                <div>
                                                     <TextField
                                                         error={Boolean(touched.name && errors.name)}
-                                                        label='Name'
-                                                        margin='dense'
-                                                        variant='outlined'
-                                                        name='name'
-                                                        id='name'
+                                                        label="Name"
+                                                        margin="dense"
+                                                        variant="outlined"
+                                                        name="name"
+                                                        id="name"
                                                         value={values.name}
-                                                        onChange={(e) => { handleChange(e); handleAddCast(e.target.id, e.target.value) }}
+                                                        onChange={(e) => {
+                                                            handleChange(e);
+                                                            handleAddCast(e.target.id, e.target.value);
+                                                        }}
                                                         onBlur={handleBlur}
                                                         helperText={touched.name && errors.name}
                                                         className={classes.textField}
@@ -105,35 +110,40 @@ const AddCastComponent = (props) => {
                                                     />
                                                 </div>
 
-                                                <div >
+                                                <div>
                                                     <TextField
                                                         error={Boolean(touched.entityId && errors.entityId)}
-                                                        label='Entity Id'
-                                                        margin='dense'
-                                                        variant='outlined'
-                                                        type='text'
-                                                        name='entityId'
-                                                        id='entityId'
+                                                        label="Entity Id"
+                                                        margin="dense"
+                                                        variant="outlined"
+                                                        type="text"
+                                                        name="entityId"
+                                                        id="entityId"
                                                         value={values.entityId}
-                                                        onChange={(e) => { handleChange(e); handleAddCast(e.target.id, e.target.value) }}
+                                                        onChange={(e) => {
+                                                            handleChange(e);
+                                                            handleAddCast(e.target.id, e.target.value);
+                                                        }}
                                                         onBlur={handleBlur}
                                                         helperText={touched.entityId && errors.entityId}
                                                         className={classes.textField}
                                                     />
                                                 </div>
                                             </div>
-                                            <div >
-
+                                            <div>
                                                 <TextField
                                                     error={Boolean(touched.biography && errors.biography)}
-                                                    label='Biography'
-                                                    margin='dense'
-                                                    variant='outlined'
-                                                    type='text'
-                                                    name='biography'
-                                                    id='biography'
+                                                    label="Biography"
+                                                    margin="dense"
+                                                    variant="outlined"
+                                                    type="text"
+                                                    name="biography"
+                                                    id="biography"
                                                     value={values.biography}
-                                                    onChange={(e) => { handleChange(e); handleAddCast(e.target.id, e.target.value) }}
+                                                    onChange={(e) => {
+                                                        handleChange(e);
+                                                        handleAddCast(e.target.id, e.target.value);
+                                                    }}
                                                     onBlur={handleBlur}
                                                     helperText={touched.biography && errors.biography}
                                                     className={classes.textFieldFullWidth}
@@ -142,12 +152,18 @@ const AddCastComponent = (props) => {
                                                 />
                                             </div>
                                             <div className={classes.root}>
-
                                                 <Grid md={6} className={classes.label}>
-                                                    <FormLabel component='legend' align='center' required className={classes.label + ' ' + classes.px} >Thumbnail</FormLabel>{' '}
+                                                    <FormLabel
+                                                        component="legend"
+                                                        align="center"
+                                                        required
+                                                        className={classes.label + ' ' + classes.px}
+                                                    >
+                                                        Thumbnail
+                                                    </FormLabel>{' '}
                                                     <Grid item xs={9} className={classes.uploadPanel}>
                                                         <UploadMedia
-                                                            location='shows'
+                                                            location="shows"
                                                             afterUpload={afterUpload}
                                                             uploadProgress={uploadProgress}
                                                             setUploadProgress={setUploadProgress}
@@ -164,31 +180,31 @@ const AddCastComponent = (props) => {
                     <div>
                         <Button
                             onClick={() => setRoute('/casts')}
-                            variant='contained'
-                            color='primary'
+                            variant="contained"
+                            color="primary"
                             className={classes.button}
                         >
                             Cancel
-                    </Button>
+                        </Button>
                         <Button
                             disabled={!enableSubmit}
-                            variant='contained'
-                            color='primary'
+                            variant="contained"
+                            color="primary"
                             onClick={() => handleSubmit(addCastForm)}
                         >
                             Submit
-                     </Button>
+                        </Button>
                     </div>
                 </div>
                 <LoadingScreen open={loading}></LoadingScreen>
             </div>
-            {data && (
+            {onSuccess && (
                 <SnackBarAndAlert
                     open={Boolean(data)}
                     onClose={() => {
-                        console.log('closed')
+                        setOnSuccess(false);
                     }}
-                    type='success'
+                    type="success"
                 >
                     Cast added successfully.
                 </SnackBarAndAlert>
@@ -199,7 +215,7 @@ const AddCastComponent = (props) => {
                     onClose={() => {
                         props.setOnError(false);
                     }}
-                    type='error'
+                    type="error"
                 >
                     {`Failed:  ${error?.message}`}
                 </SnackBarAndAlert>

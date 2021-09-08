@@ -7,11 +7,17 @@ import { CREATE_SECTION_URL } from 'services/mutations';
 function AddSection() {
     const [enableSubmit, setEnableSubmit] = useState(false);
     const [onError, setOnError] = useState(false);
+    const [onSuccess, setOnSuccess] = useState(false);
     const [uploadProgress, setUploadProgress] = useState(0);
     const [addSection, { data, error, loading }] = useMutation(CREATE_SECTION_URL, {
+        onCompleted: (data) => {
+            if (data?.createSection) {
+                setOnSuccess(true);
+            }
+        },
         onError: () => {
             setOnError(true);
-        },
+        }
     });
 
     const pageData = {
@@ -63,6 +69,8 @@ function AddSection() {
                 uploadProgress={uploadProgress}
                 setUploadProgress={setUploadProgress}
                 enableSubmit={enableSubmit}
+                onSuccess={onSuccess}
+                setOnSuccess={setOnSuccess}
             />
         </AddSectionFormProvider>
     );
