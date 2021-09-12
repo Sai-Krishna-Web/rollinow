@@ -106,23 +106,26 @@ const OtherDetailsComponent = (props) => {
                                         id="languageId"
                                         value={addShowForm.languageId}
                                         onChange={(e, newInputValue) => {
-                                            handleAddShow('languageId', newInputValue?.language);
+                                            handleAddShow('languageId', newInputValue);
                                         }}
                                         options={languageList}
-                                        getOptionLabel={(option) => option.language}
+                                        getOptionSelected={(option, value) => option.language === value.language}
+                                        getOptionLabel={(option) => option?.language || ''}
                                         style={{ width: 300 }}
-                                        renderInput={(params) => (
-                                            <TextField
-                                                error={Boolean(touched.languageId && errors.languageId)}
-                                                label="Language"
-                                                margin="dense"
-                                                {...params}
-                                                variant="outlined"
-                                                className={classes.textField}
-                                                onBlur={handleBlur}
-                                                helperText={touched.languageId && errors.languageId}
-                                            />
-                                        )}
+                                        renderInput={(params) => {
+                                            return (
+                                                <TextField
+                                                    error={Boolean(touched.languageId && errors.languageId)}
+                                                    label="Language"
+                                                    margin="dense"
+                                                    {...params}
+                                                    variant="outlined"
+                                                    className={classes.textField}
+                                                    onBlur={handleBlur}
+                                                    helperText={touched.languageId && errors.languageId}
+                                                />
+                                            );
+                                        }}
                                     />
                                 </div>
                                 <div className={classes.root}>

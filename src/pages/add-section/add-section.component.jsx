@@ -127,7 +127,7 @@ const AddSectionComponent = (props) => {
                                                 <div>
                                                     <TextField
                                                         error={Boolean(touched.sequence && errors.sequence)}
-                                                        label="sequence"
+                                                        label="Sequence"
                                                         margin="dense"
                                                         variant="outlined"
                                                         type="number"

@@ -29,3 +29,11 @@ export const CREATE_SECTION_URL = gql`
         }
     }
 `;
+
+export const CREATE_SECTION_ENTRY_URL = gql`
+    mutation ($sectionEntry: SectionEntryInput!) {
+        createSectionEntry(sectionEntry: $sectionEntry) {
+            id
+        }
+    }
+`;

@@ -1,9 +1,10 @@
 import React from 'react';
-import { PageHeader } from 'components';
+import { PageHeader, SectionsList } from 'components';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 
 function TabPanel(props) {
@@ -64,7 +65,7 @@ function a11yProps(index) {
 }
 
 const SectionsComponent = (props) => {
-    const { pageData, tab, handleTabChange } = props;
+    const { pageData, tab, handleTabChange, loading, error, data } = props;
     return (
         <div style={{ margin: 'auto' }}>
             <PageHeader pageData={pageData} />
@@ -81,12 +82,24 @@ const SectionsComponent = (props) => {
                         <ThemeTab label="Active" {...a11yProps(1)} />
                     </ThemeTabs>
                 </div>
-                <TabPanel value={tab} index={0}>
-                    All sections here
-                </TabPanel>
-                <TabPanel value={tab} index={1}>
-                    Active sections here
-                </TabPanel>
+                {loading ? (
+                    <Box textAlign="center" py={5}>
+                        <CircularProgress />
+                    </Box>
+                ) : error ? (
+                    <Box textAlign="center" py={5}>
+                        An error occurred, please try reloading your browser.
+                    </Box>
+                ) : (
+                    <>
+                        <TabPanel value={tab} index={0}>
+                            <SectionsList rows={data.allSections.data} />
+                        </TabPanel>
+                        <TabPanel value={tab} index={1}>
+                            Active sections here
+                        </TabPanel>
+                    </>
+                )}
             </div>
         </div>
     );

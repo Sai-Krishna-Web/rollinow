@@ -1,3 +1,4 @@
+import { searchShowsGQL, searchListsGQL, searchUsersGQL } from 'services/queries';
 export const sectionPlace = {
     HOME: 'Home',
     DISCOVER: 'Discover',
@@ -5,10 +6,18 @@ export const sectionPlace = {
 };
 
 export const sectionType = {
-    MOVIE: 'Movie',
+    MOVIE: 'MOVIE',
     TV: 'TV',
-    SHOW: 'Show',
-    LIST: 'List',
-    CAST: 'Cast',
-    USER: 'User'
+    SHOW: 'SHOW',
+    LIST: 'LIST',
+    CAST: 'CAST',
+    USER: 'USER'
+};
+
+export const searchQueryType = {
+    MOVIE: searchShowsGQL,
+    TV: searchShowsGQL,
+    SHOW: searchShowsGQL,
+    LIST: searchListsGQL,
+    USER: searchUsersGQL
 };
