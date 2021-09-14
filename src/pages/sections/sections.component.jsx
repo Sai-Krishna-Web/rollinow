@@ -65,7 +65,7 @@ function a11yProps(index) {
 }
 
 const SectionsComponent = (props) => {
-    const { pageData, tab, handleTabChange, loading, error, data } = props;
+    const { pageData, tab, handleTabChange, loading, error, data, columns } = props;
     return (
         <div style={{ margin: 'auto' }}>
             <PageHeader pageData={pageData} />
@@ -93,10 +93,13 @@ const SectionsComponent = (props) => {
                 ) : (
                     <>
                         <TabPanel value={tab} index={0}>
-                            <SectionsList rows={data.allSections.data} />
+                            <SectionsList rows={data.allSections.data} columns={columns} />
                         </TabPanel>
                         <TabPanel value={tab} index={1}>
-                            Active sections here
+                            <SectionsList
+                                rows={data.allSections.data.filter((section) => section.shown)}
+                                columns={columns}
+                            />
                         </TabPanel>
                     </>
                 )}

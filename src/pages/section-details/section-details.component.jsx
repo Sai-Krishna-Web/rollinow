@@ -1,10 +1,23 @@
 import React from 'react';
-import { PageHeader, AddSectionEntry } from 'components';
-import { Typography, Grid, Box } from '@material-ui/core';
+import { PageHeader, AddSectionEntry, SectionsList } from 'components';
+import { Typography, Grid, Box, makeStyles, Paper, CircularProgress } from '@material-ui/core';
+import { formatDateTimeByFormatString } from 'utilities/helper';
+
+const useStyles = makeStyles({
+    statusLabel: {
+        margin: '5px',
+        fontSize: '12px',
+        border: '1px solid #158a82',
+        borderRadius: '8px',
+        padding: '0px 8px',
+        color: '#777777'
+    }
+});
 
 const SectionDetailsComponent = (props) => {
-    const { pageData, open, setOpen } = props;
-    const { section } = props.location.state;
+    const { pageData, open, setOpen, section, rows, columns, loading, error } = props;
+
+    const classes = useStyles();
     return (
         <div style={{ margin: 'auto' }}>
             <PageHeader pageData={pageData} />
@@ -12,23 +25,59 @@ const SectionDetailsComponent = (props) => {
                 <Box m={2}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <Typography gutterBottom variant="h6">
+                            <Typography variant="h6" color="textPrimary">
                                 {section.title}
+                                <span
+                                    className={classes.statusLabel}
+                                    style={{
+                                        backgroundColor: section.shown ? '#d4fbf4' : '#F2F2F2'
+                                    }}
+                                >
+                                    Active
+                                </span>
                             </Typography>
                         </Grid>
                         <Grid item xs={6}>
-                            <Typography gutterBottom variant="subtitle1">
+                            <Typography variant="subtitle1" color="textSecondary">
                                 Place: {section.place}
                             </Typography>
-                            <Typography gutterBottom variant="subtitle1">
+                            <Typography variant="subtitle1" color="textSecondary">
                                 Type: {section.type}
                             </Typography>
-                            <Typography gutterBottom variant="subtitle1">
-                                Start Date: {section.startTime || 'NA'}
+                            <Typography variant="subtitle1" color="textSecondary">
+                                Start time:{' '}
+                                {section.startTime
+                                    ? formatDateTimeByFormatString(section.startTime, 'YYYY-MM-DD hh:mm A')
+                                    : 'NA'}
                             </Typography>
-                            <Typography gutterBottom variant="subtitle1">
-                                End Time: {section.endTime || 'NA'}
+                            <Typography variant="subtitle1" color="textSecondary">
+                                End time:{' '}
+                                {section.endTime
+                                    ? formatDateTimeByFormatString(section.endTime, 'YYYY-MM-DD hh:mm A')
+                                    : 'NA'}
                             </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Typography variant="h6" color="textPrimary">
+                                Section entries:
+                            </Typography>
+
+                            {rows.length > 0 ? (
+                                <SectionsList rows={rows} columns={columns} />
+                            ) : (
+                                <Paper
+                                    variant="outlined"
+                                    style={{ minHeight: '50px', textAlign: 'center', paddingTop: '30px' }}
+                                >
+                                    {loading ? (
+                                        <CircularProgress />
+                                    ) : error ? (
+                                        error.message
+                                    ) : (
+                                        rows.length === 0 && 'No entries yet!'
+                                    )}
+                                </Paper>
+                            )}
                         </Grid>
                     </Grid>
                 </Box>

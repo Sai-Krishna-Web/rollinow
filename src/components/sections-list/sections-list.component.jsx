@@ -31,7 +31,7 @@ function SectionsListComponent(props) {
     const classes = useStyles();
 
     return (
-        <Paper className={classes.root}>
+        <Paper className={classes.root} variant="outlined">
             <TableContainer className={classes.container}>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
@@ -65,9 +65,7 @@ function SectionsListComponent(props) {
                                         const value = row[column.id];
                                         return (
                                             <TableCell key={column.id} align={column.align}>
-                                                {column.format && typeof value === 'number'
-                                                    ? column.format(value)
-                                                    : value}
+                                                {column.format ? column.format(value) : value}
                                             </TableCell>
                                         );
                                     })}

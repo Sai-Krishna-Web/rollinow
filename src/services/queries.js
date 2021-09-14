@@ -60,3 +60,50 @@ export const searchUsersGQL = gql`
         }
     }
 `;
+
+export const searchCastGQL = gql`
+    query searchArtists($skip: Float = 0, $take: Float = 20, $query: String = "") {
+        searchArtists(take: $take, skip: $skip, query: $query) {
+            hits
+            data {
+                id
+                name
+            }
+        }
+    }
+`;
+
+export const getSectionGQL = gql`
+    query section($id: Float!) {
+        section(id: $id) {
+            id
+            title
+            sectionEntries {
+                id
+                hidden
+                sequence
+                updatedAt
+                showId
+                userId
+                listId
+                castId
+                cast {
+                    id
+                    name
+                }
+                show {
+                    id
+                    title
+                }
+                list {
+                    id
+                    name
+                }
+                user {
+                    id
+                    name
+                }
+            }
+        }
+    }
+`;
