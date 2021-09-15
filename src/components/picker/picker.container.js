@@ -4,8 +4,8 @@ import PickerComponent from './picker.component';
 import { sectionType, searchQueryType } from 'utilities/enums';
 
 function Picker(props) {
-    const { setPickerId, section } = props;
-    const [inputValue, setInputValue] = React.useState('');
+    const { setPickerId, section, input } = props;
+    const [inputValue, setInputValue] = React.useState(input);
     const [options, setOptions] = React.useState([]);
     const [, setOnError] = React.useState(false);
     const gqlQuery = searchQueryType[section.type];

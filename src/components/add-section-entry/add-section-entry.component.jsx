@@ -83,7 +83,6 @@ function AddSectionEntryComponent(props) {
         setOnSuccess
     } = props;
     const classes = useStyles();
-
     return (
         <div>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth={true}>
@@ -104,6 +103,7 @@ function AddSectionEntryComponent(props) {
                                                     <Picker
                                                         section={props.section}
                                                         setPickerId={handleAddSectionEntry}
+                                                        input={initialState.name}
                                                     ></Picker>
                                                 </div>
                                                 <div className={classes.textField}>

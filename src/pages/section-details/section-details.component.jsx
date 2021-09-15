@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 });
 
 const SectionDetailsComponent = (props) => {
-    const { pageData, open, setOpen, section, rows, columns, loading, error } = props;
+    const { pageData, open, setOpen, section, rows, loading, error } = props;
 
     const classes = useStyles();
     return (
@@ -63,7 +63,13 @@ const SectionDetailsComponent = (props) => {
                             </Typography>
 
                             {rows.length > 0 ? (
-                                <SectionsList rows={rows} columns={columns} />
+                                <SectionsList
+                                    rows={rows}
+                                    columns={props.columns}
+                                    onRowClick={() => undefined}
+                                    deleteClick={props.deleteClick}
+                                    editClick={props.editClick}
+                                />
                             ) : (
                                 <Paper
                                     variant="outlined"
@@ -83,7 +89,15 @@ const SectionDetailsComponent = (props) => {
                 </Box>
             </div>
 
-            {open && <AddSectionEntry open={open} setOpen={setOpen} section={section} />}
+            {open && (
+                <AddSectionEntry
+                    open={open}
+                    setOpen={setOpen}
+                    section={section}
+                    sectionEntry={props.sectionEntry}
+                    refetch={props.refetch}
+                />
+            )}
         </div>
     );
 };

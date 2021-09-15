@@ -14,7 +14,8 @@ function ContentComponent() {
             <Route path="/addCast" exact={true} component={AddCast} />
             <Route path="/sections" exact={true} component={Sections} />
             <Route path="/addSection" exact={true} component={AddSection} />
-            <Route path="/sectionDetails:id" exact={true} component={SectionDetails} />
+            <Route path="/editSection/:id" component={AddSection} />
+            <Route path="/sectionDetails/:id" component={SectionDetails} />
         </Switch>
     );
 }

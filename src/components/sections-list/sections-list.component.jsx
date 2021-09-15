@@ -8,7 +8,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import { setRoute } from 'utilities';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import IconButton from '@material-ui/core/IconButton';
 
 const StyledTableCell = withStyles(() => ({
     head: {
@@ -27,7 +29,17 @@ const useStyles = makeStyles({
 });
 
 function SectionsListComponent(props) {
-    const { page, rowsPerPage, handleChangePage, handleChangeRowsPerPage, columns, rows } = props;
+    const {
+        page,
+        rowsPerPage,
+        handleChangePage,
+        handleChangeRowsPerPage,
+        columns,
+        rows,
+        onRowClick,
+        editClick,
+        deleteClick
+    } = props;
     const classes = useStyles();
 
     return (
@@ -45,6 +57,9 @@ function SectionsListComponent(props) {
                                     {column.label}
                                 </StyledTableCell>
                             ))}
+                            <StyledTableCell key="actions" style={{ minWidth: 50 }}>
+                                Actions
+                            </StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -55,11 +70,7 @@ function SectionsListComponent(props) {
                                     role="checkbox"
                                     tabIndex={-1}
                                     key={row.id}
-                                    onClick={() =>
-                                        setRoute(`/sectionDetails:${row.id}`, {
-                                            section: row
-                                        })
-                                    }
+                                    onClick={() => onRowClick(row)}
                                 >
                                     {columns.map((column) => {
                                         const value = row[column.id];
@@ -69,6 +80,18 @@ function SectionsListComponent(props) {
                                             </TableCell>
                                         );
                                     })}
+                                    <TableCell key="actions" onClick={(e) => e.stopPropagation()}>
+                                        <IconButton aria-label="edit" size="small" onClick={() => editClick(row.id)}>
+                                            <EditOutlinedIcon />
+                                        </IconButton>
+                                        <IconButton
+                                            aria-label="delete"
+                                            size="small"
+                                            onClick={() => deleteClick(row.id)}
+                                        >
+                                            <DeleteOutlinedIcon />
+                                        </IconButton>
+                                    </TableCell>
                                 </TableRow>
                             );
                         })}

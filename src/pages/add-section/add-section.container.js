@@ -4,7 +4,8 @@ import { AddSectionFormProvider } from 'contexts';
 import { useMutation } from '@apollo/client';
 import { CREATE_SECTION_URL } from 'services/mutations';
 
-function AddSection() {
+function AddSection(props) {
+    const { id } = props.match.params;
     const [enableSubmit, setEnableSubmit] = useState(false);
     const [onError, setOnError] = useState(false);
     const [onSuccess, setOnSuccess] = useState(false);
@@ -50,6 +51,7 @@ function AddSection() {
     const handleSubmit = (vars) => {
         addSection({
             variables: {
+                id: Number(id),
                 section: { ...vars, sequence: Number(vars.sequence) }
             }
         });
@@ -71,6 +73,7 @@ function AddSection() {
                 enableSubmit={enableSubmit}
                 onSuccess={onSuccess}
                 setOnSuccess={setOnSuccess}
+                id={id}
             />
         </AddSectionFormProvider>
     );

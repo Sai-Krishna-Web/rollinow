@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SectionsListComponent from './sections-list.component';
 
 function SectionsList(props) {
-    const { rows, columns } = props;
+    const { rows, columns, onRowClick, editClick, deleteClick } = props;
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -23,6 +23,9 @@ function SectionsList(props) {
             handleChangeRowsPerPage={handleChangeRowsPerPage}
             rows={rows}
             columns={columns}
+            onRowClick={onRowClick}
+            editClick={editClick}
+            deleteClick={deleteClick}
         />
     );
 }

@@ -4,16 +4,18 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import Grid from '@material-ui/core/Grid';
 
 function PickerComponent(props) {
-    const { handleChange, loading, options, setPickerId, type } = props;
+    const { handleChange, loading, options, setPickerId, type, inputValue } = props;
     return (
         <div>
             <Autocomplete
                 id="showId"
                 style={{ width: 300 }}
                 getOptionLabel={(option) => (typeof option === 'string' ? option : option.title || option.name)}
+                getOptionSelected={(option, value) => option.title === value || option.name === value}
                 options={options}
                 autoComplete
                 loading={loading}
+                value={inputValue}
                 onChange={(event, newValue) => setPickerId('entryId', newValue?.id)}
                 renderInput={(params) => (
                     <TextField

@@ -73,7 +73,7 @@ export const searchCastGQL = gql`
     }
 `;
 
-export const getSectionGQL = gql`
+export const getSectionEntriesGQL = gql`
     query section($id: Float!) {
         section(id: $id) {
             id
@@ -104,6 +104,22 @@ export const getSectionGQL = gql`
                     name
                 }
             }
+        }
+    }
+`;
+
+export const getSectionGQL = gql`
+    query section($id: Float!) {
+        section(id: $id) {
+            title
+            type
+            place
+            shown
+            startTime
+            endTime
+            remark
+            description
+            sequence
         }
     }
 `;

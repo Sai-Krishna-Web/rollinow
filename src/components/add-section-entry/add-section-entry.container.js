@@ -4,8 +4,10 @@ import { useMutation } from '@apollo/client';
 import { CREATE_SECTION_ENTRY_URL } from 'services/mutations';
 import { sectionType } from 'utilities/enums';
 function AddSectionEntry(props) {
-    const { open, setOpen, section } = props;
-    const [initialState, setState] = React.useState({ sequence: null, hidden: false, entryId: null });
+    const { open, setOpen, section, sectionEntry, refetch } = props;
+    const [initialState, setState] = React.useState(
+        sectionEntry ? sectionEntry : { sequence: null, hidden: false, entryId: null }
+    );
     const [enableSubmit, setEnableSubmit] = useState(false);
     const [onError, setOnError] = useState(false);
     const [onSuccess, setOnSuccess] = useState(false);
@@ -59,9 +61,11 @@ function AddSectionEntry(props) {
 
         addSectionEntry({
             variables: {
+                id: Number(sectionEntry?.id),
                 sectionEntry: { sequence: Number(sequence), hidden, sectionId, showId, listId, castId, userId }
             }
         });
+        refetch();
     };
     return (
         <AddSectionEntryComponent
@@ -79,6 +83,7 @@ function AddSectionEntry(props) {
             error={error}
             setOnError={setOnError}
             setOnSuccess={setOnSuccess}
+            sectionEntry={sectionEntry}
         />
     );
 }

@@ -23,16 +23,32 @@ export const ADD_CAST_URL = gql`
 `;
 
 export const CREATE_SECTION_URL = gql`
-    mutation ($section: SectionInput!) {
-        createSection(section: $section) {
+    mutation ($id: Float, $section: SectionInput!) {
+        createSection(id: $id, section: $section) {
             id
         }
     }
 `;
 
 export const CREATE_SECTION_ENTRY_URL = gql`
-    mutation ($sectionEntry: SectionEntryInput!) {
-        createSectionEntry(sectionEntry: $sectionEntry) {
+    mutation ($id: Float, $sectionEntry: SectionEntryInput!) {
+        createSectionEntry(id: $id, sectionEntry: $sectionEntry) {
+            id
+        }
+    }
+`;
+
+export const DELETE_SECTION = gql`
+    mutation ($id: Float!) {
+        deleteSection(id: $id) {
+            id
+        }
+    }
+`;
+
+export const DELETE_SECTION_ETRY = gql`
+    mutation ($id: Float!) {
+        deleteSectionEntry(id: $id) {
             id
         }
     }
