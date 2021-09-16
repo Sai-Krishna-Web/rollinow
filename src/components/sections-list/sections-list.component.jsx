@@ -63,38 +63,50 @@ function SectionsListComponent(props) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                            return (
-                                <TableRow
-                                    hover
-                                    role="checkbox"
-                                    tabIndex={-1}
-                                    key={row.id}
-                                    onClick={() => onRowClick(row)}
-                                >
-                                    {columns.map((column) => {
-                                        const value = row[column.id];
-                                        return (
-                                            <TableCell key={column.id} align={column.align}>
-                                                {column.format ? column.format(value) : value}
-                                            </TableCell>
-                                        );
-                                    })}
-                                    <TableCell key="actions" onClick={(e) => e.stopPropagation()}>
-                                        <IconButton aria-label="edit" size="small" onClick={() => editClick(row.id)}>
-                                            <EditOutlinedIcon />
-                                        </IconButton>
-                                        <IconButton
-                                            aria-label="delete"
-                                            size="small"
-                                            onClick={() => deleteClick(row.id)}
-                                        >
-                                            <DeleteOutlinedIcon />
-                                        </IconButton>
-                                    </TableCell>
-                                </TableRow>
-                            );
-                        })}
+                        {rows.length === 0 ? (
+                            <TableRow>
+                                <TableCell colSpan={columns.length + 1} align="center">
+                                    No entries yet!
+                                </TableCell>
+                            </TableRow>
+                        ) : (
+                            rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                                return (
+                                    <TableRow
+                                        hover
+                                        role="checkbox"
+                                        tabIndex={-1}
+                                        key={row.id}
+                                        onClick={() => onRowClick(row)}
+                                    >
+                                        {columns.map((column) => {
+                                            const value = row[column.id];
+                                            return (
+                                                <TableCell key={column.id} align={column.align}>
+                                                    {column.format ? column.format(value) : value}
+                                                </TableCell>
+                                            );
+                                        })}
+                                        <TableCell key="actions" onClick={(e) => e.stopPropagation()}>
+                                            <IconButton
+                                                aria-label="edit"
+                                                size="small"
+                                                onClick={() => editClick(row.id)}
+                                            >
+                                                <EditOutlinedIcon />
+                                            </IconButton>
+                                            <IconButton
+                                                aria-label="delete"
+                                                size="small"
+                                                onClick={() => deleteClick(row.id)}
+                                            >
+                                                <DeleteOutlinedIcon />
+                                            </IconButton>
+                                        </TableCell>
+                                    </TableRow>
+                                );
+                            })
+                        )}
                     </TableBody>
                 </Table>
             </TableContainer>

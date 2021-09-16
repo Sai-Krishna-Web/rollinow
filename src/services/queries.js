@@ -123,3 +123,50 @@ export const getSectionGQL = gql`
         }
     }
 `;
+
+export const getCastListGQL = gql`
+    query searchArtists($skip: Float = 0, $take: Float = 20, $query: String = "") {
+        searchArtists(take: $take, skip: $skip, query: $query) {
+            hits
+            data {
+                id
+                name
+                entityId
+                biography
+                thumbnail
+            }
+        }
+    }
+`;
+
+export const getShowsListGQL = gql`
+    query searchShows($skip: Float = 0, $take: Float = 20, $type: String = "TV", $query: String = "") {
+        searchShows(take: $take, skip: $skip, type: $type, query: $query) {
+            hits
+            data {
+                id
+                title
+                language
+                inFavorites
+                releaseDate
+                isIndianOTT
+            }
+        }
+    }
+`;
+
+export const getMoviesListGQL = gql`
+    query searchShows($skip: Float = 0, $take: Float = 20, $type: String = "MOVIE", $query: String = "") {
+        searchShows(take: $take, skip: $skip, type: $type, query: $query) {
+            hits
+            data {
+                id
+                title
+                language
+                inFavorites
+                releaseDate
+                isIndianOTT
+            }
+        }
+    }
+`;

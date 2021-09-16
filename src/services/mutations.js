@@ -53,3 +53,19 @@ export const DELETE_SECTION_ETRY = gql`
         }
     }
 `;
+
+export const DELETE_CAST = gql`
+    mutation ($id: Float!) {
+        deleteArtist(id: $id) {
+            id
+        }
+    }
+`;
+
+export const DELETE_SHOW = gql`
+    mutation ($id: Float!) {
+        deleteShow(id: $id) {
+            id
+        }
+    }
+`;

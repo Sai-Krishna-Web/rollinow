@@ -1,13 +1,31 @@
 import React from 'react';
-import { PageHeader } from 'components'
+import { PageHeader } from 'components';
+import { Box, CircularProgress } from '@material-ui/core';
+import { SectionsList } from 'components';
 
 const ShowsComponent = (props) => {
-    const { pageData } = props;
+    const { pageData, loading, error, data } = props;
     return (
         <div style={{ margin: 'auto' }}>
             <PageHeader pageData={pageData} />
             <div style={{ height: '600px', textAlign: 'center' }}>
-                <h4>shows goes here</h4>
+                {loading ? (
+                    <Box textAlign="center" py={5}>
+                        <CircularProgress />
+                    </Box>
+                ) : error ? (
+                    <Box textAlign="center" py={5}>
+                        An error occurred, please try reloading your browser.
+                    </Box>
+                ) : (
+                    <SectionsList
+                        rows={data.searchShows.data}
+                        columns={props.columns}
+                        onRowClick={() => undefined}
+                        editClick={props.editClick}
+                        deleteClick={props.deleteClick}
+                    />
+                )}
             </div>
         </div>
     );
