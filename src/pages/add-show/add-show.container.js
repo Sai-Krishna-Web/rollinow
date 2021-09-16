@@ -35,9 +35,12 @@ function AddShow() {
     };
 
     const handleSubmit = (vars) => {
+        //to adjust once language issue fixed
+        // eslint-disable-next-line
+        const { languageId, ...show } = vars;
         addShow({
             variables: {
-                show: vars
+                show: show
             }
         });
     };

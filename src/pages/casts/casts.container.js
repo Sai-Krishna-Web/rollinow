@@ -14,7 +14,12 @@ function Casts() {
     };
 
     const editClick = (id) => {
-        setRoute(`/editCast/${id}`);
+        const row = data.searchArtists.data.find((row) => {
+            return row.id === id;
+        });
+        setRoute(`/editCast/${id}`, {
+            cast: row
+        });
     };
 
     const deleteClick = (id) => {

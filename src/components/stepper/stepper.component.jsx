@@ -6,13 +6,11 @@ function StepperComponent(props) {
     const { steps, currentStep, setStep } = props;
 
     return (
-        <Stepper nonLinear activeStep={currentStep - 1} >
+        <Stepper nonLinear activeStep={currentStep - 1}>
             {steps.map((label, index) => {
                 return (
                     <Step completed={false} key={label}>
-                        <StepButton onClick={() => setStep(index + 1)}>
-                            {label}
-                        </StepButton>
+                        <StepButton onClick={() => setStep(index + 1)}>{label}</StepButton>
                     </Step>
                 );
             })}
@@ -23,7 +21,7 @@ function StepperComponent(props) {
 StepperComponent.propTypes = {
     steps: PropTypes.array,
     currentStep: PropTypes.number,
-    setStep: PropTypes.func,
+    setStep: PropTypes.func
 };
 
 export default StepperComponent;

@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import AddCastComponent from './add-cast.component';
 import { AddCastFormProvider } from 'contexts';
 import { useMutation } from '@apollo/client';
-import { ADD_CAST_URL } from 'services/mutations';
+import { ADD_CAST_URL, UPDATE_CAST_URL } from 'services/mutations';
 
-function AddCast() {
+function AddCast(props) {
+    const { id } = props.match.params;
+    const { cast } = props.location.state;
+    const URL = id ? UPDATE_CAST_URL : ADD_CAST_URL;
     const [enableSubmit, setEnableSubmit] = useState(false);
     const [onError, setOnError] = useState(false);
     const [onSuccess, setOnSuccess] = useState(false);
     const [uploadProgress, setUploadProgress] = useState(0);
-    const [addCast, { data, error, loading }] = useMutation(ADD_CAST_URL, {
+    const [addCast, { data, error, loading }] = useMutation(URL, {
         onCompleted: (data) => {
-            if (data?.addCast) {
+            if (data?.addCast || data?.updateCast) {
                 setOnSuccess(true);
             }
         },
@@ -75,6 +78,8 @@ function AddCast() {
                 enableSubmit={enableSubmit}
                 onSuccess={onSuccess}
                 setOnSuccess={setOnSuccess}
+                id={id}
+                cast={cast}
             />
         </AddCastFormProvider>
     );

@@ -69,3 +69,11 @@ export const DELETE_SHOW = gql`
         }
     }
 `;
+
+export const UPDATE_CAST_URL = gql`
+    mutation ($cast: CastUpdateInput!) {
+        updateCast(cast: $cast) {
+            id
+        }
+    }
+`;
