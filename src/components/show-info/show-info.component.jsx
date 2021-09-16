@@ -152,14 +152,14 @@ const ShowInfoComponent = (props) => {
                                             helperText={touched.type && errors.type}
                                         >
                                             <FormControlLabel
-                                                value="movie"
+                                                value="MOVIE"
                                                 control={<Radio color="primary" />}
                                                 label="Movie"
                                             />
                                             <FormControlLabel
-                                                value="show"
+                                                value="TV"
                                                 control={<Radio color="primary" />}
-                                                label="Show"
+                                                label="TV"
                                             />
                                         </RadioGroup>
                                     </Grid>

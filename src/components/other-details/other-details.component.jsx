@@ -145,22 +145,6 @@ const OtherDetailsComponent = (props) => {
                                         label="Indian OTT"
                                         labelPlacement="start"
                                     />
-                                    <FormControlLabel
-                                        value={values.inFavorites}
-                                        control={
-                                            <Switch
-                                                color="primary"
-                                                id="inFavorites"
-                                                checked={values.inFavorites}
-                                                onChange={(e) => {
-                                                    handleChange(e);
-                                                    handleAddShow(e.target.id, e.target.checked);
-                                                }}
-                                            />
-                                        }
-                                        label="In favorites"
-                                        labelPlacement="start"
-                                    />
                                 </div>
                             </form>
                         </div>

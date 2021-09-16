@@ -92,6 +92,7 @@ function SectionsListComponent(props) {
                                                 aria-label="edit"
                                                 size="small"
                                                 onClick={() => editClick(row.id)}
+                                                color="primary"
                                             >
                                                 <EditOutlinedIcon />
                                             </IconButton>
@@ -99,6 +100,7 @@ function SectionsListComponent(props) {
                                                 aria-label="delete"
                                                 size="small"
                                                 onClick={() => deleteClick(row.id)}
+                                                color="secondary"
                                             >
                                                 <DeleteOutlinedIcon />
                                             </IconButton>

@@ -4,6 +4,7 @@ import { useMutation } from '@apollo/client';
 import IconButton from '@material-ui/core/IconButton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import UploadIcon from '@material-ui/icons/CloudUpload';
+import Typography from '@material-ui/core/Typography';
 import moment from 'moment-timezone';
 import axios from 'axios';
 import { SnackBarAndAlert } from 'components';
@@ -12,7 +13,15 @@ import { GET_S3_SIGNED_URL } from 'services/mutations';
 
 const s3BaseUrl = 'https://rollinow-images.s3.amazonaws.com';
 
-function UploadMediaComponent({ maxFiles = 1, afterUpload, location, uploadProgress, setUploadProgress, ...props }) {
+function UploadMediaComponent({
+    maxFiles = 1,
+    afterUpload,
+    location,
+    uploadProgress,
+    setUploadProgress,
+    disabled = false,
+    ...props
+}) {
     const [error, setError] = useState(false);
     const [link, setLink] = useState('');
     const [file, setFiles] = useState(null);
@@ -24,8 +33,9 @@ function UploadMediaComponent({ maxFiles = 1, afterUpload, location, uploadProgr
     });
     const { getRootProps, getInputProps } = useDropzone({
         onDropAccepted,
-        accept: 'image/jpeg, image/png',
+        accept: ['image/*', 'video/*'],
         maxFiles,
+        disabled,
         ...props
     });
 
@@ -73,13 +83,18 @@ function UploadMediaComponent({ maxFiles = 1, afterUpload, location, uploadProgr
         <div {...getRootProps({ className: 'dropzone' })}>
             <input {...getInputProps()} />
 
-            <IconButton disabled={uploading} className="bg-gradient-1" size="small">
+            <IconButton disabled={uploading || disabled} className="bg-gradient-1" size="small">
                 {uploading ? (
                     <CircularProgress variant="determinate" value={parseInt(uploadProgress)} />
                 ) : (
-                    <UploadIcon style={{ color: 'black', fontSize: 30 }} />
+                    <UploadIcon color={disabled ? 'disabled' : 'primary'} />
                 )}
             </IconButton>
+            {disabled && (
+                <Typography variant="subtitle2" color="textSecondary">
+                    please select an option
+                </Typography>
+            )}
             {error && (
                 <SnackBarAndAlert
                     open={Boolean(error)}

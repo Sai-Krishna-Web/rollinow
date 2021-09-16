@@ -3,9 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { getLanguageListGQL } from '../services/queries';
 const AddShowFormContext = React.createContext();
 
-
 function AddShowFormProvider(props) {
-    const { data } = useQuery(getLanguageListGQL)
+    const { data } = useQuery(getLanguageListGQL);
     const [languageList, setLanguageList] = useState([]);
 
     const initialState = {
@@ -21,15 +20,13 @@ function AddShowFormProvider(props) {
         duration: '',
         tagline: '',
         isIndianOTT: false,
-        inFavorites: false,
-        type: '',
-
+        type: ''
     };
 
     const [addShowForm, setAddShowForm] = useState(initialState);
 
     useEffect(() => {
-        data && setLanguageList(data.getLanguagesList)
+        data && setLanguageList(data.getLanguagesList);
     }, [data]);
 
     return (
@@ -37,7 +34,7 @@ function AddShowFormProvider(props) {
             value={{
                 addShowForm,
                 setAddShowForm,
-                languageList,
+                languageList
             }}
         >
             {props.children}
