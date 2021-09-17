@@ -4,6 +4,7 @@ import { PageHeader, LoadingScreen, SnackBarAndAlert, UploadMedia } from 'compon
 import { Box, Button, TextField, makeStyles, Grid, FormLabel, CircularProgress } from '@material-ui/core';
 import { useAddCastFormContext } from 'contexts';
 import { setRoute } from 'utilities';
+import { goBack } from 'utilities/route';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -223,6 +224,7 @@ const AddCastComponent = (props) => {
                     open={Boolean(data)}
                     onClose={() => {
                         setOnSuccess(false);
+                        goBack();
                     }}
                     type="success"
                 >

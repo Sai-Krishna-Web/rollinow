@@ -6,7 +6,7 @@ import { ADD_CAST_URL, UPDATE_CAST_URL } from 'services/mutations';
 
 function AddCast(props) {
     const { id } = props.match.params;
-    const { cast } = props.location.state;
+    const { cast } = props.location.state || {};
     const URL = id ? UPDATE_CAST_URL : ADD_CAST_URL;
     const [enableSubmit, setEnableSubmit] = useState(false);
     const [onError, setOnError] = useState(false);

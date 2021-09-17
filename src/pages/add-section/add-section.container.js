@@ -6,6 +6,7 @@ import { CREATE_SECTION_URL } from 'services/mutations';
 
 function AddSection(props) {
     const { id } = props.match.params;
+    //const { refetch } = props.location.state;
     const [enableSubmit, setEnableSubmit] = useState(false);
     const [onError, setOnError] = useState(false);
     const [onSuccess, setOnSuccess] = useState(false);
@@ -14,6 +15,7 @@ function AddSection(props) {
         onCompleted: (data) => {
             if (data?.createSection) {
                 setOnSuccess(true);
+                //refetch();
             }
         },
         onError: () => {

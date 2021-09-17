@@ -6,7 +6,8 @@ import { useMutation } from '@apollo/client';
 import { ADD_SHOW_URL } from 'services/mutations';
 import { setRoute } from 'utilities';
 
-function AddShow() {
+function AddShow(props) {
+    const { id } = props.match.params;
     const [step, setStep] = useState(1);
     const [onError, setOnError] = useState(false);
     const [onSuccess, setOnSuccess] = useState(false);
@@ -78,6 +79,7 @@ function AddShow() {
                 onSuccess={onSuccess}
                 setOnSuccess={setOnSuccess}
                 handleCancel={handleCancel}
+                id={id}
             />
         </AddShowFormProvider>
     );

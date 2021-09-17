@@ -168,6 +168,7 @@ function AddSectionEntryComponent(props) {
                     open={onSuccess}
                     onClose={() => {
                         setOnSuccess(false);
+                        handleClose();
                     }}
                     type="success"
                 >

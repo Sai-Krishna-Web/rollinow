@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import ShowsComponent from './shows.component';
 import { setRoute } from 'utilities';
@@ -7,8 +7,20 @@ import { formatDateTimeByFormatString } from 'utilities/helper';
 import { DELETE_SHOW } from 'services/mutations';
 
 function Shows() {
+    const [onSuccess, setOnSuccess] = useState(false);
+    const [onError, setOnError] = useState(false);
+    const [message, setMessage] = useState();
     const { data, loading, error, refetch } = useQuery(getShowsListGQL);
-    const [deleteShow] = useMutation(DELETE_SHOW);
+    const [deleteShow] = useMutation(DELETE_SHOW, {
+        onCompleted: () => {
+            setOnSuccess(true);
+            setMessage('Show deleted successfully');
+        },
+        onError: (error) => {
+            setOnError(true);
+            setMessage(`Failed: ${error.message}`);
+        }
+    });
     const AddShow = () => {
         setRoute('/addShow');
     };
@@ -20,7 +32,7 @@ function Shows() {
     const deleteClick = (id) => {
         deleteShow({
             variables: {
-                id: Number(id)
+                id
             }
         });
         refetch();
@@ -63,6 +75,11 @@ function Shows() {
             columns={columns}
             editClick={editClick}
             deleteClick={deleteClick}
+            onError={onError}
+            setOnError={setOnError}
+            onSuccess={onSuccess}
+            setOnSuccess={setOnSuccess}
+            message={message}
         />
     );
 }

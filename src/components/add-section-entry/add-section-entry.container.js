@@ -15,6 +15,7 @@ function AddSectionEntry(props) {
         onCompleted: (data) => {
             if (data?.createSectionEntry) {
                 setOnSuccess(true);
+                refetch();
             }
         },
         onError: () => {
@@ -65,7 +66,6 @@ function AddSectionEntry(props) {
                 sectionEntry: { sequence: Number(sequence), hidden, sectionId, showId, listId, castId, userId }
             }
         });
-        refetch();
     };
     return (
         <AddSectionEntryComponent

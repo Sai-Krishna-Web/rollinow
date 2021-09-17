@@ -170,3 +170,23 @@ export const getMoviesListGQL = gql`
         }
     }
 `;
+
+export const getShowGQL = gql`
+    query getShow($id: String!) {
+        getShow(id: $id) {
+            id
+            title
+            description
+            releaseDate
+            keywords
+            languageId
+            backdropUrl
+            thumbnailUrl
+            trailerUrl
+            duration
+            tagline
+            isIndianOTT
+            type
+        }
+    }
+`;

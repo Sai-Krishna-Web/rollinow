@@ -16,6 +16,7 @@ import { setRoute, sectionPlace, sectionType } from 'utilities';
 import { useLazyQuery } from '@apollo/client';
 import { getSectionGQL } from 'services/queries';
 import { formatDateTimeByFormatString } from 'utilities/helper';
+import { goBack } from 'utilities/route';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -357,6 +358,7 @@ function AddSectionComponent(props) {
                     open={Boolean(data)}
                     onClose={() => {
                         setOnSuccess(false);
+                        goBack();
                     }}
                     type="success"
                 >

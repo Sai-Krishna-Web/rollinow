@@ -82,7 +82,7 @@ const SectionsComponent = (props) => {
                         <ThemeTab label="Active" {...a11yProps(1)} />
                     </ThemeTabs>
                 </div>
-                {loading ? (
+                {!data || loading ? (
                     <Box textAlign="center" py={5}>
                         <CircularProgress />
                     </Box>
@@ -99,6 +99,7 @@ const SectionsComponent = (props) => {
                                 onRowClick={onRowClick}
                                 editClick={props.editClick}
                                 deleteClick={props.deleteClick}
+                                refetch={props.refetch}
                             />
                         </TabPanel>
                         <TabPanel value={tab} index={1}>
@@ -106,6 +107,9 @@ const SectionsComponent = (props) => {
                                 rows={data.allSections.data.filter((section) => section.shown)}
                                 columns={columns}
                                 onRowClick={onRowClick}
+                                editClick={props.editClick}
+                                deleteClick={props.deleteClick}
+                                refetch={props.refetch}
                             />
                         </TabPanel>
                     </>

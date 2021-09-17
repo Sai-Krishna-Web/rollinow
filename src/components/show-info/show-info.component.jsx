@@ -97,7 +97,7 @@ const ShowInfoComponent = (props) => {
                                         type="text"
                                         name="keywords"
                                         id="keywords"
-                                        value={values.keywords}
+                                        value={addShowForm.keywords}
                                         onBlur={handleBlur}
                                         helperText={touched.keywords && errors.keywords}
                                         className={classes.textFieldFullWidth}
@@ -149,7 +149,7 @@ const ShowInfoComponent = (props) => {
                                                 handleAddShow(e.target.name, e.target.value);
                                             }}
                                             onBlur={handleBlur}
-                                            helperText={touched.type && errors.type}
+                                            helpertext={touched.type && errors.type}
                                         >
                                             <FormControlLabel
                                                 value="MOVIE"

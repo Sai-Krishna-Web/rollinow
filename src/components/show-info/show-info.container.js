@@ -19,7 +19,7 @@ function ShowInfo() {
             errors.type = 'Type is required';
         }
 
-        if (!values.keywords.length) {
+        if (!addShowForm.keywords.length) {
             errors.keywords = 'Keywords is required';
         }
 
@@ -31,20 +31,37 @@ function ShowInfo() {
     };
 
     const handleAddShow = (key, value) => {
-        setAddShowForm(addShowForm => ({
+        setAddShowForm((addShowForm) => ({
             ...addShowForm,
             [key]: value
         }));
-    }
+    };
 
     const handleAddChip = (value) => {
-        addShowForm.keywords.push(value);
-    }
+        setAddShowForm((addShowForm) => ({
+            ...addShowForm,
+            keywords: [...addShowForm.keywords, value]
+        }));
+        //addShowForm.keywords.push(value);
+    };
 
     const handleDeleteChip = (value, index) => {
-        addShowForm.keywords.splice(index, 1)
-    }
-    return <ShowInfoComponent  addShowForm={addShowForm} validate={validate} handleAddChip={handleAddChip} handleDeleteChip={handleDeleteChip} handleAddShow={handleAddShow} />;
+        const chips = addShowForm.keywords;
+        chips.splice(index, 1);
+        setAddShowForm((addShowForm) => ({
+            ...addShowForm,
+            keywords: chips
+        }));
+    };
+    return (
+        <ShowInfoComponent
+            addShowForm={addShowForm}
+            validate={validate}
+            handleAddChip={handleAddChip}
+            handleDeleteChip={handleDeleteChip}
+            handleAddShow={handleAddShow}
+        />
+    );
 }
 
 export default ShowInfo;

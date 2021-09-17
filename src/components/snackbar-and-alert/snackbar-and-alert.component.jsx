@@ -11,7 +11,7 @@ function SnackBarAndAlertComponent(props) {
         <Snackbar
             anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
             open={open}
-            autoHideDuration={10000}
+            autoHideDuration={3000}
             onClose={onClose}
         >
             <Alert variant="filled" severity={type} className={orangeColor && style.alertMessage}>

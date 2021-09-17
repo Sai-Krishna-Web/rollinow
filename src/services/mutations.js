@@ -63,7 +63,7 @@ export const DELETE_CAST = gql`
 `;
 
 export const DELETE_SHOW = gql`
-    mutation ($id: Float!) {
+    mutation ($id: String!) {
         deleteShow(id: $id) {
             id
         }
