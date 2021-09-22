@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader } from 'components';
+import { PageHeader, SnackBarAndAlert } from 'components';
 import { Box, CircularProgress } from '@material-ui/core';
 import { SectionsList } from 'components';
 
@@ -27,6 +27,28 @@ const MoviesComponent = (props) => {
                     />
                 )}
             </div>
+            {props.onSuccess && (
+                <SnackBarAndAlert
+                    open={props.onSuccess}
+                    onClose={() => {
+                        props.setOnSuccess(false);
+                    }}
+                    type="success"
+                >
+                    {props.message}
+                </SnackBarAndAlert>
+            )}
+            {props.onError && (
+                <SnackBarAndAlert
+                    open={props.onError}
+                    onClose={() => {
+                        props.setOnError(false);
+                    }}
+                    type="error"
+                >
+                    {props.message}
+                </SnackBarAndAlert>
+            )}
         </div>
     );
 };

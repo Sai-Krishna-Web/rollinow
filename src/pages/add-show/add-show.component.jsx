@@ -33,7 +33,6 @@ const AddShowComponent = (props) => {
         nextStep,
         handleSubmit,
         loading,
-        data,
         error,
         onSuccess,
         setOnSuccess,
@@ -126,7 +125,7 @@ const AddShowComponent = (props) => {
             </div>
             {onSuccess && (
                 <SnackBarAndAlert
-                    open={Boolean(data)}
+                    open={onSuccess}
                     onClose={() => {
                         setOnSuccess(false);
                         goBack();

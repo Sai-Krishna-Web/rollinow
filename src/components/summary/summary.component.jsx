@@ -9,10 +9,10 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         padding: theme.spacing(3),
         margin: 'auto',
-        width: 800,
+        minWidth: 300,
         border: '1px solid #ddd',
         boxShadow: 'none',
-        maxWidth: '100%'
+        maxWidth: 'fit-content'
     },
     media: {
         height: '100%',

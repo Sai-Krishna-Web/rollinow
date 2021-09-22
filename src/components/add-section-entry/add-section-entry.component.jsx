@@ -101,7 +101,7 @@ function AddSectionEntryComponent(props) {
                                                 <div className={classes.textField}>
                                                     {' '}
                                                     <Picker
-                                                        section={props.section}
+                                                        section={props.section.type}
                                                         setPickerId={handleAddSectionEntry}
                                                         input={initialState.name}
                                                     ></Picker>

@@ -4,17 +4,17 @@ import PickerComponent from './picker.component';
 import { sectionType, searchQueryType } from 'utilities/enums';
 
 function Picker(props) {
-    const { setPickerId, section, input } = props;
+    const { setPickerId, type, input } = props;
     const [inputValue, setInputValue] = React.useState(input);
     const [options, setOptions] = React.useState([]);
     const [, setOnError] = React.useState(false);
-    const gqlQuery = searchQueryType[section.type];
+    const gqlQuery = searchQueryType[type];
     const getVariables = (value) => {
         let vars = {
             query: value
         };
-        if (section.type === sectionType.MOVIE || section.type === sectionType.TV) {
-            vars['type'] = section.type;
+        if (type === sectionType.MOVIE || type === sectionType.TV) {
+            vars['type'] = type;
         }
         return vars;
     };
@@ -49,7 +49,7 @@ function Picker(props) {
             handleChange={handleChange}
             loading={loading}
             setPickerId={setPickerId}
-            type={section.type}
+            type={type}
         />
     );
 }

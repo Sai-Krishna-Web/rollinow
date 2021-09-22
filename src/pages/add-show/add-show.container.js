@@ -3,17 +3,18 @@ import AddShowComponent from './add-show.component';
 import { ShowInfo, MediaFiles, OtherDeatils, Summary } from 'components';
 import { AddShowFormProvider } from 'contexts';
 import { useMutation } from '@apollo/client';
-import { ADD_SHOW_URL } from 'services/mutations';
+import { ADD_SHOW_URL, UPDATE_SHOW_URL } from 'services/mutations';
 import { setRoute } from 'utilities';
 
 function AddShow(props) {
     const { id } = props.match.params;
+    const URL = id ? UPDATE_SHOW_URL : ADD_SHOW_URL;
     const [step, setStep] = useState(1);
     const [onError, setOnError] = useState(false);
     const [onSuccess, setOnSuccess] = useState(false);
-    const [addShow, { data, error, loading }] = useMutation(ADD_SHOW_URL, {
+    const [addShow, { data, error, loading }] = useMutation(URL, {
         onCompleted: (data) => {
-            if (data?.addShow) {
+            if (data?.addShow || data?.updateShow) {
                 setOnSuccess(true);
             }
         },

@@ -6,6 +6,7 @@ export const GET_S3_SIGNED_URL = gql`
     }
 `;
 
+//shows
 export const ADD_SHOW_URL = gql`
     mutation ($show: ShowCreateArgs!) {
         addShow(show: $show) {
@@ -14,6 +15,23 @@ export const ADD_SHOW_URL = gql`
     }
 `;
 
+export const UPDATE_SHOW_URL = gql`
+    mutation ($show: ShowUpdateArgs!) {
+        updateShow(show: $show) {
+            id
+        }
+    }
+`;
+
+export const DELETE_SHOW = gql`
+    mutation ($id: String!) {
+        deleteShow(id: $id) {
+            id
+        }
+    }
+`;
+
+//cats
 export const ADD_CAST_URL = gql`
     mutation ($cast: CastCreateInput!) {
         addCast(cast: $cast) {
@@ -22,6 +40,23 @@ export const ADD_CAST_URL = gql`
     }
 `;
 
+export const DELETE_CAST = gql`
+    mutation ($id: Float!) {
+        deleteCast(id: $id) {
+            id
+        }
+    }
+`;
+
+export const UPDATE_CAST_URL = gql`
+    mutation ($cast: CastUpdateInput!) {
+        updateCast(cast: $cast) {
+            id
+        }
+    }
+`;
+
+//sections
 export const CREATE_SECTION_URL = gql`
     mutation ($id: Float, $section: SectionInput!) {
         createSection(id: $id, section: $section) {
@@ -54,25 +89,26 @@ export const DELETE_SECTION_ETRY = gql`
     }
 `;
 
-export const DELETE_CAST = gql`
-    mutation ($id: Float!) {
-        deleteArtist(id: $id) {
+//charcters
+export const ADD_CHARACTER_URL = gql`
+    mutation ($character: CharacterCreateArgs!) {
+        addCharacter(character: $character) {
             id
         }
     }
 `;
 
-export const DELETE_SHOW = gql`
+export const UPDATE_CHARACTER_URL = gql`
+    mutation ($character: CharacterUpdateArgs!) {
+        updateCharacter(character: $character) {
+            id
+        }
+    }
+`;
+
+export const DELETE_CHARACTER_URL = gql`
     mutation ($id: String!) {
-        deleteShow(id: $id) {
-            id
-        }
-    }
-`;
-
-export const UPDATE_CAST_URL = gql`
-    mutation ($cast: CastUpdateInput!) {
-        updateCast(cast: $cast) {
+        deleteCharacter(id: $id) {
             id
         }
     }

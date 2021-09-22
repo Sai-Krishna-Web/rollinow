@@ -8,5 +8,6 @@ import AddCast from './add-cast/add-cast.container';
 import Sections from './sections/sections.container';
 import AddSection from './add-section/add-section.container';
 import SectionDetails from './section-details/section-details.container';
+import ShowDetails from './show-details/show-details.container';
 
-export { LoginForm, Home, Movies, Shows, AddShow, Casts, AddCast, Sections, AddSection, SectionDetails };
+export { LoginForm, Home, Movies, Shows, AddShow, Casts, AddCast, Sections, AddSection, SectionDetails, ShowDetails };

@@ -95,6 +95,7 @@ const SectionDetailsComponent = (props) => {
                     setOpen={setOpen}
                     section={section}
                     sectionEntry={props.sectionEntry}
+                    setSectionEntry={props.setSectionEntry}
                     refetch={props.refetch}
                 />
             )}

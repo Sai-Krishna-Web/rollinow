@@ -7,7 +7,7 @@ import { DELETE_CAST } from 'services/mutations';
 
 function Casts() {
     const { data, loading, error, refetch } = useQuery(getCastListGQL);
-    const [deleteSection] = useMutation(DELETE_CAST);
+    const [deleteCast] = useMutation(DELETE_CAST);
 
     const AddCast = () => {
         setRoute('/addCast');
@@ -23,7 +23,7 @@ function Casts() {
     };
 
     const deleteClick = (id) => {
-        deleteSection({
+        deleteCast({
             variables: {
                 id: Number(id)
             }

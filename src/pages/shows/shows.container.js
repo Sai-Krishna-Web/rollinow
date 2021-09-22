@@ -25,6 +25,9 @@ function Shows() {
         setRoute('/addShow');
     };
 
+    const onRowClick = (row) => {
+        setRoute(`/shows/details/${row.id}`);
+    };
     const editClick = (id) => {
         setRoute(`/editShow/${id}`);
     };
@@ -50,18 +53,20 @@ function Shows() {
         {
             id: 'inFavorites',
             label: 'In favorites',
-            minWidth: 100
+            minWidth: 50,
+            format: (value) => (value ? 'Yes' : 'No')
         },
         {
             id: 'isIndianOTT',
             label: 'Indian OTT',
-            minWidth: 140
+            minWidth: 50,
+            format: (value) => (value ? 'Yes' : 'No')
         },
         {
             id: 'releaseDate',
             label: 'Release date',
             minWidth: 140,
-            format: (value) => value && formatDateTimeByFormatString(value, 'YYYY-MM-DD')
+            format: (value) => value && formatDateTimeByFormatString(value, 'YYYY-MM-DD', false, true)
         }
     ];
 
@@ -80,6 +85,7 @@ function Shows() {
             onSuccess={onSuccess}
             setOnSuccess={setOnSuccess}
             message={message}
+            onRowClick={onRowClick}
         />
     );
 }

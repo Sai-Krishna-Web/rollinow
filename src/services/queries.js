@@ -190,3 +190,19 @@ export const getShowGQL = gql`
         }
     }
 `;
+
+export const getShowCharactersGQL = gql`
+    query getShow($id: String!) {
+        getShow(id: $id) {
+            id
+            characters {
+                id
+                character
+                cast {
+                    id
+                    name
+                }
+            }
+        }
+    }
+`;

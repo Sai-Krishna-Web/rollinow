@@ -11,6 +11,7 @@ import SnackBarAndAlert from './snackbar-and-alert/snackbar-and-alert.container'
 import SectionsList from './sections-list/sections-list.container';
 import AddSectionEntry from './add-section-entry/add-section-entry.container.js';
 import Picker from './picker/picker.container';
+import Characters from './characters/characters.container';
 export {
     PageHeader,
     Stepper,
@@ -24,5 +25,6 @@ export {
     SnackBarAndAlert,
     SectionsList,
     AddSectionEntry,
-    Picker
+    Picker,
+    Characters
 };

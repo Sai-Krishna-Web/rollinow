@@ -88,6 +88,7 @@ function SectionDetails(props) {
             deleteClick={deleteClick}
             editClick={editClick}
             sectionEntry={sectionEntry}
+            setSectionEntry={setSectionEntry}
             refetch={refetch}
         />
     );

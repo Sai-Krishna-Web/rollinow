@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { CREATE_SECTION_ENTRY_URL } from 'services/mutations';
 import { sectionType } from 'utilities/enums';
 function AddSectionEntry(props) {
-    const { open, setOpen, section, sectionEntry, refetch } = props;
+    const { open, setOpen, section, sectionEntry, setSectionEntry, refetch } = props;
     const [initialState, setState] = React.useState(
         sectionEntry ? sectionEntry : { sequence: null, hidden: false, entryId: null }
     );
@@ -15,6 +15,7 @@ function AddSectionEntry(props) {
         onCompleted: (data) => {
             if (data?.createSectionEntry) {
                 setOnSuccess(true);
+                setSectionEntry('');
                 refetch();
             }
         },
