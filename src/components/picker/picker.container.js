@@ -30,8 +30,8 @@ function Picker(props) {
         }
     });
 
-    const handleChange = async (event) => {
-        setInputValue(event.target.value);
+    const handleChange = async (value) => {
+        setInputValue(value);
     };
 
     React.useEffect(() => {

@@ -1,6 +1,8 @@
 import React from 'react';
-import { makeStyles, CircularProgress, Box } from '@material-ui/core';
-import { SectionsList, AddSectionEntry } from 'components';
+import { makeStyles, CircularProgress, Box, Button } from '@material-ui/core';
+import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
+import { SectionsList, AddCharacter, SnackBarAndAlert } from 'components';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -23,12 +25,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CharactersComponent = (props) => {
-    const { columns, characters, loading, error, open } = props;
+    const { columns, characters, loading, error, open, addShowCharacter, onSuccess, onError, message } = props;
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
-            <h4>Cast and crew</h4>
+            <Box m={2} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                    <h4>Cast and crew</h4>
+                </div>
+                <div>
+                    <Button
+                        startIcon={<AddOutlinedIcon />}
+                        color="primary"
+                        variant="outlined"
+                        onClick={addShowCharacter}
+                    >
+                        Character
+                    </Button>
+                </div>
+            </Box>
+
             {loading ? (
                 <Box m={2} sx={{ display: 'flex', justifyContent: 'center' }}>
                     <CircularProgress />
@@ -45,14 +62,40 @@ const CharactersComponent = (props) => {
                 />
             )}
             {open && (
-                <AddSectionEntry
+                <AddCharacter
                     open={open}
                     setOpen={props.setOpen}
-                    character={props.character}
+                    characterData={props.character}
                     setCharacter={props.setCharacter}
                     refetch={props.refetch}
-                    section={{ type: 'CAST' }}
+                    showId={props.id}
+                    setOnSuccess={props.setOnSuccess}
+                    setOnError={props.setOnError}
+                    setMessage={props.setMessage}
                 />
+            )}
+            {onSuccess && (
+                <SnackBarAndAlert
+                    open={onSuccess}
+                    onClose={() => {
+                        props.setOnSuccess(false);
+                        props.handleClose();
+                    }}
+                    type="success"
+                >
+                    {message}
+                </SnackBarAndAlert>
+            )}
+            {onError && (
+                <SnackBarAndAlert
+                    open={onError}
+                    onClose={() => {
+                        props.setOnError(false);
+                    }}
+                    type="error"
+                >
+                    {`Failed:  ${message}`}
+                </SnackBarAndAlert>
             )}
         </div>
     );

@@ -7,7 +7,19 @@ import { DELETE_CHARACTER_URL } from 'services/mutations';
 function Characters(props) {
     const [open, setOpen] = useState(false);
     const [character, setCharacter] = useState('');
-    const [deleteCharacterEntry] = useMutation(DELETE_CHARACTER_URL);
+    const [onError, setOnError] = useState(false);
+    const [onSuccess, setOnSuccess] = useState(false);
+    const [message, setMessage] = useState('');
+    const [deleteCharacterEntry] = useMutation(DELETE_CHARACTER_URL, {
+        onCompleted: () => {
+            setOnSuccess(true);
+            setMessage('Character deleted successfully');
+        },
+        onError: (error) => {
+            setOnError(true);
+            setMessage(error.message);
+        }
+    });
     const { data, loading, error, refetch } = useQuery(getShowCharactersGQL, {
         variables: { id: props.id }
     });
@@ -19,10 +31,9 @@ function Characters(props) {
     const deleteClick = (id) => {
         deleteCharacterEntry({
             variables: {
-                id: Number(id)
+                id
             }
         });
-        refetch();
     };
     const editClick = (id) => {
         const row = data?.getShow.characters.find((row) => {
@@ -30,6 +41,11 @@ function Characters(props) {
         });
         setCharacter(row);
         setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+        refetch();
     };
 
     const columns = [
@@ -51,6 +67,13 @@ function Characters(props) {
             setOpen={setOpen}
             character={character}
             setCharacter={setCharacter}
+            handleClose={handleClose}
+            onError={onError}
+            onSuccess={onSuccess}
+            message={message}
+            setOnError={setOnError}
+            setOnSuccess={setOnSuccess}
+            setMessage={setMessage}
         />
     );
 }

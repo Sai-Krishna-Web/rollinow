@@ -10,13 +10,16 @@ function PickerComponent(props) {
             <Autocomplete
                 id="showId"
                 style={{ width: 300 }}
-                getOptionLabel={(option) => (typeof option === 'string' ? option : option.title || option.name)}
-                getOptionSelected={(option, value) => option.title === value || option.name === value}
+                getOptionLabel={(option) => (typeof option === 'string' ? option : option?.title || option?.name)}
+                getOptionSelected={(option, value) => option?.title === value || option?.name === value}
                 options={options}
                 autoComplete
                 loading={loading}
                 value={inputValue}
-                onChange={(event, newValue) => setPickerId('entryId', newValue?.id)}
+                onChange={(event, newValue) => {
+                    setPickerId('entryId', newValue?.id);
+                    handleChange(newValue.title || newValue.name);
+                }}
                 renderInput={(params) => (
                     <TextField
                         {...params}
@@ -24,14 +27,14 @@ function PickerComponent(props) {
                         variant="outlined"
                         fullWidth
                         margin="dense"
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e.target.value)}
                     />
                 )}
                 renderOption={(option) => {
                     return (
                         <Grid container alignItems="center">
                             <Grid item xs>
-                                {option.title || option.name}
+                                {option?.title || option?.name}
                             </Grid>
                         </Grid>
                     );

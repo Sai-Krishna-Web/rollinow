@@ -132,7 +132,7 @@ const AddShowComponent = (props) => {
                     }}
                     type="success"
                 >
-                    Show added successfully.
+                    {props.message}
                 </SnackBarAndAlert>
             )}
             {props.onError && (
@@ -143,7 +143,7 @@ const AddShowComponent = (props) => {
                     }}
                     type="error"
                 >
-                    {`Failed:  ${error?.message}`}
+                    {`Failed:  ${props.message}`}
                 </SnackBarAndAlert>
             )}
         </>

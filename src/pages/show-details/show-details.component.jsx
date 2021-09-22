@@ -25,17 +25,6 @@ const ShowDetailsComponent = (props) => {
                     <Characters id={id} />
                 </Box>
             </div>
-
-            {/* {open && (
-                <AddshowEntry
-                    open={open}
-                    setOpen={setOpen}
-                    show={show}
-                    showEntry={props.showEntry}
-                    setshowEntry={props.setshowEntry}
-                    refetch={props.refetch}
-                />
-            )} */}
         </div>
     );
 };

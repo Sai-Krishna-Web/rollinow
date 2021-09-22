@@ -12,6 +12,7 @@ import SectionsList from './sections-list/sections-list.container';
 import AddSectionEntry from './add-section-entry/add-section-entry.container.js';
 import Picker from './picker/picker.container';
 import Characters from './characters/characters.container';
+import AddCharacter from './add-character/add-character.container';
 export {
     PageHeader,
     Stepper,
@@ -26,5 +27,6 @@ export {
     SectionsList,
     AddSectionEntry,
     Picker,
-    Characters
+    Characters,
+    AddCharacter
 };

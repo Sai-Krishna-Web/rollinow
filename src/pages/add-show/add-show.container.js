@@ -12,14 +12,20 @@ function AddShow(props) {
     const [step, setStep] = useState(1);
     const [onError, setOnError] = useState(false);
     const [onSuccess, setOnSuccess] = useState(false);
+    const [message, setMessage] = useState('');
     const [addShow, { data, error, loading }] = useMutation(URL, {
         onCompleted: (data) => {
-            if (data?.addShow || data?.updateShow) {
-                setOnSuccess(true);
+            if (data?.addShow) {
+                setMessage('Show added successfully.');
             }
+            if (data?.updateShow) {
+                setMessage('Show updated successfully.');
+            }
+            setOnSuccess(true);
         },
-        onError: () => {
+        onError: (error) => {
             setOnError(true);
+            setMessage(error.message);
         }
     });
 
@@ -81,6 +87,7 @@ function AddShow(props) {
                 setOnSuccess={setOnSuccess}
                 handleCancel={handleCancel}
                 id={id}
+                message={message}
             />
         </AddShowFormProvider>
     );

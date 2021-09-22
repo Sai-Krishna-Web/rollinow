@@ -8,9 +8,9 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import { Box, Button, TextField, FormControlLabel, Switch } from '@material-ui/core';
+import { Box, Button, TextField } from '@material-ui/core';
 
-import { Picker, LoadingScreen, SnackBarAndAlert } from 'components';
+import { Picker, LoadingScreen } from 'components';
 
 const styles = (theme) => ({
     root: {
@@ -66,28 +66,15 @@ const DialogActions = withStyles((theme) => ({
     }
 }))(MuiDialogActions);
 
-function AddSectionEntryComponent(props) {
-    const {
-        initialState,
-        open,
-        handleClose,
-        handleAddSectionEntry,
-        handleSubmit,
-        enableSubmit,
-        validate,
-        loading,
-        onSuccess,
-        onError,
-        error,
-        setOnError,
-        setOnSuccess
-    } = props;
+function AddCharacterComponent(props) {
+    const { initialState, open, handleClose, handleAddCharacter, handleSubmit, enableSubmit, validate, loading } =
+        props;
     const classes = useStyles();
     return (
         <div>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth={true}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    New section entry
+                    Character
                 </DialogTitle>
                 <DialogContent dividers>
                     <Box my={2}>
@@ -99,51 +86,31 @@ function AddSectionEntryComponent(props) {
                                         <form>
                                             <div className={classes.root}>
                                                 <div className={classes.textField}>
-                                                    {' '}
-                                                    <Picker
-                                                        type={props.section.type}
-                                                        setPickerId={handleAddSectionEntry}
-                                                        input={initialState.name}
-                                                    ></Picker>
-                                                </div>
-                                                <div className={classes.textField}>
                                                     <TextField
-                                                        error={Boolean(touched.sequence && errors.sequence)}
-                                                        label="Sequence"
+                                                        fullWidth={true}
+                                                        error={Boolean(touched.character && errors.character)}
+                                                        label="Character"
                                                         margin="dense"
                                                         variant="outlined"
-                                                        type="number"
-                                                        name="sequence"
-                                                        id="sequence"
-                                                        value={values.sequence}
+                                                        type="text"
+                                                        name="character"
+                                                        id="character"
+                                                        value={values.character}
                                                         onChange={(e) => {
                                                             handleChange(e);
-                                                            handleAddSectionEntry(e.target.id, e.target.value);
+                                                            handleAddCharacter(e.target.id, e.target.value);
                                                         }}
                                                         onBlur={handleBlur}
-                                                        helperText={touched.sequence && errors.sequence}
+                                                        helperText={touched.character && errors.character}
                                                     />
                                                 </div>
                                                 <div className={classes.textField}>
-                                                    <FormControlLabel
-                                                        value={values.hidden}
-                                                        control={
-                                                            <Switch
-                                                                id="hidden"
-                                                                color="primary"
-                                                                checked={values.hidden}
-                                                                onChange={(e) => {
-                                                                    handleChange(e);
-                                                                    handleAddSectionEntry(
-                                                                        e.target.id,
-                                                                        e.target.checked
-                                                                    );
-                                                                }}
-                                                            />
-                                                        }
-                                                        label="Shown"
-                                                        labelPlacement="start"
-                                                    />
+                                                    {' '}
+                                                    <Picker
+                                                        type="CAST"
+                                                        setPickerId={handleAddCharacter}
+                                                        input={initialState.cast?.name}
+                                                    ></Picker>
                                                 </div>
                                             </div>
                                         </form>
@@ -163,31 +130,8 @@ function AddSectionEntryComponent(props) {
                 </DialogActions>
             </Dialog>
             <LoadingScreen open={loading}></LoadingScreen>
-            {onSuccess && (
-                <SnackBarAndAlert
-                    open={onSuccess}
-                    onClose={() => {
-                        setOnSuccess(false);
-                        handleClose();
-                    }}
-                    type="success"
-                >
-                    Section added successfully.
-                </SnackBarAndAlert>
-            )}
-            {onError && (
-                <SnackBarAndAlert
-                    open={onError}
-                    onClose={() => {
-                        setOnError(false);
-                    }}
-                    type="error"
-                >
-                    {`Failed:  ${error?.message}`}
-                </SnackBarAndAlert>
-            )}
         </div>
     );
 }
 
-export default AddSectionEntryComponent;
+export default AddCharacterComponent;
