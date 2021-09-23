@@ -24,6 +24,9 @@ const CastsComponent = (props) => {
                         onRowClick={() => undefined}
                         editClick={props.editClick}
                         deleteClick={props.deleteClick}
+                        count={data.searchArtists.hits}
+                        refetch={props.refetch}
+                        networkStatus={props.networkStatus}
                     />
                 )}
             </div>

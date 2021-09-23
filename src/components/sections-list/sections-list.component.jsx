@@ -11,6 +11,7 @@ import TableRow from '@material-ui/core/TableRow';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import IconButton from '@material-ui/core/IconButton';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const StyledTableCell = withStyles(() => ({
     head: {
@@ -38,7 +39,9 @@ function SectionsListComponent(props) {
         rows,
         onRowClick,
         editClick,
-        deleteClick
+        deleteClick,
+        count,
+        fetching
     } = props;
     const classes = useStyles();
 
@@ -63,14 +66,20 @@ function SectionsListComponent(props) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.length === 0 ? (
+                        {fetching ? (
+                            <TableRow>
+                                <TableCell colSpan={columns.length + 1} align="center">
+                                    <CircularProgress />
+                                </TableCell>
+                            </TableRow>
+                        ) : rows.length === 0 ? (
                             <TableRow>
                                 <TableCell colSpan={columns.length + 1} align="center">
                                     No entries yet!
                                 </TableCell>
                             </TableRow>
                         ) : (
-                            rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                            rows.map((row) => {
                                 return (
                                     <TableRow
                                         hover
@@ -112,15 +121,17 @@ function SectionsListComponent(props) {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component="div"
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-            />
+            {count && (
+                <TablePagination
+                    rowsPerPageOptions={[20, 50, 100]}
+                    component="div"
+                    count={count}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
+            )}
         </Paper>
     );
 }

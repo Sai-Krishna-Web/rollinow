@@ -30,7 +30,7 @@ const CharactersComponent = (props) => {
 
     return (
         <div className={classes.root}>
-            <Box m={2} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                     <h4>Cast and crew</h4>
                 </div>

@@ -6,7 +6,7 @@ import { getCastListGQL } from 'services/queries';
 import { DELETE_CAST } from 'services/mutations';
 
 function Casts() {
-    const { data, loading, error, refetch } = useQuery(getCastListGQL);
+    const { data, loading, error, refetch, networkStatus } = useQuery(getCastListGQL);
     const [deleteCast] = useMutation(DELETE_CAST);
 
     const AddCast = () => {
@@ -62,6 +62,7 @@ function Casts() {
             columns={columns}
             editClick={editClick}
             deleteClick={deleteClick}
+            networkStatus={networkStatus}
         />
     );
 }

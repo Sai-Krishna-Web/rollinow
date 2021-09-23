@@ -24,6 +24,8 @@ const MoviesComponent = (props) => {
                         onRowClick={() => undefined}
                         editClick={props.editClick}
                         deleteClick={props.deleteClick}
+                        count={data.searchShows.hits}
+                        refetch={props.refetch}
                     />
                 )}
             </div>

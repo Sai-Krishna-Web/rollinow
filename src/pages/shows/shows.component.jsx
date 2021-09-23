@@ -24,6 +24,8 @@ const ShowsComponent = (props) => {
                         onRowClick={props.onRowClick}
                         editClick={props.editClick}
                         deleteClick={props.deleteClick}
+                        count={data.searchShows.hits}
+                        refetch={props.refetch}
                     />
                 )}
             </div>

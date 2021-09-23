@@ -100,6 +100,7 @@ const SectionsComponent = (props) => {
                                 editClick={props.editClick}
                                 deleteClick={props.deleteClick}
                                 refetch={props.refetch}
+                                count={data.allSections.hits}
                             />
                         </TabPanel>
                         <TabPanel value={tab} index={1}>
@@ -110,6 +111,7 @@ const SectionsComponent = (props) => {
                                 editClick={props.editClick}
                                 deleteClick={props.deleteClick}
                                 refetch={props.refetch}
+                                //count={data.allSections.hits}
                             />
                         </TabPanel>
                     </>

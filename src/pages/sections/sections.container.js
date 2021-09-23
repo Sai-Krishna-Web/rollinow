@@ -77,6 +77,7 @@ function Sections() {
             onRowClick={onRowClick}
             editClick={editClick}
             deleteClick={deleteClick}
+            refetch={refetch}
         />
     );
 }
