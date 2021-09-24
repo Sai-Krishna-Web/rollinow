@@ -146,7 +146,7 @@ export const getShowsListGQL = gql`
             data {
                 id
                 title
-                language
+                languageId
                 inFavorites
                 releaseDate
                 isIndianOTT
@@ -162,7 +162,7 @@ export const getMoviesListGQL = gql`
             data {
                 id
                 title
-                language
+                languageId
                 inFavorites
                 releaseDate
                 isIndianOTT

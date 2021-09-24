@@ -3,7 +3,7 @@ import AddShowComponent from './add-show.component';
 import { ShowInfo, MediaFiles, OtherDeatils, Summary } from 'components';
 import { AddShowFormProvider } from 'contexts';
 import { useMutation } from '@apollo/client';
-import { ADD_SHOW_URL, UPDATE_SHOW_URL } from 'services/mutations';
+import { ADD_SHOW_LANGUAGE, ADD_SHOW_URL, UPDATE_SHOW_URL } from 'services/mutations';
 import { setRoute } from 'utilities';
 
 function AddShow(props) {
@@ -13,12 +13,28 @@ function AddShow(props) {
     const [onError, setOnError] = useState(false);
     const [onSuccess, setOnSuccess] = useState(false);
     const [message, setMessage] = useState('');
+    const [language, setLanguage] = useState();
+    const [addShowLanguage] = useMutation(ADD_SHOW_LANGUAGE);
     const [addShow, { data, error, loading }] = useMutation(URL, {
         onCompleted: (data) => {
             if (data?.addShow) {
+                addShowLanguage({
+                    variables: {
+                        showId: data.addShow.id,
+                        language: language
+                    }
+                });
                 setMessage('Show added successfully.');
             }
             if (data?.updateShow) {
+                if (data.updateShow.languageId !== language) {
+                    addShowLanguage({
+                        variables: {
+                            showId: data.updateShow.id,
+                            language: language
+                        }
+                    });
+                }
                 setMessage('Show updated successfully.');
             }
             setOnSuccess(true);
@@ -43,9 +59,8 @@ function AddShow(props) {
     };
 
     const handleSubmit = (vars) => {
-        //to adjust once language issue fixed
-        // eslint-disable-next-line
         const { languageId, ...show } = vars;
+        setLanguage(languageId);
         addShow({
             variables: {
                 show: show

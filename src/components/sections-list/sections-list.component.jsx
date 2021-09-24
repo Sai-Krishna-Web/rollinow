@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -25,7 +24,7 @@ const useStyles = makeStyles({
         width: '100%'
     },
     container: {
-        maxHeight: 440
+        maxHeight: 540
     }
 });
 
@@ -46,7 +45,7 @@ function SectionsListComponent(props) {
     const classes = useStyles();
 
     return (
-        <Paper className={classes.root} variant="outlined">
+        <>
             <TableContainer className={classes.container}>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
@@ -132,7 +131,7 @@ function SectionsListComponent(props) {
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             )}
-        </Paper>
+        </>
     );
 }
 

@@ -61,29 +61,27 @@ const SectionDetailsComponent = (props) => {
                             <Typography variant="h6" color="textPrimary">
                                 Section entries:
                             </Typography>
-
-                            {rows.length > 0 ? (
-                                <SectionsList
-                                    rows={rows}
-                                    columns={props.columns}
-                                    onRowClick={() => undefined}
-                                    deleteClick={props.deleteClick}
-                                    editClick={props.editClick}
-                                />
-                            ) : (
-                                <Paper
-                                    variant="outlined"
-                                    style={{ minHeight: '50px', textAlign: 'center', paddingTop: '30px' }}
-                                >
-                                    {loading ? (
-                                        <CircularProgress />
-                                    ) : error ? (
-                                        error.message
-                                    ) : (
-                                        rows.length === 0 && 'No entries yet!'
-                                    )}
-                                </Paper>
-                            )}
+                            <Paper variant="outlined" style={{ minHeight: '50px', textAlign: 'center' }}>
+                                {rows.length > 0 ? (
+                                    <SectionsList
+                                        rows={rows}
+                                        columns={props.columns}
+                                        onRowClick={() => undefined}
+                                        deleteClick={props.deleteClick}
+                                        editClick={props.editClick}
+                                    />
+                                ) : (
+                                    <Box m={3}>
+                                        {loading ? (
+                                            <CircularProgress />
+                                        ) : error ? (
+                                            error.message
+                                        ) : (
+                                            rows.length === 0 && 'No entries yet!'
+                                        )}
+                                    </Box>
+                                )}
+                            </Paper>
                         </Grid>
                     </Grid>
                 </Box>

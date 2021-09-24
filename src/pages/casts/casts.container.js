@@ -15,14 +15,14 @@ function Casts() {
     const [deleteCast] = useMutation(DELETE_CAST);
 
     const AddCast = () => {
-        setRoute('/addCast');
+        setRoute('/casts/add');
     };
 
     const editClick = (id) => {
         const row = data.searchArtists.data.find((row) => {
             return row.id === id;
         });
-        setRoute(`/editCast/${id}`, {
+        setRoute(`/casts/edit/${id}`, {
             cast: row
         });
     };
@@ -51,7 +51,8 @@ function Casts() {
         {
             id: 'thumbnail',
             label: 'Thumbnail',
-            minWidth: 100
+            minWidth: 100,
+            format: (value) => value.split('/').pop()
         },
         {
             id: 'biography',

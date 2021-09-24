@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, CircularProgress, Box, Button } from '@material-ui/core';
+import { makeStyles, CircularProgress, Box, Button, Paper } from '@material-ui/core';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import { SectionsList, AddCharacter, SnackBarAndAlert } from 'components';
 
@@ -53,13 +53,15 @@ const CharactersComponent = (props) => {
             ) : error ? (
                 error.message
             ) : (
-                <SectionsList
-                    columns={columns}
-                    rows={characters}
-                    onRowClick={() => undefined}
-                    deleteClick={props.deleteClick}
-                    editClick={props.editClick}
-                />
+                <Paper variant="outlined">
+                    <SectionsList
+                        columns={columns}
+                        rows={characters}
+                        onRowClick={() => undefined}
+                        deleteClick={props.deleteClick}
+                        editClick={props.editClick}
+                    />
+                </Paper>
             )}
             {open && (
                 <AddCharacter

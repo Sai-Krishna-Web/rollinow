@@ -11,6 +11,7 @@ export const ADD_SHOW_URL = gql`
     mutation ($show: ShowCreateArgs!) {
         addShow(show: $show) {
             id
+            languageId
         }
     }
 `;
@@ -19,6 +20,7 @@ export const UPDATE_SHOW_URL = gql`
     mutation ($show: ShowUpdateArgs!) {
         updateShow(show: $show) {
             id
+            languageId
         }
     }
 `;
@@ -109,6 +111,15 @@ export const UPDATE_CHARACTER_URL = gql`
 export const DELETE_CHARACTER_URL = gql`
     mutation ($id: String!) {
         deleteCharacter(id: $id) {
+            id
+        }
+    }
+`;
+
+//language
+export const ADD_SHOW_LANGUAGE = gql`
+    mutation ($showId: String!, $language: String!) {
+        addLanguageToShow(showId: $showId, language: $language) {
             id
         }
     }

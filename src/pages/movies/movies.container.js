@@ -59,7 +59,7 @@ function Movies() {
 
     const columns = [
         { id: 'title', label: 'Title', minWidth: 170 },
-        { id: 'language', label: 'Language', minWidth: 100 },
+        { id: 'languageId', label: 'Language', minWidth: 100 },
         {
             id: 'inFavorites',
             label: 'In favorites',

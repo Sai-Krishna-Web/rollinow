@@ -106,11 +106,13 @@ const OtherDetailsComponent = (props) => {
                                         id="languageId"
                                         value={addShowForm.languageId}
                                         onChange={(e, newInputValue) => {
-                                            handleAddShow('languageId', newInputValue);
+                                            handleAddShow('languageId', newInputValue.language);
                                         }}
                                         options={languageList}
-                                        getOptionSelected={(option, value) => option.language === value.language}
-                                        getOptionLabel={(option) => option?.language || ''}
+                                        getOptionSelected={(option, value) => option.language === value}
+                                        getOptionLabel={(option) =>
+                                            typeof option === 'string' ? option : option?.language || ''
+                                        }
                                         style={{ width: 300 }}
                                         renderInput={(params) => {
                                             return (
