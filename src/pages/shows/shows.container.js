@@ -27,14 +27,15 @@ function Shows() {
         }
     });
     const AddShow = () => {
-        setRoute('/addShow');
+        setRoute('/shows/add');
     };
 
     const onRowClick = (row) => {
         setRoute(`/shows/details/${row.id}`);
     };
+
     const editClick = (id) => {
-        setRoute(`/editShow/${id}`);
+        setRoute(`/shows/edit/${id}`);
     };
 
     const deleteClick = (id) => {

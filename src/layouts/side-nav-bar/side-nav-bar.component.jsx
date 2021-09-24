@@ -29,9 +29,9 @@ function SideNavBarComponent(props) {
                     {navLinks.map((navLink, index) => (
                         <ThemeListItem
                             button
-                            selected={selectedNav === index}
+                            selected={selectedNav === navLink.path}
                             onClick={() => {
-                                setSelectedNav(index);
+                                setSelectedNav(navLink.path);
                                 navLink.onClick();
                             }}
                             key={index}

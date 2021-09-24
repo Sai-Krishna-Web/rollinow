@@ -10,10 +10,12 @@ import HorizontalSplitOutlinedIcon from '@material-ui/icons/HorizontalSplitOutli
 import { setRoute } from '../../utilities';
 
 function SideNavBar() {
-    const [selectedNav, setSelectedNav] = React.useState(0);
+    const [selectedNav, setSelectedNav] = React.useState('');
+
     let navLinks = [
         {
             name: 'Home',
+            path: '',
             icon: <HomeOutlinedIcon />,
             onClick: () => {
                 setRoute('/');
@@ -21,6 +23,7 @@ function SideNavBar() {
         },
         {
             name: 'Shows',
+            path: 'shows',
             icon: <SlideshowOutlinedIcon />,
             onClick: () => {
                 setRoute('/shows');
@@ -28,13 +31,15 @@ function SideNavBar() {
         },
         {
             name: 'Movies',
+            path: 'movies',
             icon: <MovieOutlinedIcon />,
             onClick: () => {
-                setRoute('/Movies');
+                setRoute('/movies');
             }
         },
         {
             name: 'Casts',
+            path: 'casts',
             icon: <RecentActorsOutlinedIcon />,
             onClick: () => {
                 setRoute('/casts');
@@ -42,6 +47,7 @@ function SideNavBar() {
         },
         {
             name: 'Sections',
+            path: 'sections',
             icon: <HorizontalSplitOutlinedIcon />,
             onClick: () => {
                 setRoute('/sections');
@@ -49,12 +55,20 @@ function SideNavBar() {
         },
         {
             name: 'Settings',
+            path: 'settings',
             icon: <SettingsOutlinedIcon />,
             onClick: () => {
                 setRoute('/settings');
             }
         }
     ];
+
+    React.useEffect(() => {
+        const currentPath = document.location.pathname.toString().split('/')[1];
+        setSelectedNav(currentPath);
+        // eslint-disable-next-line
+    }, []);
+
     return <SideNavBarComponent navLinks={navLinks} selectedNav={selectedNav} setSelectedNav={setSelectedNav} />;
 }
 

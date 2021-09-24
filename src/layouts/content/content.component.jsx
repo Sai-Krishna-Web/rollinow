@@ -6,19 +6,22 @@ import { Home, Shows, Movies, AddShow, Casts, AddCast, Sections, AddSection, Sec
 function ContentComponent() {
     return (
         <Switch>
-            <Route path="/" exact={true} component={Home} />
-            <Route path="/shows" exact={true} component={Shows} />
+            <Route path="/" exact component={Home} />
             <Route path="/movies" exact={true} component={Movies} />
-            <Route path="/addShow" exact={true} component={AddShow} />
-            <Route path="/editShow/:id" component={AddShow} />
-            <Route path="/casts" exact={true} component={Casts} />
-            <Route path="/addCast" exact={true} component={AddCast} />
-            <Route path="/editCast/:id" component={AddCast} />
-            <Route path="/sections" exact={true} component={Sections} />
-            <Route path="/addSection" exact={true} component={AddSection} />
-            <Route path="/editSection/:id" component={AddSection} />
-            <Route path="/sectionDetails/:id" component={SectionDetails} />
+            <Route path="/movies/add" exact={true} component={AddShow} />
+            <Route path="/movies/edit/:id" component={AddShow} />
+            <Route path="/movies/details/:id" component={ShowDetails} />
+            <Route path="/shows" exact={true} component={Shows} />
+            <Route path="/shows/add" exact={true} component={AddShow} />
+            <Route path="/shows/edit/:id" component={AddShow} />
             <Route path="/shows/details/:id" component={ShowDetails} />
+            <Route path="/casts" exact={true} component={Casts} />
+            <Route path="/casts/add" exact={true} component={AddCast} />
+            <Route path="/casts/edit/:id" component={AddCast} />
+            <Route path="/sections" exact={true} component={Sections} />
+            <Route path="/section/add" exact={true} component={AddSection} />
+            <Route path="/section/edit/:id" component={AddSection} />
+            <Route path="/sections/details/:id" component={SectionDetails} />
         </Switch>
     );
 }

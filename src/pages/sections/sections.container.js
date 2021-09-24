@@ -17,17 +17,17 @@ function Sections() {
     const [deleteSection] = useMutation(DELETE_SECTION);
 
     const AddSection = () => {
-        setRoute('/addSection');
+        setRoute('/sections/add');
     };
 
     const onRowClick = (row) => {
-        setRoute(`/sectionDetails/${row.id}`, {
+        setRoute(`/sections/details/${row.id}`, {
             section: row
         });
     };
 
     const editClick = (id) => {
-        setRoute(`/editSection/${id}`);
+        setRoute(`/sections/edit/${id}`);
     };
 
     const deleteClick = (id) => {

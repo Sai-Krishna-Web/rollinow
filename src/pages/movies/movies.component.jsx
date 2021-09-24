@@ -21,7 +21,7 @@ const MoviesComponent = (props) => {
                     <SectionsList
                         rows={data.searchShows.data}
                         columns={props.columns}
-                        onRowClick={() => undefined}
+                        onRowClick={props.onRowClick}
                         editClick={props.editClick}
                         deleteClick={props.deleteClick}
                         count={data.searchShows.hits}

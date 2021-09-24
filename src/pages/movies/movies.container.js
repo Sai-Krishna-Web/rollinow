@@ -27,12 +27,16 @@ function Movies() {
         }
     });
 
+    const onRowClick = (row) => {
+        setRoute(`/movies/details/${row.id}`);
+    };
+
     const AddMovie = () => {
-        setRoute('/addShow');
+        setRoute('/movies/add');
     };
 
     const editClick = (id) => {
-        setRoute(`/editShow/${id}`);
+        setRoute(`/movies/edit/${id}`);
     };
 
     const deleteClick = (id) => {
@@ -90,6 +94,7 @@ function Movies() {
             onSuccess={onSuccess}
             setOnSuccess={setOnSuccess}
             message={message}
+            onRowClick={onRowClick}
         />
     );
 }
