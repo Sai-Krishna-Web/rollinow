@@ -10,7 +10,12 @@ function Movies() {
     const [onSuccess, setOnSuccess] = useState(false);
     const [onError, setOnError] = useState(false);
     const [message, setMessage] = useState();
-    const { data, loading, error, refetch } = useQuery(getMoviesListGQL);
+    const [searchValue, setSearchValue] = React.useState('');
+    const { data, loading, error, refetch } = useQuery(getMoviesListGQL, {
+        variables: {
+            query: searchValue
+        }
+    });
     const [deleteMovie] = useMutation(DELETE_SHOW, {
         onCompleted: () => {
             setOnSuccess(true);
@@ -42,7 +47,10 @@ function Movies() {
     const pageData = {
         title: 'Movies',
         actionName: 'Add Movie',
-        onAction: AddMovie
+        onAction: AddMovie,
+        onSearch: true,
+        searchValue: searchValue,
+        setSearchValue: setSearchValue
     };
 
     const columns = [

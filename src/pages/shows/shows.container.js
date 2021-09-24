@@ -10,7 +10,12 @@ function Shows() {
     const [onSuccess, setOnSuccess] = useState(false);
     const [onError, setOnError] = useState(false);
     const [message, setMessage] = useState();
-    const { data, loading, error, refetch } = useQuery(getShowsListGQL);
+    const [searchValue, setSearchValue] = React.useState('');
+    const { data, loading, error, refetch } = useQuery(getShowsListGQL, {
+        variables: {
+            query: searchValue
+        }
+    });
     const [deleteShow] = useMutation(DELETE_SHOW, {
         onCompleted: () => {
             setOnSuccess(true);
@@ -44,7 +49,10 @@ function Shows() {
     const pageData = {
         title: 'Shows',
         actionName: 'Add show',
-        onAction: AddShow
+        onAction: AddShow,
+        onSearch: true,
+        searchValue: searchValue,
+        setSearchValue: setSearchValue
     };
 
     const columns = [

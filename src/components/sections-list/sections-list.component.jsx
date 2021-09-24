@@ -121,7 +121,7 @@ function SectionsListComponent(props) {
                     </TableBody>
                 </Table>
             </TableContainer>
-            {count && (
+            {count > 20 && (
                 <TablePagination
                     rowsPerPageOptions={[20, 50, 100]}
                     component="div"

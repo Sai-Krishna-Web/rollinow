@@ -8,7 +8,12 @@ import { formatDateTimeByFormatString } from 'utilities/helper';
 
 function Sections() {
     const [tab, setTab] = React.useState(0);
-    const { data, loading, error, refetch } = useQuery(getSectionsListGQL);
+    const [searchValue, setSearchValue] = React.useState('');
+    const { data, loading, error, refetch } = useQuery(getSectionsListGQL, {
+        variables: {
+            search: searchValue
+        }
+    });
     const [deleteSection] = useMutation(DELETE_SECTION);
 
     const AddSection = () => {
@@ -41,7 +46,10 @@ function Sections() {
     const pageData = {
         title: 'Sections',
         actionName: 'Create section',
-        onAction: AddSection
+        onAction: AddSection,
+        onSearch: true,
+        searchValue: searchValue,
+        setSearchValue: setSearchValue
     };
     const columns = [
         { id: 'title', label: 'Title', minWidth: 170 },

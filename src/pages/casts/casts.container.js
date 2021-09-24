@@ -6,7 +6,12 @@ import { getCastListGQL } from 'services/queries';
 import { DELETE_CAST } from 'services/mutations';
 
 function Casts() {
-    const { data, loading, error, refetch, networkStatus } = useQuery(getCastListGQL);
+    const [searchValue, setSearchValue] = React.useState('');
+    const { data, loading, error, refetch, networkStatus } = useQuery(getCastListGQL, {
+        variables: {
+            query: searchValue
+        }
+    });
     const [deleteCast] = useMutation(DELETE_CAST);
 
     const AddCast = () => {
@@ -34,7 +39,10 @@ function Casts() {
     const pageData = {
         title: 'Casts',
         actionName: 'Add Cast',
-        onAction: AddCast
+        onAction: AddCast,
+        onSearch: true,
+        searchValue: searchValue,
+        setSearchValue: setSearchValue
     };
 
     const columns = [
