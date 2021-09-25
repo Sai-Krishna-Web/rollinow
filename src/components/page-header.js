@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, OutlinedInput, InputAdornment, Box } from '@material-ui/core';
+import { Button, OutlinedInput, InputAdornment, Box, Typography } from '@material-ui/core';
 import styles from './page-header.module.scss';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
@@ -26,9 +26,9 @@ const PageHeader = (props) => {
 
     return (
         <div className={styles.headerContainer}>
-            <div>
-                <h2>{pageData.title}</h2>
-            </div>
+            <Box>
+                <Typography variant="h2">{pageData.title}</Typography>
+            </Box>
             <Box className={classes.container}>
                 {pageData.onSearch && (
                     <Box mx={2}>

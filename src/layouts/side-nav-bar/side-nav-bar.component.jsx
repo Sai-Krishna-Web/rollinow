@@ -5,12 +5,14 @@ import style from './side-nav-bar.module.scss';
 const ThemeListItem = withStyles((theme) => ({
     root: {
         '&$selected': {
+            borderRadius: `${theme.palette.borderRadius}px`,
             backgroundColor: '#d5fbf4',
             '& .MuiListItemIcon-root': {
                 color: theme.palette.primary.main
             }
         },
         '&:hover': {
+            borderRadius: `${theme.palette.borderRadius}px`,
             backgroundColor: '#d5fbf4',
             '& .MuiListItemIcon-root': {
                 color: theme.palette.primary.main

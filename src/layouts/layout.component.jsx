@@ -2,59 +2,142 @@ import React, { useState } from 'react';
 import Header from './header/header.container';
 import SideNavBar from './side-nav-bar/side-nav-bar.container';
 import Content from './content/content.container';
-import style from './layout.module.scss';
-import { Drawer, Grid, useMediaQuery } from '@material-ui/core';
-import { Menu } from '@material-ui/icons';
+import { Drawer, useMediaQuery, Paper } from '@material-ui/core';
+// material-ui
+import { makeStyles, useTheme } from '@material-ui/styles';
+import { AppBar, CssBaseline, Toolbar } from '@material-ui/core';
+import clsx from 'clsx';
 
-//
+const drawerWidth = 260;
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex'
+    },
+    appBar: {
+        backgroundColor: theme.palette.background.dark
+    },
+    appBarWidth: {
+        transition: theme.transitions.create('width'),
+        backgroundColor: theme.palette.background.dark
+    },
+
+    drawer: {
+        [theme.breakpoints.up('md')]: {
+            width: drawerWidth,
+            flexShrink: 0
+        }
+    },
+    drawerPaper: {
+        width: drawerWidth,
+        padding: '0px 8px',
+        background: theme.palette.background.default,
+        color: theme.palette.text.primary,
+        borderRight: 'none',
+        [theme.breakpoints.up('md')]: {
+            top: '80px'
+        }
+    },
+    content: {
+        ...theme.typography.mainContent,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen
+        }),
+        [theme.breakpoints.up('md')]: {
+            marginLeft: -(drawerWidth - 20),
+            width: `calc(100% - ${drawerWidth}px)`
+        },
+        [theme.breakpoints.down('md')]: {
+            marginLeft: '20px',
+            width: `calc(100% - ${drawerWidth}px)`,
+            padding: '16px'
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: '10px',
+            width: `calc(100% - ${drawerWidth}px)`,
+            padding: '16px',
+            marginRight: '10px'
+        }
+    },
+    contentShift: {
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen
+        }),
+        marginLeft: 0,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+        [theme.breakpoints.down('md')]: {
+            marginLeft: '20px'
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: '10px'
+        }
+    },
+    paper: {
+        borderColor: theme.palette.primary[200]
+    }
+}));
+
 function LayoutComponent() {
-    const mediaLessThan600px = useMediaQuery('(max-width:599px)');
-    const [open, setOpen] = useState(!mediaLessThan600px);
+    const classes = useStyles();
+    const theme = useTheme();
+    const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+    const [open, setOpen] = useState(!matchUpMd);
 
     return (
         <React.Fragment>
-            <Grid container className={style.container}>
+            <div className={classes.root}>
+                <CssBaseline />
+                {/* header */}
+                <AppBar
+                    enableColorOnDark
+                    position="fixed"
+                    color="inherit"
+                    elevation={0}
+                    className={open ? classes.appBarWidth : classes.appBar}
+                >
+                    <Toolbar>
+                        <Header open={open} setOpen={setOpen} />
+                    </Toolbar>
+                </AppBar>
 
-                {!mediaLessThan600px ? (
-                    <div className={style.headerContainer}>
-                        <Header />
-                    </div>
-                ) : (
-                    <Grid item xs={12} className={style.mobileHeader}>
-                        <Grid container>
-                            <Grid item xs={2} sm={2} className={style.menuIconContainer}>
-                                <Menu className={style.menuIcon} onClick={() => setOpen(true)} />
-                            </Grid>
-                            <Grid item xs={9} sm={6} className={style.listMerchantsContainer}>
-                                <Header />
-                            </Grid>
-                        </Grid>
-                        <Drawer open={open} onClose={() => setOpen(false)}
-                            classes={{
-                                paper: style.navContainer
-                            }}>
-                            <SideNavBar />
-                        </Drawer>
-                    </Grid>
-                )}
-                <Grid container className={style.mainContainer}>
+                {/* drawer */}
+                <nav className={classes.drawer} aria-label="mailbox folders">
+                    <Drawer
+                        //container={container}
+                        variant={matchUpMd ? 'persistent' : 'temporary'}
+                        anchor="left"
+                        open={open}
+                        onClose={() => setOpen(false)}
+                        ModalProps={{ keepMounted: true }}
+                        classes={{
+                            paper: classes.drawerPaper
+                        }}
+                        color="inherit"
+                    >
+                        <SideNavBar />
+                    </Drawer>
+                </nav>
+                {/*<Drawer open={open} onClose={() => setOpen(false)} classes={{}}></Drawer>*/}
 
-                    {!mediaLessThan600px && <Grid item md={2}>
-                        <Drawer variant="permanent"
-                            classes={{
-                                paper: style.navContainer
-                            }}>
-                            <SideNavBar />
-                        </Drawer>
-                    </Grid>
-                    }
-                    <Grid item xs={12} md={10} >
-                        <div className={style.contentContainer}>
-                            <Content />
-                        </div>
-                    </Grid>
-                </Grid>
-            </Grid>
+                {/* main content */}
+                <main
+                    className={clsx([
+                        classes.content,
+                        {
+                            [classes.contentShift]: open
+                        }
+                    ])}
+                >
+                    <Paper variant="outlined" className={classes.paper}>
+                        <Content />
+                    </Paper>
+                </main>
+            </div>
         </React.Fragment>
     );
 }
