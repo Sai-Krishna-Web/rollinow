@@ -6,6 +6,32 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
+
+const useStyles = makeStyles((theme) => ({
+    buttonBase: {
+        margin: '0px 24px',
+        borderRadius: '10px'
+    },
+    headerAvatar: {
+        ...theme.typography.commonAvatar,
+        ...theme.typography.mediumAvatar,
+        transition: 'all .2s ease-in-out',
+        background: theme.palette.primary.light,
+        color: theme.palette.primary.main,
+        '&:hover': {
+            background: theme.palette.primary.main,
+            color: theme.palette.primary.light
+        }
+    },
+    boxContainer: {
+        width: '228px',
+        display: 'flex',
+        [theme.breakpoints.down('md')]: {
+            width: 'auto'
+        }
+    }
+}));
+
 const StyledMenu = withStyles({
     paper: {
         border: '1px solid #d3d4d5'
@@ -29,31 +55,32 @@ const StyledMenu = withStyles({
 function HeaderComponent(props) {
     const [anchorEl, setAnchorEl] = useState(null);
     const { logout, user, setOpen, open } = props;
-
+    const classes = useStyles();
     return (
         <React.Fragment>
             <div className={styles.logo}>
-                <img src={logo} alt="Rollinow" />
-            </div>
-            {/* <ButtonBase sx={{ borderRadius: '12px', overflow: 'hidden' }}>
+                <img src={logo} alt="Rollinow" width="180" />
+                <ButtonBase className={classes.buttonBase}>
                     <Avatar
                         variant="rounded"
-                        //className={classes.headerAvatar}
+                        className={classes.headerAvatar}
                         onClick={() => setOpen(!open)}
-                        color="inherit"
+                        color="primary"
                     >
                         <MenuOutlinedIcon stroke={1.5} size="1.3rem" />
                     </Avatar>
-                </ButtonBase> */}
+                </ButtonBase>
+            </div>
 
             <div>
                 <IconButton
                     aria-owns={anchorEl ? 'menu-appbar' : undefined}
                     aria-haspopup="true"
                     onClick={(e) => setAnchorEl(e.currentTarget)}
-                    color="inherit"
+                    color="primary"
+                    size="small"
                 >
-                    <AccountCircle />
+                    <AccountCircle fontSize="large" />
                 </IconButton>
                 <StyledMenu
                     id="menu-appbar"

@@ -88,7 +88,7 @@ export default function themeTypography(theme) {
             minHeight: 'calc(100vh - 88px)',
             flexGrow: 1,
             padding: '20px',
-            marginTop: '84px',
+            marginTop: '78px',
             marginRight: '20px',
             borderRadius: `${theme.customization.borderRadius}px`
         },
@@ -116,8 +116,8 @@ export default function themeTypography(theme) {
             fontSize: '1rem'
         },
         mediumAvatar: {
-            width: '34px',
-            height: '34px',
+            width: '35px',
+            height: '35px',
             fontSize: '1.2rem'
         },
         largeAvatar: {

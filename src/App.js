@@ -13,7 +13,7 @@ import { CssBaseline } from '@material-ui/core';
 // defaultTheme
 import themes from './themes';
 
-export const initialStyles = {
+const initialStyles = {
     borderRadius: '4'
 };
 

@@ -1,11 +1,17 @@
 import React from 'react';
 import { Button, OutlinedInput, InputAdornment, Box, Typography } from '@material-ui/core';
-import styles from './page-header.module.scss';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(() => ({
+    headerContainer: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderBottom: '1px solid #ddd',
+        padding: '16px'
+    },
     searchControl: {
         paddingRight: '8px',
         paddingLeft: '16px'
@@ -25,7 +31,7 @@ const PageHeader = (props) => {
     const classes = useStyles();
 
     return (
-        <div className={styles.headerContainer}>
+        <div className={classes.headerContainer}>
             <Box>
                 <Typography variant="h2">{pageData.title}</Typography>
             </Box>

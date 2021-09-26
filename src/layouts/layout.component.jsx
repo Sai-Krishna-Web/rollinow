@@ -15,11 +15,11 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex'
     },
     appBar: {
-        backgroundColor: theme.palette.background.dark
+        //backgroundColor: theme.palette.background.dark
     },
     appBarWidth: {
-        transition: theme.transitions.create('width'),
-        backgroundColor: theme.palette.background.dark
+        transition: theme.transitions.create('width')
+        //backgroundColor: theme.palette.background.dark
     },
 
     drawer: {

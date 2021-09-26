@@ -2,15 +2,17 @@ import React from 'react';
 import SideNavBarComponent from './side-nav-bar.component';
 import MovieOutlinedIcon from '@material-ui/icons/MovieOutlined';
 import SlideshowOutlinedIcon from '@material-ui/icons/SlideshowOutlined';
-import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import RecentActorsOutlinedIcon from '@material-ui/icons/RecentActorsOutlined';
 import HorizontalSplitOutlinedIcon from '@material-ui/icons/HorizontalSplitOutlined';
+import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 
 import { setRoute } from '../../utilities';
+import { useLogout } from '../../contexts/auth';
 
 function SideNavBar() {
     const [selectedNav, setSelectedNav] = React.useState('');
+    const logout = useLogout();
 
     let navLinks = [
         {
@@ -54,12 +56,10 @@ function SideNavBar() {
             }
         },
         {
-            name: 'Settings',
-            path: 'settings',
-            icon: <SettingsOutlinedIcon />,
-            onClick: () => {
-                setRoute('/settings');
-            }
+            name: 'Log out',
+            path: 'logout',
+            icon: <ExitToAppOutlinedIcon />,
+            onClick: () => logout()
         }
     ];
 

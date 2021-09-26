@@ -32,7 +32,7 @@ const ThemeTabs = withStyles((theme) => ({
         borderBottom: '1px solid #ddd'
     },
     indicator: {
-        backgroundColor: theme.palette.primary.light
+        backgroundColor: theme.palette.primary[800]
     }
 }))(Tabs);
 
@@ -43,7 +43,7 @@ const ThemeTab = withStyles((theme) => ({
         fontWeight: theme.typography.fontWeightRegular,
         marginRight: theme.spacing(4),
         '&:hover': {
-            color: theme.palette.primary.light,
+            color: theme.palette.primary[800],
             opacity: 1
         },
         '&$selected': {

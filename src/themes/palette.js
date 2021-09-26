@@ -4,6 +4,7 @@
  */
 export default function themePalette(theme) {
     return {
+        type: theme.customization.type,
         borderRadius: theme.customization.borderRadius,
         common: {
             black: '#000000'
