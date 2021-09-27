@@ -9,7 +9,7 @@ import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
 
 const useStyles = makeStyles((theme) => ({
     buttonBase: {
-        margin: '0px 24px',
+        //margin: '0px 24px',
         borderRadius: '10px'
     },
     headerAvatar: {
@@ -59,7 +59,9 @@ function HeaderComponent(props) {
     return (
         <React.Fragment>
             <div className={styles.logo}>
-                <img src={logo} alt="Rollinow" width="180" />
+                <Box sx={{ display: { xs: 'none', md: 'block' }, marginRight: '24px' }}>
+                    <img src={logo} alt="Rollinow" width="180" />
+                </Box>
                 <ButtonBase className={classes.buttonBase}>
                     <Avatar
                         variant="rounded"

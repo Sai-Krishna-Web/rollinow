@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
             width: `calc(100% - ${drawerWidth}px)`
         },
         [theme.breakpoints.down('md')]: {
-            marginLeft: '20px',
+            //marginLeft: '20px',
             width: `calc(100% - ${drawerWidth}px)`,
             padding: '16px'
         },
@@ -86,6 +86,7 @@ function LayoutComponent() {
     const classes = useStyles();
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+    console.log(matchUpMd);
     const [open, setOpen] = useState(!matchUpMd);
 
     return (
@@ -119,7 +120,7 @@ function LayoutComponent() {
                         }}
                         color="inherit"
                     >
-                        <SideNavBar />
+                        <SideNavBar setOpen={setOpen} />
                     </Drawer>
                 </nav>
                 {/*<Drawer open={open} onClose={() => setOpen(false)} classes={{}}></Drawer>*/}

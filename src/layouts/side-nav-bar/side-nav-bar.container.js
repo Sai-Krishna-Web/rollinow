@@ -10,7 +10,7 @@ import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import { setRoute } from '../../utilities';
 import { useLogout } from '../../contexts/auth';
 
-function SideNavBar() {
+function SideNavBar(props) {
     const [selectedNav, setSelectedNav] = React.useState('');
     const logout = useLogout();
 
@@ -69,7 +69,9 @@ function SideNavBar() {
         // eslint-disable-next-line
     }, []);
 
-    return <SideNavBarComponent navLinks={navLinks} selectedNav={selectedNav} setSelectedNav={setSelectedNav} />;
+    return (
+        <SideNavBarComponent navLinks={navLinks} selectedNav={selectedNav} setSelectedNav={setSelectedNav} {...props} />
+    );
 }
 
 export default SideNavBar;

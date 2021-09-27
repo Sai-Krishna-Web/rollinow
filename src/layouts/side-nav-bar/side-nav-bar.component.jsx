@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, List, ListItem, Typography, ListItemIcon, withStyles } from '@material-ui/core';
-
+import { Box, List, ListItem, Typography, ListItemIcon, withStyles, useMediaQuery } from '@material-ui/core';
+import logo from '../../assets/images/logo.svg';
 const ThemeListItem = withStyles((theme) => ({
     root: {
         '& .MuiTypography-body1': {
@@ -38,9 +38,13 @@ const ThemeListItem = withStyles((theme) => ({
 }))(ListItem);
 
 function SideNavBarComponent(props) {
-    const { navLinks, selectedNav, setSelectedNav } = props;
+    const { navLinks, selectedNav, setSelectedNav, setOpen } = props;
+    const matchesSM = useMediaQuery((theme) => theme.breakpoints.down('md'));
     return (
         <React.Fragment>
+            <Box sx={{ display: { xs: 'block', md: 'none' } }} pt={2} pl={2}>
+                <img src={logo} alt="Rollinow" width="180" />
+            </Box>
             <Box pt={2}>
                 <List component="nav">
                     {navLinks.map((navLink, index) => (
@@ -50,6 +54,7 @@ function SideNavBarComponent(props) {
                             onClick={() => {
                                 setSelectedNav(navLink.path);
                                 navLink.onClick();
+                                matchesSM && setOpen(false);
                             }}
                             key={index}
                         >
