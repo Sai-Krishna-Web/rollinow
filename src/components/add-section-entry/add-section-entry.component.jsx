@@ -87,7 +87,7 @@ function AddSectionEntryComponent(props) {
         <div>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth={true}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    New section entry
+                    <Typography variant="h2">New section entry</Typography>
                 </DialogTitle>
                 <DialogContent dividers>
                     <Box my={2}>

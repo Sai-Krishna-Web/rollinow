@@ -25,7 +25,7 @@ const SectionDetailsComponent = (props) => {
                 <Box m={2}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <Typography variant="h6" color="textPrimary">
+                            <Typography variant="h3" color="textPrimary">
                                 {section.title}
                                 <span
                                     className={classes.statusLabel}
@@ -58,7 +58,7 @@ const SectionDetailsComponent = (props) => {
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant="h6" color="textPrimary">
+                            <Typography variant="h4" color="textPrimary">
                                 Section entries:
                             </Typography>
                             <Paper variant="outlined" style={{ minHeight: '50px', textAlign: 'center' }}>

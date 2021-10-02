@@ -206,3 +206,35 @@ export const getShowCharactersGQL = gql`
         }
     }
 `;
+
+export const getShowWatchSourcesGQL = gql`
+    query getShow($id: String!) {
+        getShow(id: $id) {
+            id
+            watch {
+                id
+                type
+                link
+                source {
+                    source
+                }
+                price
+                quality
+            }
+        }
+    }
+`;
+export const getGenresListGQL = gql`
+    query {
+        getGenresList {
+            genre
+        }
+    }
+`;
+export const getPlatformsListGQL = gql`
+    query {
+        getPlatformsList {
+            source
+        }
+    }
+`;

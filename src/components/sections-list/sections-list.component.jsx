@@ -104,14 +104,16 @@ function SectionsListComponent(props) {
                                             >
                                                 <EditOutlinedIcon />
                                             </IconButton>
-                                            <IconButton
-                                                aria-label="delete"
-                                                size="small"
-                                                onClick={() => deleteClick(row.id)}
-                                                color="secondary"
-                                            >
-                                                <DeleteOutlinedIcon />
-                                            </IconButton>
+                                            {deleteClick && (
+                                                <IconButton
+                                                    aria-label="delete"
+                                                    size="small"
+                                                    onClick={() => deleteClick(row.id)}
+                                                    color="secondary"
+                                                >
+                                                    <DeleteOutlinedIcon />
+                                                </IconButton>
+                                            )}
                                         </TableCell>
                                     </TableRow>
                                 );

@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         minWidth: 200,
         backgroundColor: '#171717',
-        backgroundSize: 'contain'
+        backgroundSize: 'contain',
+        borderRadius: `${theme.palette.borderRadius}px`
     }
 }));
 

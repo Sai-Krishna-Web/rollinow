@@ -22,3 +22,11 @@ export const searchQueryType = {
     USER: searchUsersGQL,
     CAST: searchCastGQL
 };
+
+export const sourceType = {
+    Ads: 'Ads',
+    Stream: 'Stream',
+    Buy: 'Buy',
+    Rent: 'Rent',
+    Free: 'Free'
+};

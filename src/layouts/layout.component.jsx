@@ -86,7 +86,6 @@ function LayoutComponent() {
     const classes = useStyles();
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
-    console.log(matchUpMd);
     const [open, setOpen] = useState(!matchUpMd);
 
     return (

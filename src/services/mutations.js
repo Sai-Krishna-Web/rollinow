@@ -124,3 +124,29 @@ export const ADD_SHOW_LANGUAGE = gql`
         }
     }
 `;
+
+//watch source
+export const ADD_WATCH_SOURCE_URL = gql`
+    mutation ($showId: String!, $watch: WatchCreateInput!) {
+        addWatch(showId: $showId, watch: $watch) {
+            id
+        }
+    }
+`;
+
+export const UPDATE_WATCH_SOURCE_URL = gql`
+    mutation ($id: String!, $showId: String!, $watch: WatchCreateInput!) {
+        updateWatch(id: $id, showId: $showId, watch: $watch) {
+            id
+        }
+    }
+`;
+
+//Genres
+export const UPDATE_GENRES_URL = gql`
+    mutation ($remove: Boolean = false, $showId: String!, $genre: String!) {
+        updateGenres(remove: $remove, showId: $showId, genre: $genre) {
+            id
+        }
+    }
+`;

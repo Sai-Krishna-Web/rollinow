@@ -49,7 +49,7 @@ function Characters(props) {
     };
 
     const columns = [
-        { id: 'character', label: 'character', minWidth: 170 },
+        { id: 'character', label: 'Character', minWidth: 170 },
         { id: 'cast', label: 'Name', minWidth: 170, format: (value) => value.name }
     ];
     return (

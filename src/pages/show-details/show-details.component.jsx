@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader, Characters } from 'components';
+import { PageHeader, Characters, WatchSources } from 'components';
 import SummaryComponent from 'components/summary/summary.component';
 import { Box, CircularProgress } from '@material-ui/core';
 
@@ -23,6 +23,9 @@ const ShowDetailsComponent = (props) => {
                 </Box>
                 <Box m={2}>
                     <Characters id={id} />
+                </Box>
+                <Box m={2}>
+                    <WatchSources id={id} />
                 </Box>
             </div>
         </div>

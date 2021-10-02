@@ -106,7 +106,7 @@ const OtherDetailsComponent = (props) => {
                                         id="languageId"
                                         value={addShowForm.languageId}
                                         onChange={(e, newInputValue) => {
-                                            handleAddShow('languageId', newInputValue.language);
+                                            handleAddShow('languageId', newInputValue?.language);
                                         }}
                                         options={languageList}
                                         getOptionSelected={(option, value) => option.language === value}
