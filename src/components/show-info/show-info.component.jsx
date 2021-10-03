@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
     },
     px: {
         paddingRight: 20
+    },
+    chip: {
+        background: theme.palette.primary.light
     }
 }));
 
@@ -104,6 +107,9 @@ const ShowInfoComponent = (props) => {
                                         onAdd={(chip) => handleAddChip(chip)}
                                         onDelete={(chip, index) => handleDeleteChip(chip, index)}
                                         clearInputValueOnChange={true}
+                                        classes={{
+                                            chip: classes.chip
+                                        }}
                                     />
                                 </div>
                                 <div>

@@ -8,10 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import moment from 'moment-timezone';
 import axios from 'axios';
 import { SnackBarAndAlert } from 'components';
-
+import { S3BaseUrl } from 'utilities/constants';
 import { GET_S3_SIGNED_URL } from 'services/mutations';
-
-const s3BaseUrl = 'https://rollinow-images.s3.amazonaws.com';
 
 function UploadMediaComponent({
     maxFiles = 1,
@@ -63,7 +61,7 @@ function UploadMediaComponent({
     useEffect(() => {
         if (file) {
             const key = `${location}/${moment().format('YYYYMMDD')}-${file.name}`;
-            const link = s3BaseUrl + `/${key}`;
+            const link = S3BaseUrl + `/${key}`;
             setLink(link);
             getS3SignedURL({
                 variables: {

@@ -26,7 +26,6 @@ const CastsComponent = (props) => {
                         deleteClick={props.deleteClick}
                         count={data.searchArtists.hits}
                         refetch={props.refetch}
-                        networkStatus={props.networkStatus}
                     />
                 )}
             </div>

@@ -15,6 +15,9 @@ import Characters from './characters/characters.container';
 import AddCharacter from './add-character/add-character.container';
 import WatchSources from './watch-sources/watch-sources.container';
 import AddWatchSource from './add-watch-source/add-watch-source.container';
+import AddPlatform from './add-platform/add-platform.container';
+import Seasons from './seasons/seasons.container';
+import AddSeason from './add-season/add-season.container';
 export {
     PageHeader,
     Stepper,
@@ -32,5 +35,8 @@ export {
     Characters,
     AddCharacter,
     WatchSources,
-    AddWatchSource
+    AddWatchSource,
+    AddPlatform,
+    Seasons,
+    AddSeason
 };

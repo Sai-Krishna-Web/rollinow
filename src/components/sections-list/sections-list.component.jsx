@@ -59,9 +59,11 @@ function SectionsListComponent(props) {
                                     {column.label}
                                 </StyledTableCell>
                             ))}
-                            <StyledTableCell key="actions" style={{ minWidth: 50 }}>
-                                Actions
-                            </StyledTableCell>
+                            {(editClick || deleteClick) && (
+                                <StyledTableCell key="actions" style={{ minWidth: 50 }}>
+                                    Actions
+                                </StyledTableCell>
+                            )}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -95,26 +97,30 @@ function SectionsListComponent(props) {
                                                 </TableCell>
                                             );
                                         })}
-                                        <TableCell key="actions" onClick={(e) => e.stopPropagation()}>
-                                            <IconButton
-                                                aria-label="edit"
-                                                size="small"
-                                                onClick={() => editClick(row.id)}
-                                                color="primary"
-                                            >
-                                                <EditOutlinedIcon />
-                                            </IconButton>
-                                            {deleteClick && (
-                                                <IconButton
-                                                    aria-label="delete"
-                                                    size="small"
-                                                    onClick={() => deleteClick(row.id)}
-                                                    color="secondary"
-                                                >
-                                                    <DeleteOutlinedIcon />
-                                                </IconButton>
-                                            )}
-                                        </TableCell>
+                                        {(editClick || deleteClick) && (
+                                            <TableCell key="actions" onClick={(e) => e.stopPropagation()}>
+                                                {editClick && (
+                                                    <IconButton
+                                                        aria-label="edit"
+                                                        size="small"
+                                                        onClick={() => editClick(row.id)}
+                                                        color="primary"
+                                                    >
+                                                        <EditOutlinedIcon />
+                                                    </IconButton>
+                                                )}
+                                                {deleteClick && (
+                                                    <IconButton
+                                                        aria-label="delete"
+                                                        size="small"
+                                                        onClick={() => deleteClick(row.id)}
+                                                        color="secondary"
+                                                    >
+                                                        <DeleteOutlinedIcon />
+                                                    </IconButton>
+                                                )}
+                                            </TableCell>
+                                        )}
                                     </TableRow>
                                 );
                             })

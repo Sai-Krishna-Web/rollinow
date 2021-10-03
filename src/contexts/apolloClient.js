@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache, ApolloLink, HttpLink } from '@apollo/client';
 import { useAuthToken } from './auth';
-
-const httpLink = new HttpLink({ uri: 'http://test.api.rollinow.com' });
+import { ApiEndpoint } from 'utilities/constants';
+const httpLink = new HttpLink({ uri: ApiEndpoint });
 
 const authMiddleware = (authToken) =>
     new ApolloLink((operation, forward) => {

@@ -59,7 +59,8 @@ function AddShow(props) {
     };
 
     const handleSubmit = (vars) => {
-        const { languageId, ...show } = vars;
+        // eslint-disable-next-line
+        const { languageId, genres, ...show } = vars;
         setLanguage(languageId);
         addShow({
             variables: {

@@ -1,5 +1,7 @@
 import React from 'react';
 import { makeStyles, Paper, CardMedia, CardContent, Grid, Typography } from '@material-ui/core';
+import { formatDateTimeByFormatString } from 'utilities/helper';
+import Genres from '../genres/genres.container';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,8 +26,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SummaryComponent = (props) => {
-    const { addShowForm } = props;
+    const { addShowForm, id } = props;
     const classes = useStyles();
+    const viewMode = id ? true : false;
 
     return (
         <div className={classes.root}>
@@ -65,7 +68,8 @@ const SummaryComponent = (props) => {
                                 </Grid>
                                 <Grid item xs={6}>
                                     <Typography gutterBottom variant="subtitle1" align="left">
-                                        Release Date : {addShowForm.releaseDate}
+                                        Release Date :{' '}
+                                        {formatDateTimeByFormatString(addShowForm.releaseDate, 'YYYY-MM-DD')}
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={6}>
@@ -83,6 +87,7 @@ const SummaryComponent = (props) => {
                                         In favorites : {addShowForm.inFavorites ? 'Yes' : 'No'}
                                     </Typography>
                                 </Grid>
+                                {viewMode && <Genres id={id} showGenres={addShowForm.genres} />}
                             </Grid>
                         </CardContent>
                     </Grid>

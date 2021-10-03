@@ -150,3 +150,28 @@ export const UPDATE_GENRES_URL = gql`
         }
     }
 `;
+
+export const ADD_PLATFORM_URL = gql`
+    mutation ($source: SourceCreateArgs!) {
+        addSource(source: $source) {
+            source
+        }
+    }
+`;
+
+//seasons
+export const ADD_SEASON_URL = gql`
+    mutation ($showId: String!, $season: SeasonCreateArgs!) {
+        addSeason(showId: $showId, season: $season) {
+            id
+        }
+    }
+`;
+
+export const UPDATE_SEASON_URL = gql`
+    mutation ($showId: String!, $season: SeasonUpdateArgs!) {
+        updateSeason(showId: $showId, season: $season) {
+            id
+        }
+    }
+`;

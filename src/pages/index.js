@@ -9,5 +9,19 @@ import Sections from './sections/sections.container';
 import AddSection from './add-section/add-section.container';
 import SectionDetails from './section-details/section-details.container';
 import ShowDetails from './show-details/show-details.container';
+import Platforms from './platforms/platforms.container';
 
-export { LoginForm, Home, Movies, Shows, AddShow, Casts, AddCast, Sections, AddSection, SectionDetails, ShowDetails };
+export {
+    LoginForm,
+    Home,
+    Movies,
+    Shows,
+    AddShow,
+    Casts,
+    AddCast,
+    Sections,
+    AddSection,
+    SectionDetails,
+    ShowDetails,
+    Platforms
+};

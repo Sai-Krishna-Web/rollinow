@@ -6,6 +6,7 @@ import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import RecentActorsOutlinedIcon from '@material-ui/icons/RecentActorsOutlined';
 import HorizontalSplitOutlinedIcon from '@material-ui/icons/HorizontalSplitOutlined';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
+import SubscriptionsOutlinedIcon from '@material-ui/icons/SubscriptionsOutlined';
 
 import { setRoute } from '../../utilities';
 import { useLogout } from '../../contexts/auth';
@@ -53,6 +54,14 @@ function SideNavBar(props) {
             icon: <HorizontalSplitOutlinedIcon />,
             onClick: () => {
                 setRoute('/sections');
+            }
+        },
+        {
+            name: 'Platforms',
+            path: 'platforms',
+            icon: <SubscriptionsOutlinedIcon />,
+            onClick: () => {
+                setRoute('/platforms');
             }
         },
         {

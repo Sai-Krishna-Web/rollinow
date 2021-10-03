@@ -7,7 +7,7 @@ import { DELETE_CAST } from 'services/mutations';
 
 function Casts() {
     const [searchValue, setSearchValue] = React.useState('');
-    const { data, loading, error, refetch, networkStatus } = useQuery(getCastListGQL, {
+    const { data, loading, error, refetch } = useQuery(getCastListGQL, {
         variables: {
             query: searchValue
         }
@@ -71,7 +71,6 @@ function Casts() {
             columns={columns}
             editClick={editClick}
             deleteClick={deleteClick}
-            networkStatus={networkStatus}
         />
     );
 }

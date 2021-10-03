@@ -1,7 +1,19 @@
 import React from 'react';
 //import styles from './content.module.scss';
 import { Switch, Route } from 'react-router-dom';
-import { Home, Shows, Movies, AddShow, Casts, AddCast, Sections, AddSection, SectionDetails, ShowDetails } from 'pages';
+import {
+    Home,
+    Shows,
+    Movies,
+    AddShow,
+    Casts,
+    AddCast,
+    Sections,
+    AddSection,
+    SectionDetails,
+    ShowDetails,
+    Platforms
+} from 'pages';
 
 function ContentComponent() {
     return (
@@ -22,6 +34,7 @@ function ContentComponent() {
             <Route path="/sections/add" exact={true} component={AddSection} />
             <Route path="/sections/edit/:id" component={AddSection} />
             <Route path="/sections/details/:id" component={SectionDetails} />
+            <Route path="/platforms" exact={true} component={Platforms} />
         </Switch>
     );
 }

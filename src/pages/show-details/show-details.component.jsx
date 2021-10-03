@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader, Characters, WatchSources } from 'components';
+import { PageHeader, Characters, WatchSources, Seasons } from 'components';
 import SummaryComponent from 'components/summary/summary.component';
 import { Box, CircularProgress } from '@material-ui/core';
 
@@ -18,7 +18,7 @@ const ShowDetailsComponent = (props) => {
                     ) : error ? (
                         error.message
                     ) : (
-                        <SummaryComponent addShowForm={show} />
+                        <SummaryComponent addShowForm={show} id={id} />
                     )}
                 </Box>
                 <Box m={2}>
@@ -27,6 +27,11 @@ const ShowDetailsComponent = (props) => {
                 <Box m={2}>
                     <WatchSources id={id} />
                 </Box>
+                {show?.type === 'TV' && (
+                    <Box m={2}>
+                        <Seasons id={id} />
+                    </Box>
+                )}
             </div>
         </div>
     );

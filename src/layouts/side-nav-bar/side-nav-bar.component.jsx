@@ -29,11 +29,6 @@ const ThemeListItem = withStyles((theme) => ({
             }
         }
     },
-    navTittle: {
-        color: '#171717',
-        fontWeight: 600,
-        marginLeft: '16px'
-    },
     selected: {}
 }))(ListItem);
 

@@ -187,6 +187,9 @@ export const getShowGQL = gql`
             tagline
             isIndianOTT
             type
+            genres {
+                genre
+            }
         }
     }
 `;
@@ -224,6 +227,24 @@ export const getShowWatchSourcesGQL = gql`
         }
     }
 `;
+
+export const getShowSeasonsGQL = gql`
+    query getShow($id: String!) {
+        getShow(id: $id) {
+            id
+            seasons {
+                id
+                seasonName
+                seasonYear
+                episodes
+                releaseSentence
+                seasonDesc
+                seasonImgUrl
+            }
+        }
+    }
+`;
+
 export const getGenresListGQL = gql`
     query {
         getGenresList {
@@ -231,10 +252,12 @@ export const getGenresListGQL = gql`
         }
     }
 `;
+
 export const getPlatformsListGQL = gql`
     query {
         getPlatformsList {
             source
+            flatUrl
         }
     }
 `;
