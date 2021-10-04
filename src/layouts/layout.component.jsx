@@ -94,7 +94,6 @@ function LayoutComponent() {
                 <CssBaseline />
                 {/* header */}
                 <AppBar
-                    enableColorOnDark
                     position="fixed"
                     color="inherit"
                     elevation={0}

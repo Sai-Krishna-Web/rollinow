@@ -1,7 +1,18 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { PageHeader, LoadingScreen, SnackBarAndAlert, UploadMedia } from 'components';
-import { Box, Button, TextField, makeStyles, Grid, FormLabel, CircularProgress } from '@material-ui/core';
+import {
+    Box,
+    Button,
+    TextField,
+    makeStyles,
+    Grid,
+    FormLabel,
+    CircularProgress,
+    Card,
+    CardMedia,
+    Typography
+} from '@material-ui/core';
 import { useAddCastFormContext } from 'contexts';
 import { setRoute } from 'utilities';
 import { goBack } from 'utilities/route';
@@ -37,15 +48,37 @@ const useStyles = makeStyles((theme) => ({
     },
     uploadPanel: {
         minHeight: 150,
-        minWidth: 100,
+        width: '100%',
         border: '1px solid #ddd',
         borderRadius: 4,
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginLeft: '-8px'
     },
     button: {
         marginRight: theme.spacing(2)
+    },
+    image: {
+        display: 'flex',
+        flexDirection: 'column',
+        margin: theme.spacing(1),
+        width: '50ch'
+    },
+    mediaContainer: {
+        marginLeft: '16px',
+        width: '100px'
+    },
+    media: {
+        minHeight: 150,
+        minWidth: 100,
+        backgroundColor: '#171717',
+        backgroundSize: 'contain'
+    },
+    fieldFullWidth: {
+        display: 'flex',
+        margin: theme.spacing(1),
+        width: '50ch'
     }
 }));
 
@@ -171,7 +204,7 @@ const AddCastComponent = (props) => {
                                                         />
                                                     </div>
                                                     <div className={classes.root}>
-                                                        <Grid item md={6} className={classes.label}>
+                                                        <div className={classes.image}>
                                                             <FormLabel
                                                                 component="legend"
                                                                 align="center"
@@ -180,15 +213,38 @@ const AddCastComponent = (props) => {
                                                             >
                                                                 Thumbnail
                                                             </FormLabel>{' '}
-                                                            <Grid item xs={9} className={classes.uploadPanel}>
-                                                                <UploadMedia
-                                                                    location="shows"
-                                                                    afterUpload={afterUpload}
-                                                                    uploadProgress={uploadProgress}
-                                                                    setUploadProgress={setUploadProgress}
-                                                                />
-                                                            </Grid>
-                                                        </Grid>
+                                                            <div className={classes.fieldFullWidth}>
+                                                                <Grid item className={classes.uploadPanel}>
+                                                                    <UploadMedia
+                                                                        location="cast"
+                                                                        afterUpload={afterUpload}
+                                                                        uploadProgress={uploadProgress}
+                                                                        setUploadProgress={setUploadProgress}
+                                                                    />
+                                                                </Grid>
+                                                                {addCastForm.thumbnail && (
+                                                                    <Grid item>
+                                                                        <Card
+                                                                            key="imageUrl"
+                                                                            className={classes.mediaContainer}
+                                                                            variant="outlined"
+                                                                        >
+                                                                            <CardMedia
+                                                                                src={addCastForm.thumbnail}
+                                                                                image={addCastForm.thumbnail}
+                                                                                className={classes.media}
+                                                                            />
+                                                                            <Typography
+                                                                                variant="subtitle2"
+                                                                                color="textSecondary"
+                                                                            >
+                                                                                {addCastForm.thumbnail.split('/').pop()}
+                                                                            </Typography>
+                                                                        </Card>
+                                                                    </Grid>
+                                                                )}
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </form>
                                             </div>

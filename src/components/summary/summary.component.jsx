@@ -41,6 +41,7 @@ const SummaryComponent = (props) => {
                             className={classes.media}
                             image={addShowForm.thumbnailUrl}
                             title={addShowForm.title}
+                            src={addShowForm.thumbnailUrl}
                         />
                     </Grid>
                     <Grid item xs={12} sm container>

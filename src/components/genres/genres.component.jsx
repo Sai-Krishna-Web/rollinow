@@ -1,6 +1,6 @@
 import React from 'react';
-import { makeStyles, Grid, Typography } from '@material-ui/core';
-import ChipInput from 'material-ui-chip-input';
+import { makeStyles, Grid, Typography, TextField } from '@material-ui/core';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const useStyles = makeStyles((theme) => ({
     genresContainer: {
@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         marginRight: '10px'
     },
-    chip: {
+    tag: {
         background: theme.palette.primary.light
     }
 }));
@@ -23,27 +23,33 @@ function GenresComponent(props) {
         <Grid item xs={12} className={classes.genresContainer}>
             <div className={classes.genreTitle}>
                 <Typography variant="subtitle1" align="left">
-                    Genres :{' '}
+                    Genres:
                 </Typography>
             </div>
-            <ChipInput
-                dataSource={genresSource}
-                type="text"
-                name="genres"
-                id="genres"
-                alwaysShowPlaceholder={true}
-                variant="standard"
-                placeholder="add genres"
-                disableUnderline={true}
+            <Autocomplete
+                onChange={(event, value, reason) => handleGenre(value, reason)}
+                disableClearable
+                forcePopupIcon={false}
+                size="small"
+                filterSelectedOptions
+                fullWidth={true}
+                multiple
+                id="tags-standard"
+                options={genresSource}
                 value={genres}
-                onAdd={(chip) => handleGenre(chip)}
-                onDelete={(chip, index) => handleGenre(chip, index, true)}
-                InputProps={{
-                    disableUnderline: true,
-                    border: 'none'
-                }}
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        variant="standard"
+                        placeholder="add genres"
+                        InputProps={{
+                            ...params.InputProps,
+                            disableUnderline: true
+                        }}
+                    />
+                )}
                 classes={{
-                    chip: classes.chip
+                    tag: classes.tag
                 }}
             />
         </Grid>

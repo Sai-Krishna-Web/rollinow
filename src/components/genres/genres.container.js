@@ -10,19 +10,25 @@ function Genres(props) {
     const [genresSource, setGenresSource] = useState([]);
     const { data } = useQuery(getGenresListGQL);
     const [updateGenres] = useMutation(UPDATE_GENRES_URL);
-    const handleGenre = async (genre, index, remove = false) => {
+
+    const handleGenre = async (values, action) => {
+        let genre;
+        let remove = false;
+        if (action === 'remove-option') {
+            genre = genres.filter((x) => values.indexOf(x) === -1).toString();
+            remove = true;
+        } else {
+            genre = values.slice(-1).toString();
+        }
         await updateGenres({
             variables: {
                 remove,
                 showId: id,
-                genre
+                genre: genre
             }
         });
-        if (index) {
-            setGenres(genres.splice(index, 1));
-        } else {
-            setGenres([...genres, genre]);
-        }
+
+        setGenres(values);
     };
 
     useEffect(() => {
