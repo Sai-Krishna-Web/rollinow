@@ -10,6 +10,8 @@ import AddSection from './add-section/add-section.container';
 import SectionDetails from './section-details/section-details.container';
 import ShowDetails from './show-details/show-details.container';
 import Platforms from './platforms/platforms.container';
+import Genres from './genres/genres.container';
+import Languages from './languages/languages.container';
 
 export {
     LoginForm,
@@ -23,5 +25,7 @@ export {
     AddSection,
     SectionDetails,
     ShowDetails,
-    Platforms
+    Platforms,
+    Genres,
+    Languages
 };

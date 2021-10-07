@@ -4,6 +4,7 @@ import CastsComponent from './casts.component';
 import { setRoute } from 'utilities';
 import { getCastListGQL } from 'services/queries';
 import { DELETE_CAST } from 'services/mutations';
+import Avatar from '@material-ui/core/Avatar';
 
 function Casts() {
     const [searchValue, setSearchValue] = React.useState('');
@@ -45,9 +46,17 @@ function Casts() {
         setSearchValue: setSearchValue
     };
 
+    const imageComponet = (value) => <Avatar className="circular--portrait" src={value}></Avatar>;
+
     const columns = [
+        {
+            id: 'thumbnail',
+            label: '',
+            minWidth: 40,
+            width: 50,
+            format: imageComponet
+        },
         { id: 'name', label: 'Name', minWidth: 170 },
-        { id: 'entityId', label: 'Entity Id', minWidth: 100 },
         {
             id: 'thumbnail',
             label: 'Thumbnail',

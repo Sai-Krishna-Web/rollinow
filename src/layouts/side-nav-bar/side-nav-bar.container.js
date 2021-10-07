@@ -7,6 +7,8 @@ import RecentActorsOutlinedIcon from '@material-ui/icons/RecentActorsOutlined';
 import HorizontalSplitOutlinedIcon from '@material-ui/icons/HorizontalSplitOutlined';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import SubscriptionsOutlinedIcon from '@material-ui/icons/SubscriptionsOutlined';
+import MovieFilterOutlinedIcon from '@material-ui/icons/MovieFilterOutlined';
+import LanguageOutlinedIcon from '@material-ui/icons/LanguageOutlined';
 
 import { setRoute } from '../../utilities';
 import { useLogout } from '../../contexts/auth';
@@ -62,6 +64,22 @@ function SideNavBar(props) {
             icon: <SubscriptionsOutlinedIcon />,
             onClick: () => {
                 setRoute('/platforms');
+            }
+        },
+        {
+            name: 'Genres',
+            path: 'genres',
+            icon: <MovieFilterOutlinedIcon />,
+            onClick: () => {
+                setRoute('/genres');
+            }
+        },
+        {
+            name: 'Languages',
+            path: 'languages',
+            icon: <LanguageOutlinedIcon />,
+            onClick: () => {
+                setRoute('/languages');
             }
         },
         {

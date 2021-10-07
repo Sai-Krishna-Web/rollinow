@@ -54,13 +54,13 @@ function SectionsListComponent(props) {
                                 <StyledTableCell
                                     key={column.id}
                                     align={column.align}
-                                    style={{ minWidth: column.minWidth }}
+                                    style={{ minWidth: column.minWidth, width: column.width }}
                                 >
                                     {column.label}
                                 </StyledTableCell>
                             ))}
                             {(editClick || deleteClick) && (
-                                <StyledTableCell key="actions" style={{ minWidth: 50 }}>
+                                <StyledTableCell key="actions" style={{ width: 96 }}>
                                     Actions
                                 </StyledTableCell>
                             )}
@@ -80,13 +80,13 @@ function SectionsListComponent(props) {
                                 </TableCell>
                             </TableRow>
                         ) : (
-                            rows.map((row) => {
+                            rows.map((row, index) => {
                                 return (
                                     <TableRow
                                         hover
                                         role="checkbox"
                                         tabIndex={-1}
-                                        key={row.id}
+                                        key={row.id || index}
                                         onClick={() => onRowClick(row)}
                                     >
                                         {columns.map((column) => {
@@ -103,7 +103,7 @@ function SectionsListComponent(props) {
                                                     <IconButton
                                                         aria-label="edit"
                                                         size="small"
-                                                        onClick={() => editClick(row.id)}
+                                                        onClick={() => editClick(row.id || row.genre || row.language)}
                                                         color="primary"
                                                     >
                                                         <EditOutlinedIcon />

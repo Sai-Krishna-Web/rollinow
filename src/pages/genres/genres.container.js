@@ -1,38 +1,49 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import PlatformsComponent from './platforms.component';
-import { getPlatformsListGQL } from 'services/queries';
+import GenresComponent from './genres.component';
+import { getGenresListGQL } from 'services/queries';
 import Avatar from '@material-ui/core/Avatar';
 
-function Platforms() {
-    const { data, loading, error, refetch } = useQuery(getPlatformsListGQL);
+function Genres() {
+    const { data, loading, error, refetch } = useQuery(getGenresListGQL);
     const [open, setOpen] = useState(false);
+    const [genre, setGenre] = useState('');
     const [onError, setOnError] = useState(false);
     const [onSuccess, setOnSuccess] = useState(false);
     const [message, setMessage] = useState('');
 
     const pageData = {
-        title: 'Platforms',
-        actionName: 'Add Platform',
-        onAction: () => setOpen(true)
+        title: 'Genres',
+        actionName: 'Add Genre',
+        onAction: () => {
+            setGenre('');
+            setOpen(true);
+        }
     };
 
-    const imageComponet = (value) => <Avatar className="circular--portrait" src={value}></Avatar>;
-
+    const imageComponet = (value) => <Avatar alt="Genre" className="circular--portrait" src={value}></Avatar>;
     const columns = [
         {
-            id: 'imageUrl',
+            id: 'image',
             label: '',
             minWidth: 40,
             width: 50,
             format: imageComponet
         },
-        { id: 'source', label: 'Name', minWidth: 170 },
-        { id: 'flatUrl', label: 'Url', minWidth: 180 }
+        { id: 'genre', label: 'Genre', minWidth: '100%' }
     ];
 
+    const editClick = (id) => {
+        const row = data?.getGenresList.find((row) => {
+            return row.genre === id;
+        });
+        const { genre, image } = row;
+        setGenre({ genre, image });
+        setOpen(true);
+    };
+
     return (
-        <PlatformsComponent
+        <GenresComponent
             pageData={pageData}
             data={data}
             loading={loading}
@@ -47,8 +58,11 @@ function Platforms() {
             setOnError={setOnError}
             setOnSuccess={setOnSuccess}
             setMessage={setMessage}
+            editClick={editClick}
+            genre={genre}
+            setGenre={setGenre}
         />
     );
 }
 
-export default Platforms;
+export default Genres;

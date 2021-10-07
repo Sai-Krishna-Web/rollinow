@@ -7,6 +7,17 @@ export const getLanguageListGQL = gql`
         }
     }
 `;
+export const searchLanguageListGQL = gql`
+    query searchLanguages($skip: Float = 0, $take: Float = 20, $query: String = "") {
+        searchLanguages(take: $take, skip: $skip, query: $query) {
+            hits
+            data {
+                language
+                image
+            }
+        }
+    }
+`;
 
 export const getSectionsListGQL = gql`
     query allSections($skip: Float = 0, $take: Float = 20, $search: String = "") {
@@ -249,6 +260,7 @@ export const getGenresListGQL = gql`
     query {
         getGenresList {
             genre
+            image
         }
     }
 `;
@@ -258,6 +270,7 @@ export const getPlatformsListGQL = gql`
         getPlatformsList {
             source
             flatUrl
+            imageUrl
         }
     }
 `;

@@ -12,7 +12,9 @@ import {
     AddSection,
     SectionDetails,
     ShowDetails,
-    Platforms
+    Platforms,
+    Genres,
+    Languages
 } from 'pages';
 
 function ContentComponent() {
@@ -35,6 +37,8 @@ function ContentComponent() {
             <Route path="/sections/edit/:id" component={AddSection} />
             <Route path="/sections/details/:id" component={SectionDetails} />
             <Route path="/platforms" exact={true} component={Platforms} />
+            <Route path="/genres" exact={true} component={Genres} />
+            <Route path="/languages" exact={true} component={Languages} />
         </Switch>
     );
 }

@@ -124,6 +124,13 @@ export const ADD_SHOW_LANGUAGE = gql`
         }
     }
 `;
+export const UPDATE_LANGUAGE_URL = gql`
+    mutation ($genre: LanguageUpdateInput!) {
+        updateLanguage(language: $genre) {
+            language
+        }
+    }
+`;
 
 //watch source
 export const ADD_WATCH_SOURCE_URL = gql`
@@ -172,6 +179,23 @@ export const UPDATE_SEASON_URL = gql`
     mutation ($showId: String!, $season: SeasonUpdateArgs!) {
         updateSeason(showId: $showId, season: $season) {
             id
+        }
+    }
+`;
+
+//genres
+export const ADD_GENRE_URL = gql`
+    mutation ($genre: GenreInput!) {
+        addGenre(genre: $genre) {
+            genre
+        }
+    }
+`;
+
+export const UPDATE_GENRE_URL = gql`
+    mutation ($genre: GenreInput!) {
+        updateGenre(genre: $genre) {
+            genre
         }
     }
 `;
