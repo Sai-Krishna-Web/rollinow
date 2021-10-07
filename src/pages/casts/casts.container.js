@@ -58,12 +58,6 @@ function Casts() {
         },
         { id: 'name', label: 'Name', minWidth: 170 },
         {
-            id: 'thumbnail',
-            label: 'Thumbnail',
-            minWidth: 100,
-            format: (value) => value.split('/').pop()
-        },
-        {
             id: 'biography',
             label: 'Biography',
             minWidth: 140

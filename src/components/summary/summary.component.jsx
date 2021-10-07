@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, Paper, CardMedia, CardContent, Grid, Typography } from '@material-ui/core';
 import { formatDateTimeByFormatString } from 'utilities/helper';
 import Genres from '../genres/genres.container';
-
+import { imageBaseUrl } from 'utilities/constants';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: 'fit-content'
     },
     media: {
-        height: '100%',
+        height: 200,
         minWidth: 200,
         backgroundColor: '#171717',
         backgroundSize: 'contain',
@@ -39,9 +39,12 @@ const SummaryComponent = (props) => {
                         {' '}
                         <CardMedia
                             className={classes.media}
-                            image={addShowForm.thumbnailUrl}
+                            component="img"
                             title={addShowForm.title}
                             src={addShowForm.thumbnailUrl}
+                            onError={(e) => {
+                                e.target.src = imageBaseUrl + addShowForm.thumbnailUrl;
+                            }}
                         />
                     </Grid>
                     <Grid item xs={12} sm container>

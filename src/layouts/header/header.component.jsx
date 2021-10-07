@@ -32,11 +32,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const StyledMenu = withStyles({
+const StyledMenu = withStyles((theme) => ({
     paper: {
-        border: '1px solid #d3d4d5'
+        border: '1px solid',
+        borderColor: theme.palette.grey[200],
+        paddingTop: theme.spacing(2)
     }
-})((props) => (
+}))((props) => (
     <Menu
         elevation={0}
         getContentAnchorEl={null}
@@ -92,14 +94,23 @@ function HeaderComponent(props) {
                     onClose={() => setAnchorEl(false)}
                 >
                     <Box className={styles.profile}>
-                        <div className={styles.img}>{user.name.charAt(0)}</div>
+                        <Avatar
+                            alt={user.name}
+                            variant="rounded"
+                            className={classes.headerAvatar}
+                            color="primary"
+                            src={undefined}
+                        >
+                            {user.name.charAt(0)}
+                        </Avatar>
+
                         <CardContent>
                             <h4>{user.name}</h4>
                             <span>{user.email}</span>
                         </CardContent>
                         <CardActions>
-                            <Button variant="outlined" onClick={logout}>
-                                Logout
+                            <Button size="small" variant="outlined" color="secondary" onClick={logout}>
+                                Log out
                             </Button>
                         </CardActions>
                     </Box>

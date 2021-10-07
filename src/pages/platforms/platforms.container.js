@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import PlatformsComponent from './platforms.component';
 import { getPlatformsListGQL } from 'services/queries';
 import Avatar from '@material-ui/core/Avatar';
+import { imageBaseUrl } from 'utilities/constants';
 
 function Platforms() {
     const { data, loading, error, refetch } = useQuery(getPlatformsListGQL);
@@ -17,7 +18,11 @@ function Platforms() {
         onAction: () => setOpen(true)
     };
 
-    const imageComponet = (value) => <Avatar className="circular--portrait" src={value}></Avatar>;
+    const imageComponet = (value) => (
+        <Avatar alt="Platform" className="circular--portrait" src={value}>
+            <img src={imageBaseUrl + value} alt="Platform" />
+        </Avatar>
+    );
 
     const columns = [
         {
