@@ -9,7 +9,8 @@ import {
     FormControlLabel,
     Switch,
     MenuItem,
-    CircularProgress
+    CircularProgress,
+    Paper
 } from '@material-ui/core';
 import { useAddSectionFormContext } from 'contexts';
 import { setRoute, sectionPlace, sectionType } from 'utilities';
@@ -103,7 +104,7 @@ function AddSectionComponent(props) {
     }, []);
 
     return (
-        <>
+        <Paper variant="outlined">
             <div style={{ margin: 'auto' }}>
                 <PageHeader pageData={pageData} />
 
@@ -376,7 +377,7 @@ function AddSectionComponent(props) {
                     {`Failed:  ${error?.message}`}
                 </SnackBarAndAlert>
             )}
-        </>
+        </Paper>
     );
 }
 

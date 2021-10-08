@@ -1,13 +1,13 @@
 import React from 'react';
 import { PageHeader, Characters, WatchSources, Seasons } from 'components';
 import SummaryComponent from 'components/summary/summary.component';
-import { Box, CircularProgress } from '@material-ui/core';
+import { Box, CircularProgress, Paper } from '@material-ui/core';
 
 const ShowDetailsComponent = (props) => {
     const { pageData, id, show, loading, error } = props;
 
     return (
-        <div style={{ margin: 'auto' }}>
+        <Paper variant="outlined" style={{ margin: 'auto' }}>
             <PageHeader pageData={pageData} />
             <div style={{ minHeight: '600px' }}>
                 <Box m={2}>
@@ -33,7 +33,7 @@ const ShowDetailsComponent = (props) => {
                     </Box>
                 )}
             </div>
-        </div>
+        </Paper>
     );
 };
 

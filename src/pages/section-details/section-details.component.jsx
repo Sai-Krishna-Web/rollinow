@@ -19,7 +19,7 @@ const SectionDetailsComponent = (props) => {
 
     const classes = useStyles();
     return (
-        <div style={{ margin: 'auto' }}>
+        <Paper variant="outlined" style={{ margin: 'auto' }}>
             <PageHeader pageData={pageData} />
             <div style={{ height: '600px' }}>
                 <Box m={2}>
@@ -97,7 +97,7 @@ const SectionDetailsComponent = (props) => {
                     refetch={props.refetch}
                 />
             )}
-        </div>
+        </Paper>
     );
 };
 

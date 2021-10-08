@@ -2,7 +2,7 @@ import React from 'react';
 import { PageHeader, SectionsList } from 'components';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
+import { Paper, Box } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -62,7 +62,7 @@ function a11yProps(index) {
 const SectionsComponent = (props) => {
     const { pageData, tab, handleTabChange, loading, error, data, columns, onRowClick } = props;
     return (
-        <div style={{ margin: 'auto' }}>
+        <Paper variant="outlined" style={{ margin: 'auto' }}>
             <PageHeader pageData={pageData} />
             <div style={{ height: '600px', textAlign: 'center' }}>
                 <div position="static" color="default">
@@ -112,7 +112,7 @@ const SectionsComponent = (props) => {
                     </>
                 )}
             </div>
-        </div>
+        </Paper>
     );
 };
 

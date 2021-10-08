@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import { PageHeader, LoadingScreen, SnackBarAndAlert, UploadMedia } from 'components';
 import {
+    Paper,
     Box,
     Button,
     TextField,
@@ -125,7 +126,7 @@ const AddCastComponent = (props) => {
     }, []);
 
     return (
-        <>
+        <Paper variant="outlined">
             <div style={{ margin: 'auto' }}>
                 <PageHeader pageData={pageData} />
                 <div style={{ minHeight: '600px', textAlign: 'center', padding: '20px' }}>
@@ -298,7 +299,7 @@ const AddCastComponent = (props) => {
                     {`Failed:  ${error?.message}`}
                 </SnackBarAndAlert>
             )}
-        </>
+        </Paper>
     );
 };
 

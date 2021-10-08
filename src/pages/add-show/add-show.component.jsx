@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { PageHeader, Stepper, LoadingScreen, SnackBarAndAlert } from 'components';
-import { Button, makeStyles, CircularProgress } from '@material-ui/core';
+import { Button, makeStyles, CircularProgress, Paper } from '@material-ui/core';
 import { useAddShowFormContext } from 'contexts';
 import { getShowGQL } from 'services/queries';
 import { formatDateTimeByFormatString } from 'utilities/helper';
@@ -68,7 +68,7 @@ const AddShowComponent = (props) => {
     }, []);
 
     return (
-        <>
+        <Paper variant="outlined">
             <div style={{ margin: 'auto' }}>
                 <PageHeader pageData={pageData} />
                 <div style={{ minHeight: '600px', textAlign: 'center', padding: '20px' }}>
@@ -146,7 +146,7 @@ const AddShowComponent = (props) => {
                     {`Failed:  ${props.message}`}
                 </SnackBarAndAlert>
             )}
-        </>
+        </Paper>
     );
 };
 

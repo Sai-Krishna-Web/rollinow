@@ -1,12 +1,12 @@
 import React from 'react';
 import { PageHeader, SnackBarAndAlert } from 'components';
-import { Box, CircularProgress } from '@material-ui/core';
+import { Box, CircularProgress, Paper } from '@material-ui/core';
 import { SectionsList } from 'components';
 
 const ShowsComponent = (props) => {
     const { pageData, loading, error, data } = props;
     return (
-        <div style={{ margin: 'auto' }}>
+        <Paper variant="outlined" style={{ margin: 'auto' }}>
             <PageHeader pageData={pageData} />
             <div style={{ height: '600px', textAlign: 'center' }}>
                 {loading ? (
@@ -51,7 +51,7 @@ const ShowsComponent = (props) => {
                     {props.message}
                 </SnackBarAndAlert>
             )}
-        </div>
+        </Paper>
     );
 };
 

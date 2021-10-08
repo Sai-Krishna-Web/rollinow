@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from './header/header.container';
 import SideNavBar from './side-nav-bar/side-nav-bar.container';
 import Content from './content/content.container';
-import { Drawer, useMediaQuery, Paper } from '@material-ui/core';
+import { Drawer, useMediaQuery } from '@material-ui/core';
 // material-ui
 import { makeStyles, useTheme } from '@material-ui/styles';
 import { AppBar, CssBaseline, Toolbar } from '@material-ui/core';
@@ -77,9 +77,6 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             marginLeft: '10px'
         }
-    },
-    paper: {
-        borderColor: theme.palette.primary[200]
     }
 }));
 
@@ -133,9 +130,7 @@ function LayoutComponent() {
                         }
                     ])}
                 >
-                    <Paper variant="outlined" className={classes.paper}>
-                        <Content />
-                    </Paper>
+                    <Content />
                 </main>
             </div>
         </React.Fragment>
