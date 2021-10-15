@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles, Paper, CardMedia, CardContent, Grid, Typography } from '@material-ui/core';
-import { formatDateTimeByFormatString } from 'utilities/helper';
+import { formatDateTimeByFormatString, tmdbLink } from 'utilities/helper';
 import Genres from '../genres/genres.container';
-import { imageBaseUrl } from 'utilities/constants';
+import imagePlaceHolder from '../../assets/images/imagePlaceHolder.jpg';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     media: {
         height: 200,
         minWidth: 200,
+        maxWidth: 200,
         backgroundColor: '#171717',
         backgroundSize: 'contain',
         borderRadius: `${theme.palette.borderRadius}px`
@@ -41,9 +42,9 @@ const SummaryComponent = (props) => {
                             className={classes.media}
                             component="img"
                             title={addShowForm.title}
-                            src={addShowForm.thumbnailUrl}
+                            src={tmdbLink(addShowForm.thumbnailUrl)}
                             onError={(e) => {
-                                e.target.src = imageBaseUrl + addShowForm.thumbnailUrl;
+                                e.target.src = imagePlaceHolder;
                             }}
                         />
                     </Grid>
