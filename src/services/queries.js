@@ -274,3 +274,33 @@ export const getPlatformsListGQL = gql`
         }
     }
 `;
+
+export const topPlatformsGQL = gql`
+    query {
+        getTopPlatforms {
+            source {
+                source
+                imageUrl
+            }
+            count
+        }
+    }
+`;
+
+export const topLanguagesGQL = gql`
+    query {
+        getTopLanguages {
+            language
+            count
+        }
+    }
+`;
+
+export const topGenresGQL = gql`
+    query {
+        getTopGenre {
+            genre
+            count
+        }
+    }
+`;

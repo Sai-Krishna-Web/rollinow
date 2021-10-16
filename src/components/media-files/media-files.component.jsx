@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import StepIcon from '@material-ui/core/StepIcon';
-
+import { tmdbLink } from 'utilities/helper';
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -124,8 +124,8 @@ const MediaFilesComponent = (props) => {
                                 addShowForm[`${value}`] && (
                                     <Card key={index} className={classes.mediaContainer} variant="outlined">
                                         <CardMedia
-                                            src={addShowForm[`${value}`]}
-                                            image={addShowForm[`${value}`]}
+                                            src={tmdbLink(addShowForm[`${value}`])}
+                                            image={tmdbLink(addShowForm[`${value}`])}
                                             className={classes.media}
                                         />
                                         <Typography variant="subtitle2" color="textSecondary">

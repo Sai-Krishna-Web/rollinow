@@ -94,7 +94,7 @@ function SideNavBar(props) {
         const currentPath = document.location.pathname.toString().split('/')[1];
         setSelectedNav(currentPath);
         // eslint-disable-next-line
-    }, []);
+    }, [document.location]);
 
     return (
         <SideNavBarComponent navLinks={navLinks} selectedNav={selectedNav} setSelectedNav={setSelectedNav} {...props} />
