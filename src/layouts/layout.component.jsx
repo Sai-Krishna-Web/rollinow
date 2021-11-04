@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function LayoutComponent() {
+function LayoutComponent(props) {
     const classes = useStyles();
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
@@ -116,7 +116,7 @@ function LayoutComponent() {
                         }}
                         color="inherit"
                     >
-                        <SideNavBar setOpen={setOpen} />
+                        <SideNavBar setOpen={setOpen} {...props} />
                     </Drawer>
                 </nav>
                 {/*<Drawer open={open} onClose={() => setOpen(false)} classes={{}}></Drawer>*/}

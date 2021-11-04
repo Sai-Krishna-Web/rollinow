@@ -25,7 +25,9 @@ function App() {
         <ApolloProvider client={apolloClient}>
             <ThemeProvider theme={themes(initialStyles)}>
                 <CssBaseline />
-                <Router history={browserHistory}>{authToken ? <Layout /> : <LoginForm />}</Router>
+                <Router history={browserHistory}>
+                    {authToken ? <Layout history={browserHistory} /> : <LoginForm />}
+                </Router>
             </ThemeProvider>
         </ApolloProvider>
     );

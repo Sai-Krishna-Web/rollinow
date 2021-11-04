@@ -9,6 +9,7 @@ import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import SubscriptionsOutlinedIcon from '@material-ui/icons/SubscriptionsOutlined';
 import MovieFilterOutlinedIcon from '@material-ui/icons/MovieFilterOutlined';
 import LanguageOutlinedIcon from '@material-ui/icons/LanguageOutlined';
+import AnnouncementOutlinedIcon from '@material-ui/icons/AnnouncementOutlined';
 
 import { setRoute } from '../../utilities';
 import { useLogout } from '../../contexts/auth';
@@ -80,6 +81,14 @@ function SideNavBar(props) {
             icon: <LanguageOutlinedIcon />,
             onClick: () => {
                 setRoute('/languages');
+            }
+        },
+        {
+            name: 'Requests',
+            path: 'requests',
+            icon: <AnnouncementOutlinedIcon />,
+            onClick: () => {
+                setRoute('/requests');
             }
         },
         {

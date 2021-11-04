@@ -304,3 +304,29 @@ export const topGenresGQL = gql`
         }
     }
 `;
+
+export const getRequestsListGQL = gql`
+    query {
+        allRequests(date: "1970-01-01T00:00:00.000Z", requestType: "DATA_MISSING") {
+            data {
+                id
+            }
+        }
+    }
+`;
+
+export const getCastDetailsListGQL = gql`
+    query getArtist($id: String!, $type: String = "MOVIE") {
+        getArtist(id: $id) {
+            id
+            name
+            thumbnail
+            shows(type: $type) {
+                id
+                title
+                releaseDate
+                type
+            }
+        }
+    }
+`;
