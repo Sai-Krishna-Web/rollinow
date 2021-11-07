@@ -2,27 +2,53 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import RequestsComponent from './requests.component';
 import { getRequestsListGQL } from 'services/queries';
+import { formatDateTimeByFormatString } from 'utilities/helper';
+import { setRoute } from 'utilities';
+import { entityTypePath } from 'utilities/enums';
 
-function Requests() {
-    const { data, loading, error, refetch } = useQuery(getRequestsListGQL);
-    const [open, setOpen] = useState(false);
-    const [onError, setOnError] = useState(false);
-    const [onSuccess, setOnSuccess] = useState(false);
-    const [message, setMessage] = useState('');
+function Requests(props) {
+    const { location } = props;
+    const requestType = location.pathname === '/missingRequests' ? 'DATA_MISSING' : 'CONTENT_REQUEST';
+    const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
+    const [statusType, setStatusType] = useState('All');
+    const { data, loading, error, refetch } = useQuery(getRequestsListGQL, {
+        variables: { date: date, requestType: requestType, resolved: statusType === 'All' ? null : statusType }
+    });
 
+    const editClick = (id) => {
+        const request = data?.allRequests.data.find((row) => {
+            return row.id === id;
+        });
+        const entityPath = entityTypePath[request.entity];
+        setRoute(`/${entityPath}/edit/${id}`);
+    };
     const pageData = {
-        title: 'Requests'
+        title: requestType === 'DATA_MISSING' ? 'Missing Requests' : 'New Requests',
+        date: date,
+        statusType: statusType,
+        setDate: setDate,
+        setStatusType: setStatusType
     };
 
     const columns = [
         {
-            id: 'imageUrl',
-            label: '',
-            minWidth: 40,
-            width: 50
+            id: 'title',
+            label: 'Title',
+            minWidth: 100
         },
-        { id: 'source', label: 'Name', minWidth: 170 },
-        { id: 'flatUrl', label: 'Url', minWidth: 180 }
+        { id: 'entity', label: 'Entity', minWidth: 100 },
+        requestType === 'DATA_MISSING' && {
+            id: 'fields',
+            label: 'Fields',
+            minWidth: 180,
+            format: (value) => value.join(', ')
+        },
+        {
+            id: 'createdAt',
+            label: 'Created At',
+            minWidth: 100,
+            format: (value) => value && formatDateTimeByFormatString(value, 'YYYY-MM-DD', false, true)
+        }
     ];
 
     return (
@@ -33,14 +59,7 @@ function Requests() {
             error={error}
             refetch={refetch}
             columns={columns}
-            open={open}
-            setOpen={setOpen}
-            onError={onError}
-            onSuccess={onSuccess}
-            message={message}
-            setOnError={setOnError}
-            setOnSuccess={setOnSuccess}
-            setMessage={setMessage}
+            editClick={editClick}
         />
     );
 }

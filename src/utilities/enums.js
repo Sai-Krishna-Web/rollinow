@@ -30,3 +30,11 @@ export const sourceType = {
     Rent: 'Rent',
     Free: 'Free'
 };
+
+export const entityTypePath = {
+    MOVIE: 'movies',
+    TV: 'shows',
+    SHOW: 'shows',
+    SECTION: 'sections',
+    CAST: 'casts'
+};

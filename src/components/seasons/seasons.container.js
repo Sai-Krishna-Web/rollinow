@@ -40,7 +40,7 @@ function Seasons(props) {
     return (
         <SeasonsComponent
             {...props}
-            seasons={data?.getShow.seasons}
+            seasons={data?.getShow?.seasons}
             loading={loading}
             error={error}
             refetch={refetch}

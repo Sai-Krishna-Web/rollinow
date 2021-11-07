@@ -25,6 +25,7 @@ const RequestsComponent = (props) => {
                         editClick={props.editClick}
                         deleteClick={props.deleteClick}
                         refetch={props.refetch}
+                        //count={data.allRequests.hits}
                     />
                 )}
             </div>

@@ -299,17 +299,25 @@ export const topLanguagesGQL = gql`
 export const topGenresGQL = gql`
     query {
         getTopGenre {
-            genre
+            genre {
+                genre
+                image
+            }
             count
         }
     }
 `;
 
 export const getRequestsListGQL = gql`
-    query {
-        allRequests(date: "1970-01-01T00:00:00.000Z", requestType: "DATA_MISSING") {
+    query allRequests($date: DateTime!, $requestType: String!, $resolved: Boolean = null) {
+        allRequests(date: $date, requestType: $requestType, resolved: $resolved) {
+            hits
             data {
                 id
+                title
+                entity
+                fields
+                createdAt
             }
         }
     }
@@ -321,11 +329,15 @@ export const getCastDetailsListGQL = gql`
             id
             name
             thumbnail
-            shows(type: $type) {
+            biography
+            characters(type: $type) {
                 id
-                title
-                releaseDate
-                type
+                character
+                show {
+                    id
+                    title
+                    releaseDate
+                }
             }
         }
     }

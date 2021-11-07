@@ -55,7 +55,7 @@ function Characters(props) {
     return (
         <CharactersComponent
             {...props}
-            characters={data?.getShow.characters}
+            characters={data?.getShow?.characters}
             loading={loading}
             error={error}
             refetch={refetch}

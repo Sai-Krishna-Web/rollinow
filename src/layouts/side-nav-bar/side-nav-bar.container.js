@@ -10,6 +10,7 @@ import SubscriptionsOutlinedIcon from '@material-ui/icons/SubscriptionsOutlined'
 import MovieFilterOutlinedIcon from '@material-ui/icons/MovieFilterOutlined';
 import LanguageOutlinedIcon from '@material-ui/icons/LanguageOutlined';
 import AnnouncementOutlinedIcon from '@material-ui/icons/AnnouncementOutlined';
+import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
 
 import { setRoute } from '../../utilities';
 import { useLogout } from '../../contexts/auth';
@@ -84,11 +85,19 @@ function SideNavBar(props) {
             }
         },
         {
-            name: 'Requests',
-            path: 'requests',
+            name: 'Missing Requests',
+            path: 'missingRequests',
             icon: <AnnouncementOutlinedIcon />,
             onClick: () => {
-                setRoute('/requests');
+                setRoute('/missingRequests');
+            }
+        },
+        {
+            name: 'New Requests',
+            path: 'newRequests',
+            icon: <AddBoxOutlinedIcon />,
+            onClick: () => {
+                setRoute('/newRequests');
             }
         },
         {
