@@ -10,6 +10,6 @@ export const formatDateTimeByFormatString = (dateTime, formatString = 'l LT', no
 };
 
 export const tmdbLink = (link) => {
-    if (link.startsWith('/t/p')) return imageBaseUrl + link;
+    if (link?.startsWith('/t/p')) return imageBaseUrl + link;
     return link;
 };
