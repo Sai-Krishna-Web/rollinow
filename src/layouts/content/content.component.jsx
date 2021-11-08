@@ -14,7 +14,9 @@ import {
     ShowDetails,
     Platforms,
     Genres,
-    Languages
+    Languages,
+    Requests,
+    CastDetails
 } from 'pages';
 
 function ContentComponent() {
@@ -39,6 +41,9 @@ function ContentComponent() {
             <Route path="/platforms" exact={true} component={Platforms} />
             <Route path="/genres" exact={true} component={Genres} />
             <Route path="/languages" exact={true} component={Languages} />
+            <Route path="/missingRequests" exact={true} component={Requests} />
+            <Route path="/newRequests" exact={true} component={Requests} />
+            <Route path="/casts/details/:id" component={CastDetails} />
         </Switch>
     );
 }

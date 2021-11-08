@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, OutlinedInput, InputAdornment, Box, Typography } from '@material-ui/core';
+import { Button, OutlinedInput, InputAdornment, Box, Typography, TextField, MenuItem } from '@material-ui/core';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import { makeStyles } from '@material-ui/styles';
@@ -23,6 +23,9 @@ const useStyles = makeStyles(() => ({
     container: {
         display: 'flex',
         alignItems: 'center'
+    },
+    textField: {
+        width: '16ch'
     }
 }));
 
@@ -68,6 +71,47 @@ const PageHeader = (props) => {
                         >
                             {pageData.actionName}
                         </Button>
+                    </Box>
+                )}
+                {pageData.date && (
+                    <Box>
+                        <TextField
+                            type="date"
+                            label="Date"
+                            margin="dense"
+                            variant="outlined"
+                            name="requestsDate"
+                            id="requestsDate"
+                            value={pageData.date}
+                            onChange={(e) => {
+                                pageData.setDate(e.target.value);
+                            }}
+                            InputLabelProps={{
+                                shrink: true
+                            }}
+                        />
+                    </Box>
+                )}
+                {pageData.setStatusType && (
+                    <Box pl={2}>
+                        <TextField
+                            label="Status Type"
+                            margin="dense"
+                            variant="outlined"
+                            type="text"
+                            name="statusType"
+                            id="statusType"
+                            value={pageData.statusType}
+                            onChange={(e) => {
+                                pageData.setStatusType(e.target.value);
+                            }}
+                            className={classes.textField}
+                            select
+                        >
+                            <MenuItem value="All">All</MenuItem>
+                            <MenuItem value={true}>Resolved</MenuItem>
+                            <MenuItem value={false}>Unresolved</MenuItem>
+                        </TextField>
                     </Box>
                 )}
             </Box>

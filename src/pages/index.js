@@ -12,6 +12,8 @@ import ShowDetails from './show-details/show-details.container';
 import Platforms from './platforms/platforms.container';
 import Genres from './genres/genres.container';
 import Languages from './languages/languages.container';
+import Requests from './requests/requests.container';
+import CastDetails from './cast-details/cast-details.container';
 
 export {
     LoginForm,
@@ -27,5 +29,7 @@ export {
     ShowDetails,
     Platforms,
     Genres,
-    Languages
+    Languages,
+    Requests,
+    CastDetails
 };

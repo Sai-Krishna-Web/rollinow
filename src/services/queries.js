@@ -299,8 +299,48 @@ export const topLanguagesGQL = gql`
 export const topGenresGQL = gql`
     query {
         getTopGenre {
-            genre
+            genre {
+                genre
+                image
+            }
             count
+        }
+    }
+`;
+
+export const getRequestsListGQL = gql`
+    query allRequests($date: DateTime!, $requestType: String!, $resolved: Boolean = null) {
+        allRequests(date: $date, requestType: $requestType, resolved: $resolved) {
+            hits
+            data {
+                id
+                title
+                entity
+                fields
+                createdAt
+                showId
+                castId
+            }
+        }
+    }
+`;
+
+export const getCastDetailsListGQL = gql`
+    query getArtist($id: String!, $type: String = "MOVIE") {
+        getArtist(id: $id) {
+            id
+            name
+            thumbnail
+            biography
+            characters(type: $type) {
+                id
+                character
+                show {
+                    id
+                    title
+                    releaseDate
+                }
+            }
         }
     }
 `;

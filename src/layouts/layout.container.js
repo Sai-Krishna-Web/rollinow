@@ -1,8 +1,8 @@
 import React from 'react';
 import LayoutComponent from './layout.component';
 
-function Layout() {
-    return <LayoutComponent />;
+function Layout(props) {
+    return <LayoutComponent {...props} />;
 }
 
 export default Layout;

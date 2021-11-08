@@ -37,6 +37,10 @@ function Casts() {
         refetch();
     };
 
+    const onRowClick = (row) => {
+        setRoute(`/casts/details/${row.id}`);
+    };
+
     const pageData = {
         title: 'Casts',
         actionName: 'Add Cast',
@@ -74,6 +78,7 @@ function Casts() {
             columns={columns}
             editClick={editClick}
             deleteClick={deleteClick}
+            onRowClick={onRowClick}
         />
     );
 }

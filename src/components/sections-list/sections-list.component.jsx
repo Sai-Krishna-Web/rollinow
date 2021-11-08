@@ -69,13 +69,13 @@ function SectionsListComponent(props) {
                     <TableBody>
                         {fetching ? (
                             <TableRow>
-                                <TableCell colSpan={columns.length + 1} align="center">
+                                <TableCell colSpan={columns?.length + 1} align="center">
                                     <CircularProgress />
                                 </TableCell>
                             </TableRow>
                         ) : rows.length === 0 ? (
                             <TableRow>
-                                <TableCell colSpan={columns.length + 1} align="center">
+                                <TableCell colSpan={columns?.length + 1} align="center">
                                     No entries yet!
                                 </TableCell>
                             </TableRow>

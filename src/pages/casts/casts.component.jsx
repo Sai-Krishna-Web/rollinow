@@ -22,7 +22,7 @@ const CastsComponent = (props) => {
                         <SectionsList
                             rows={data.searchArtists.data}
                             columns={props.columns}
-                            onRowClick={() => undefined}
+                            onRowClick={props.onRowClick}
                             editClick={props.editClick}
                             deleteClick={props.deleteClick}
                             count={data.searchArtists.hits}

@@ -231,7 +231,14 @@ const HomeComponent = (props) => {
                                             <Grid item key={index}>
                                                 <Grid container spacing={3} alignItems="center">
                                                     <Grid item>
-                                                        <Typography>{genre?.genre}</Typography>
+                                                        <Avatar
+                                                            alt="Platform"
+                                                            className="circular--portrait"
+                                                            src={tmdbLink(genre?.genre?.image)}
+                                                        ></Avatar>
+                                                    </Grid>
+                                                    <Grid item>
+                                                        <Typography>{genre?.genre?.genre}</Typography>
                                                     </Grid>
                                                 </Grid>
                                             </Grid>
