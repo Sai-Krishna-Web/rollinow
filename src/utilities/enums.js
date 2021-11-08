@@ -1,8 +1,14 @@
 import { searchShowsGQL, searchListsGQL, searchUsersGQL, searchCastGQL } from 'services/queries';
+
 export const sectionPlace = {
     HOME: 'Home',
     DISCOVER: 'Discover',
-    BOTH: 'Both'
+    BOTH: 'Both',
+    GENRE: 'Genre',
+    LANGUAGE: 'Langauge',
+    ARTIST: 'Artist',
+    PLATFORM: 'Platform',
+    SHOW: 'Show'
 };
 
 export const sectionType = {

@@ -19,8 +19,12 @@ function Requests(props) {
         const request = data?.allRequests.data.find((row) => {
             return row.id === id;
         });
+        const type = requestType === 'DATA_MISSING' ? 'edit' : 'add';
+        const entityId = request.showId || request.castId;
         const entityPath = entityTypePath[request.entity];
-        setRoute(`/${entityPath}/edit/${id}`);
+        requestType === 'DATA_MISSING'
+            ? setRoute(`/${entityPath}/${type}/${entityId}`)
+            : setRoute(`/${entityPath}/${type}`);
     };
     const pageData = {
         title: requestType === 'DATA_MISSING' ? 'Missing Requests' : 'New Requests',

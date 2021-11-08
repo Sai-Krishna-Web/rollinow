@@ -318,6 +318,8 @@ export const getRequestsListGQL = gql`
                 entity
                 fields
                 createdAt
+                showId
+                castId
             }
         }
     }
