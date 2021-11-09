@@ -84,6 +84,23 @@ export const searchCastGQL = gql`
     }
 `;
 
+export const searchGenresGQL = gql`
+    query searchGenres($skip: Float = 0, $take: Float = 4, $query: String = "") {
+        searchGenres(take: $take, skip: $skip, query: $query) {
+            hits
+            data {
+                genre
+            }
+        }
+    }
+`;
+export const searchPlatformsGQL = gql`
+    query {
+        getPlatformsList {
+            source
+        }
+    }
+`;
 export const getSectionEntriesGQL = gql`
     query section($id: Float!) {
         section(id: $id) {
@@ -131,6 +148,11 @@ export const getSectionGQL = gql`
             remark
             description
             sequence
+            genreId
+            castId
+            languageId
+            platformId
+            showId
         }
     }
 `;

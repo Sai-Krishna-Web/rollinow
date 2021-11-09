@@ -24,6 +24,9 @@ function Picker(props) {
             if (data) {
                 setOptions(data);
             }
+            if (gqlQuery === searchQueryType.PLATFORM) {
+                setOptions(result.getPlatformsList);
+            }
         },
         onError: () => {
             setOnError(true);

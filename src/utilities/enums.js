@@ -1,14 +1,22 @@
-import { searchShowsGQL, searchListsGQL, searchUsersGQL, searchCastGQL } from 'services/queries';
+import {
+    searchShowsGQL,
+    searchListsGQL,
+    searchUsersGQL,
+    searchCastGQL,
+    searchLanguageListGQL,
+    searchGenresGQL,
+    searchPlatformsGQL
+} from 'services/queries';
 
 export const sectionPlace = {
-    HOME: 'Home',
-    DISCOVER: 'Discover',
-    BOTH: 'Both',
-    GENRE: 'Genre',
-    LANGUAGE: 'Langauge',
-    ARTIST: 'Artist',
-    PLATFORM: 'Platform',
-    SHOW: 'Show'
+    HOME: 'HOME',
+    DISCOVER: 'DISCOVER',
+    BOTH: 'BOTH',
+    GENRE: 'GENRE',
+    LANGUAGE: 'LANGUAGE',
+    ARTIST: 'ARTIST',
+    PLATFORM: 'PLATFORM',
+    SHOW: 'SHOW'
 };
 
 export const sectionType = {
@@ -26,7 +34,11 @@ export const searchQueryType = {
     SHOW: searchShowsGQL,
     LIST: searchListsGQL,
     USER: searchUsersGQL,
-    CAST: searchCastGQL
+    CAST: searchCastGQL,
+    LANGUAGE: searchLanguageListGQL,
+    ARTIST: searchCastGQL,
+    GENRE: searchGenresGQL,
+    PLATFORM: searchPlatformsGQL
 };
 
 export const sourceType = {

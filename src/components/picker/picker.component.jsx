@@ -10,15 +10,27 @@ function PickerComponent(props) {
             <Autocomplete
                 id="showId"
                 style={{ width: 300 }}
-                getOptionLabel={(option) => (typeof option === 'string' ? option : option?.title || option?.name)}
-                getOptionSelected={(option, value) => option?.title === value || option?.name === value}
+                getOptionLabel={(option) =>
+                    typeof option === 'string'
+                        ? option
+                        : option?.title || option?.name || option?.genre || option?.language || option?.source
+                }
+                getOptionSelected={(option, value) =>
+                    option?.title === value ||
+                    option?.name === value ||
+                    option?.genre === value ||
+                    option?.language === value ||
+                    option?.source === value
+                }
                 options={options}
                 autoComplete
                 loading={loading}
                 value={inputValue}
                 onChange={(event, newValue) => {
-                    setPickerId('entryId', newValue?.id);
-                    handleChange(newValue.title || newValue.name);
+                    setPickerId('entryId', newValue?.id || newValue?.genre || newValue?.language || newValue?.source);
+                    handleChange(
+                        newValue?.title || newValue?.name || newValue?.genre || newValue?.language || newValue?.source
+                    );
                 }}
                 renderInput={(params) => (
                     <TextField
@@ -34,7 +46,7 @@ function PickerComponent(props) {
                     return (
                         <Grid container alignItems="center">
                             <Grid item xs>
-                                {option?.title || option?.name}
+                                {option?.title || option?.name || option?.genre || option?.language || option?.source}
                             </Grid>
                         </Grid>
                     );

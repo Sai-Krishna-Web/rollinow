@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Formik } from 'formik';
-import { PageHeader, LoadingScreen, SnackBarAndAlert } from 'components';
+import { PageHeader, LoadingScreen, SnackBarAndAlert, Picker } from 'components';
 import {
     Box,
     Button,
@@ -65,20 +65,37 @@ const useStyles = makeStyles((theme) => ({
 function AddSectionComponent(props) {
     const classes = useStyles();
     const [fetching, seFetching] = useState(true);
-    const { pageData, validate, handleSubmit, loading, data, error, enableSubmit, onSuccess, setOnSuccess, id } = props;
+    const {
+        pageData,
+        validate,
+        handleSubmit,
+        loading,
+        data,
+        error,
+        enableSubmit,
+        onSuccess,
+        setOnSuccess,
+        id,
+        enablePlacePicker,
+        handlePlacePicker
+    } = props;
     const { addSectionForm, setAddSectionForm } = useAddSectionFormContext();
 
     const [getSection] = useLazyQuery(getSectionGQL, {
         onCompleted: (data) => {
             if (data?.section) {
+                handlePlacePicker(data.section.place);
                 // eslint-disable-next-line
                 const { __typename, ...section } = data.section;
                 setAddSectionForm((addSectionForm) => ({
                     ...addSectionForm,
                     ...section,
                     startTime: formatDateTimeByFormatString(section.startTime, 'YYYY-MM-DDTHH:mm'),
-                    endTime: data.section.endTime && formatDateTimeByFormatString(section.endTime, 'YYYY-MM-DDTHH:mm')
+                    endTime: data.section.endTime && formatDateTimeByFormatString(section.endTime, 'YYYY-MM-DDTHH:mm'),
+                    entryId:
+                        section.showId || section.castId || section.languageId || section.genreId || section.platformId
                 }));
+
                 seFetching(false);
             }
         }
@@ -221,6 +238,16 @@ function AddSectionComponent(props) {
                                                             </TextField>
                                                         </div>
                                                     </div>
+                                                    {enablePlacePicker && (
+                                                        <div className={classes.root}>
+                                                            {' '}
+                                                            <Picker
+                                                                type={values.place}
+                                                                setPickerId={handleAddSection}
+                                                                input={values.entryId}
+                                                            ></Picker>
+                                                        </div>
+                                                    )}
                                                     <div className={classes.root}>
                                                         <TextField
                                                             type="datetime-local"

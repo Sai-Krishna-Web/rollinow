@@ -11,7 +11,8 @@ function AddSectionFormProvider(props) {
         shown: false,
         startTime: '',
         endTime: '',
-        remark: ''
+        remark: '',
+        entryId: ''
     };
 
     const [addSectionForm, setAddSectionForm] = useState(initialState);

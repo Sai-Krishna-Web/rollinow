@@ -3,10 +3,11 @@ import AddSectionComponent from './add-section.component';
 import { AddSectionFormProvider } from 'contexts';
 import { useMutation } from '@apollo/client';
 import { CREATE_SECTION_URL } from 'services/mutations';
+import { sectionPlace } from 'utilities/enums';
 
 function AddSection(props) {
     const { id } = props.match.params;
-    //const { refetch } = props.location.state;
+    const [enablePlacePicker, setEnablePlacePicker] = useState(false);
     const [enableSubmit, setEnableSubmit] = useState(false);
     const [onError, setOnError] = useState(false);
     const [onSuccess, setOnSuccess] = useState(false);
@@ -47,14 +48,28 @@ function AddSection(props) {
             errors.place = 'Place is required';
         }
 
+        if (values.place) {
+            handlePlacePicker(values.place);
+        }
+
         return errors;
     };
 
+    const handlePlacePicker = (place) => {
+        if (place && place !== 'HOME' && place !== 'DISCOVER' && place !== 'BOTH') setEnablePlacePicker(true);
+        else setEnablePlacePicker(false);
+    };
     const handleSubmit = (vars) => {
+        const { entryId, ...data } = vars;
+        const showId = vars.place === sectionPlace.SHOW ? entryId : null;
+        const languageId = vars.place === sectionPlace.LANGUAGE ? entryId : null;
+        const platformId = vars.place === sectionPlace.PLATFORM ? entryId : null;
+        const genreId = vars.place === sectionPlace.GENRE ? entryId : null;
+        const castId = vars.place === sectionPlace.ARTIST ? entryId : null;
         addSection({
             variables: {
                 id: Number(id),
-                section: { ...vars, sequence: Number(vars.sequence) }
+                section: { ...data, sequence: Number(vars.sequence), showId, castId, languageId, genreId, platformId }
             }
         });
     };
@@ -76,6 +91,8 @@ function AddSection(props) {
                 onSuccess={onSuccess}
                 setOnSuccess={setOnSuccess}
                 id={id}
+                enablePlacePicker={enablePlacePicker}
+                handlePlacePicker={handlePlacePicker}
             />
         </AddSectionFormProvider>
     );
