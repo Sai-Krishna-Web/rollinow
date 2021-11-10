@@ -65,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
 function AddSectionComponent(props) {
     const classes = useStyles();
     const [fetching, seFetching] = useState(true);
+    const [input, setInput] = useState('');
     const {
         pageData,
         validate,
@@ -84,9 +85,21 @@ function AddSectionComponent(props) {
     const [getSection] = useLazyQuery(getSectionGQL, {
         onCompleted: (data) => {
             if (data?.section) {
-                handlePlacePicker(data.section.place);
+                const place = data.section?.place;
+                handlePlacePicker(place);
+                const sectionPlaceValue =
+                    place === sectionPlace.ARTIST
+                        ? data.section.cast.name
+                        : place === sectionPlace.SHOW
+                        ? data.section.show.title
+                        : place === sectionPlace.GENRE
+                        ? data.section.genreId
+                        : place === sectionPlace.PLATFORM
+                        ? data.section.platformId
+                        : data.section.languageId;
+                sectionPlaceValue && setInput(sectionPlaceValue);
                 // eslint-disable-next-line
-                const { __typename, ...section } = data.section;
+                const { __typename, cast, show, ...section } = data.section;
                 setAddSectionForm((addSectionForm) => ({
                     ...addSectionForm,
                     ...section,
@@ -95,7 +108,6 @@ function AddSectionComponent(props) {
                     entryId:
                         section.showId || section.castId || section.languageId || section.genreId || section.platformId
                 }));
-
                 seFetching(false);
             }
         }
@@ -244,7 +256,7 @@ function AddSectionComponent(props) {
                                                             <Picker
                                                                 type={values.place}
                                                                 setPickerId={handleAddSection}
-                                                                input={values.entryId}
+                                                                input={input}
                                                             ></Picker>
                                                         </div>
                                                     )}

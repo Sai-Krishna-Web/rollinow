@@ -149,10 +149,16 @@ export const getSectionGQL = gql`
             description
             sequence
             genreId
-            castId
             languageId
             platformId
-            showId
+            cast {
+                id
+                name
+            }
+            show {
+                id
+                title
+            }
         }
     }
 `;
