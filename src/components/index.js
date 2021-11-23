@@ -18,8 +18,9 @@ import AddWatchSource from './add-watch-source/add-watch-source.container';
 import AddPlatform from './add-platform/add-platform.container';
 import Seasons from './seasons/seasons.container';
 import AddSeason from './add-season/add-season.container';
-import AddGenre from './add-genre/add-genre.container';
+import AddGenre from './add-banner/add-banner.container';
 import AddLanguage from './add-language/add-language.container';
+import AddBanner from './add-banner/add-banner.container';
 export {
     PageHeader,
     Stepper,
@@ -42,5 +43,6 @@ export {
     Seasons,
     AddSeason,
     AddGenre,
-    AddLanguage
+    AddLanguage,
+    AddBanner
 };

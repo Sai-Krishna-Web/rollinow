@@ -11,6 +11,7 @@ import MovieFilterOutlinedIcon from '@material-ui/icons/MovieFilterOutlined';
 import LanguageOutlinedIcon from '@material-ui/icons/LanguageOutlined';
 import AnnouncementOutlinedIcon from '@material-ui/icons/AnnouncementOutlined';
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
+import ViewCarouselOutlinedIcon from '@material-ui/icons/ViewCarouselOutlined';
 
 import { setRoute } from '../../utilities';
 import { useLogout } from '../../contexts/auth';
@@ -98,6 +99,14 @@ function SideNavBar(props) {
             icon: <AddBoxOutlinedIcon />,
             onClick: () => {
                 setRoute('/newRequests');
+            }
+        },
+        {
+            name: 'Banners',
+            path: 'banners',
+            icon: <ViewCarouselOutlinedIcon />,
+            onClick: () => {
+                setRoute('/banners');
             }
         },
         {

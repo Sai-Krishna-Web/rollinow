@@ -14,6 +14,7 @@ import Genres from './genres/genres.container';
 import Languages from './languages/languages.container';
 import Requests from './requests/requests.container';
 import CastDetails from './cast-details/cast-details.container';
+import Banners from './banners/banners.container';
 
 export {
     LoginForm,
@@ -31,5 +32,6 @@ export {
     Genres,
     Languages,
     Requests,
-    CastDetails
+    CastDetails,
+    Banners
 };

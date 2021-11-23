@@ -372,3 +372,21 @@ export const getCastDetailsListGQL = gql`
         }
     }
 `;
+
+export const getBannersListGQL = gql`
+    query {
+        allBanners {
+            id
+            place
+            genreId
+            languageId
+            platformId
+            genreId
+            showId
+            show {
+                id
+                title
+            }
+        }
+    }
+`;

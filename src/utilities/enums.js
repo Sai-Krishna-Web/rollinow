@@ -56,3 +56,11 @@ export const entityTypePath = {
     SECTION: 'sections',
     CAST: 'casts'
 };
+
+export const bannerPlace = {
+    HOME: 'HOME',
+    DISCOVER: 'DISCOVER',
+    GENRE: 'GENRE',
+    LANGUAGE: 'LANGUAGE',
+    PLATFORM: 'PLATFORM'
+};

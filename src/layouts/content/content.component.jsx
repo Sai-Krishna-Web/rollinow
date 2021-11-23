@@ -16,7 +16,8 @@ import {
     Genres,
     Languages,
     Requests,
-    CastDetails
+    CastDetails,
+    Banners
 } from 'pages';
 
 function ContentComponent() {
@@ -44,6 +45,7 @@ function ContentComponent() {
             <Route path="/missingRequests" exact={true} component={Requests} />
             <Route path="/newRequests" exact={true} component={Requests} />
             <Route path="/casts/details/:id" component={CastDetails} />
+            <Route path="/banners" exact={true} component={Banners} />
         </Switch>
     );
 }

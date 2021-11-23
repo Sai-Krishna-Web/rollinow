@@ -199,3 +199,11 @@ export const UPDATE_GENRE_URL = gql`
         }
     }
 `;
+
+export const CREATE_OR_UPDATE_BANNER_URL = gql`
+    mutation ($id: Float, $banner: BannerInput!) {
+        createOrUpdateBanner(id: $id, banner: $banner) {
+            id
+        }
+    }
+`;
