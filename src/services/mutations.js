@@ -207,3 +207,11 @@ export const CREATE_OR_UPDATE_BANNER_URL = gql`
         }
     }
 `;
+
+export const DELETE_BANNER_URL = gql`
+    mutation ($id: Float!) {
+        deleteBanner(id: $id) {
+            id
+        }
+    }
+`;

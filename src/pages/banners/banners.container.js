@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import BannersComponent from './banners.component';
 import { getBannersListGQL } from 'services/queries';
+import { DELETE_BANNER_URL } from 'services/mutations';
 
 function Banners() {
     const { data, loading, error, refetch } = useQuery(getBannersListGQL);
@@ -10,6 +11,20 @@ function Banners() {
     const [onError, setOnError] = useState(false);
     const [onSuccess, setOnSuccess] = useState(false);
     const [message, setMessage] = useState('');
+
+    const [deleteBanner] = useMutation(DELETE_BANNER_URL, {
+        onCompleted: (data) => {
+            if (data?.deleteBanner) {
+                setOnSuccess(true);
+                setMessage('Banner deleted successfully');
+                refetch();
+            }
+        },
+        onError: (error) => {
+            setOnError(true);
+            setMessage(`Failed: ${error.message}`);
+        }
+    });
 
     const pageData = {
         title: 'Banners',
@@ -24,9 +39,27 @@ function Banners() {
         {
             id: 'place',
             label: 'Place',
-            minWidth: 100
+            width: 50
         },
-        { id: 'show', label: 'Title', minWidth: '100', format: (value) => value.title }
+        { id: 'show', label: 'Show Title', minWidth: '100', format: (value) => value.title },
+        {
+            id: 'genreId',
+            label: 'Genre',
+            minWidth: 100,
+            format: (value) => value || 'NA'
+        },
+        {
+            id: 'platformId',
+            label: 'Platform',
+            minWidth: 100,
+            format: (value) => value || 'NA'
+        },
+        {
+            id: 'languageId',
+            label: 'Language',
+            minWidth: 100,
+            format: (value) => value || 'NA'
+        }
     ];
 
     const editClick = (id) => {
@@ -35,6 +68,15 @@ function Banners() {
         });
         setBanner(row);
         setOpen(true);
+    };
+
+    const deleteClick = (id) => {
+        deleteBanner({
+            variables: {
+                id: Number(id)
+            }
+        });
+        //refetch();
     };
 
     return (
@@ -54,6 +96,7 @@ function Banners() {
             setOnSuccess={setOnSuccess}
             setMessage={setMessage}
             editClick={editClick}
+            deleteClick={deleteClick}
             banner={banner}
             setBanner={setBanner}
         />
