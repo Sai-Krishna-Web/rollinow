@@ -1,5 +1,5 @@
 import React from 'react';
-import { UploadMedia, CircularProgressBar } from 'components';
+import { UploadMedia, CircularProgressBar, YoutubePreview } from 'components';
 import { makeStyles, Grid, TextField, MenuItem, CardMedia, Card, Typography } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -17,6 +17,17 @@ const useStyles = makeStyles((theme) => ({
     textField: {
         margin: theme.spacing(1),
         width: '25ch'
+    },
+    textFieldInput: {
+        margin: theme.spacing(1),
+        marginTop: theme.spacing(3),
+        width: '45ch'
+    },
+    textFieldPanel: {
+        width: '45ch',
+        minHeight: 180,
+        display: 'flex',
+        justifyContent: 'center'
     },
     uploadContainer: {
         margin: 'auto',
@@ -71,7 +82,7 @@ const MediaFilesComponent = (props) => {
                                             ) : (
                                                 <StepIcon
                                                     icon={index + 1}
-                                                    active={addShowForm[`${value}`]}
+                                                    active={Boolean(addShowForm[`${value}`])}
                                                     color="primary"
                                                 />
                                             )}
@@ -107,27 +118,59 @@ const MediaFilesComponent = (props) => {
                                     <MenuItem value="trailerUrl">Trailer</MenuItem>
                                 </TextField>
                             </Grid>
-                            <Grid item className={classes.uploadPanel}>
-                                <UploadMedia
-                                    location="shows"
-                                    afterUpload={afterUpload}
-                                    uploadProgress={uploadProgress}
-                                    setUploadProgress={setUploadProgress}
-                                    disabled={Boolean(!mediaType)}
-                                />
-                            </Grid>
+                            {mediaType === 'trailerUrl' ? (
+                                <Grid item className={classes.textFieldPanel}>
+                                    <TextField
+                                        label="Trailer Url"
+                                        margin="dense"
+                                        variant="outlined"
+                                        type="text"
+                                        name="trailerUrl"
+                                        id="trailerUrl"
+                                        value={addShowForm.trailerUrl}
+                                        onChange={(e) => {
+                                            afterUpload(e.target.value);
+                                        }}
+                                        className={classes.textFieldInput}
+                                        multiline
+                                        rows={3}
+                                    />
+                                </Grid>
+                            ) : (
+                                <Grid item className={classes.uploadPanel}>
+                                    <UploadMedia
+                                        location="shows"
+                                        afterUpload={afterUpload}
+                                        uploadProgress={uploadProgress}
+                                        setUploadProgress={setUploadProgress}
+                                        disabled={Boolean(!mediaType)}
+                                    />
+                                </Grid>
+                            )}
                         </Grid>
                     </Grid>
                     <Grid item container xs={12} justifyContent="center">
                         {Object.keys(mediaFiles).map((value, index) => {
+                            if (value !== 'trailerUrl') {
+                                return (
+                                    addShowForm[`${value}`] && (
+                                        <Card key={index} className={classes.mediaContainer} variant="outlined">
+                                            <CardMedia
+                                                src={tmdbLink(addShowForm[`${value}`])}
+                                                image={tmdbLink(addShowForm[`${value}`])}
+                                                className={classes.media}
+                                            />
+                                            <Typography variant="subtitle2" color="textSecondary">
+                                                {mediaFiles[value]}
+                                            </Typography>
+                                        </Card>
+                                    )
+                                );
+                            }
                             return (
                                 addShowForm[`${value}`] && (
                                     <Card key={index} className={classes.mediaContainer} variant="outlined">
-                                        <CardMedia
-                                            src={tmdbLink(addShowForm[`${value}`])}
-                                            image={tmdbLink(addShowForm[`${value}`])}
-                                            className={classes.media}
-                                        />
+                                        <YoutubePreview link={addShowForm[`${value}`]} key={index} />
                                         <Typography variant="subtitle2" color="textSecondary">
                                             {mediaFiles[value]}
                                         </Typography>

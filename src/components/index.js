@@ -21,6 +21,7 @@ import AddSeason from './add-season/add-season.container';
 import AddGenre from './add-banner/add-banner.container';
 import AddLanguage from './add-language/add-language.container';
 import AddBanner from './add-banner/add-banner.container';
+import YoutubePreview from './youtube-preview';
 export {
     PageHeader,
     Stepper,
@@ -44,5 +45,6 @@ export {
     AddSeason,
     AddGenre,
     AddLanguage,
-    AddBanner
+    AddBanner,
+    YoutubePreview
 };

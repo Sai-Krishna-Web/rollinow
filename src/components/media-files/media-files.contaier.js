@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MediaFilesComponent from './media-files.component';
 import { useAddShowFormContext } from 'contexts';
 function MediaFiles() {
-    const [mediaType, setMediaType] = useState();
+    const [mediaType, setMediaType] = useState('');
     const [uploadProgress, setUploadProgress] = useState(0);
     const { addShowForm, setAddShowForm } = useAddShowFormContext();
 
